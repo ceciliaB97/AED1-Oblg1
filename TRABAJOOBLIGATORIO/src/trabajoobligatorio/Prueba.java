@@ -1,7 +1,6 @@
-
-package trabajarconvectoresenclase;
-
-import trabajarconvectoresenclase.Retorno.Resultado;
+package trabajoobligatorio;
+import trabajoobligatorio.Retorno;
+import trabajoobligatorio.Retorno.Resultado;
 
 public class Prueba {
 
