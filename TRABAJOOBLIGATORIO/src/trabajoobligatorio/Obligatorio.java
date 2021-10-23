@@ -98,3 +98,6 @@ public class Obligatorio  implements IObligatorio{
     }
     
 }
+
+
+//soy fernando probando
