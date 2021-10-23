@@ -15,8 +15,8 @@ public interface IObligatorio {
    Retorno listarLibrosBiblioteca (String biblioteca);
    Retorno listarBibliotecaRanking();
    Retorno listarComentarios (String biblioteca);
-   Retorno listarEspera (String titulo, String editorial, String biblioteca);
-   Retorno mostrarReservasBiblioteca ();
+   Retorno listarEspera(String titulo, String editorial, String biblioteca);
+   Retorno mostrarReservasBiblioteca();
    
 
 }
