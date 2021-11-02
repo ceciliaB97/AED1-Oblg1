@@ -1,15 +1,19 @@
 
 package trabajoobligatorio;
 
+import Estructuras.Lista;
+import Clases.Reserva;
+
 /**
  *
  * @author RAFAEL
  */
-public class Obligatorio  implements IObligatorio{
+public class Obligatorio extends Lista implements IObligatorio{
 
     @Override
     public Retorno crearSistemaReservas() {
          Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
+         Reserva reservas = new Reserva();
          return ret;
     }
 

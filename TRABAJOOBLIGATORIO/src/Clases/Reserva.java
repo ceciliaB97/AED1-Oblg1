@@ -3,7 +3,7 @@ package Clases;
 
 import Estructuras.Lista;
 
-class Reserva extends Lista {
+public class Reserva extends Lista {
     private int cliente;
     private int numero;
     private String fecha;
