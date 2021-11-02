@@ -2,7 +2,7 @@
 package trabajoobligatorio;
 
 import Estructuras.Lista;
-import Clases.Reserva;
+import Clases.*;
 
 /**
  *
@@ -13,7 +13,6 @@ public class Obligatorio extends Lista implements IObligatorio{
     @Override
     public Retorno crearSistemaReservas() {
          Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
-         Reserva reservas = new Reserva();
          return ret;
     }
 
@@ -25,7 +24,9 @@ public class Obligatorio extends Lista implements IObligatorio{
 
     @Override
     public Retorno registrarBiblioteca(String Biblioteca) {
-         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
+         Retorno ret = new Retorno(Retorno.Resultado.OK);   
+         Biblioteca b1 = new Biblioteca(Biblioteca);
+         ret.valorbooleano = true;
          return ret;
     }
 
