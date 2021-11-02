@@ -1,7 +1,7 @@
 
-package trabajoobligatorio;
+package Clases;
 
-class Calificacion {
+public class Calificacion {
     private int calificacion;
     private String comentario;
     private Calificacion siguiente;

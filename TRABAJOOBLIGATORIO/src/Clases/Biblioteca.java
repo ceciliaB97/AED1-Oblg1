@@ -1,5 +1,5 @@
 
-package trabajoobligatorio;
+package Clases;
 
 
 public class Biblioteca {

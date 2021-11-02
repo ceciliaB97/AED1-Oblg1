@@ -1,5 +1,5 @@
 
-package trabajoobligatorio;
+package Clases;
 
 class Reserva {
     private int cliente;

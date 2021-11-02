@@ -1,7 +1,7 @@
 
-package trabajoobligatorio;
+package Clases;
 
-class Libro {
+public class Libro {
     private int NumUnico;
     private String Titulo;
     private String Editorial;
