@@ -1,7 +1,9 @@
 
 package Clases;
 
-public class Libro {
+import Estructuras.Lista;
+
+public class Libro extends Lista {
     private int NumUnico;
     private String Titulo;
     private String Editorial;

@@ -1,7 +1,9 @@
 
 package Clases;
 
-public class Calificacion {
+import Estructuras.Lista;
+
+public class Calificacion extends Lista {
     private int calificacion;
     private String comentario;
     private Calificacion siguiente;

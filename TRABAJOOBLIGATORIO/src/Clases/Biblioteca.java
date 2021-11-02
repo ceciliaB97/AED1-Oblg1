@@ -1,8 +1,10 @@
 
 package Clases;
 
+import Estructuras.Lista;
 
-public class Biblioteca {
+
+public class Biblioteca extends Lista {
     private String nombre;
     private Libro libros;
     private Biblioteca siguiente;
