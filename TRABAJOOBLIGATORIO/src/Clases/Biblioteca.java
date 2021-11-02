@@ -2,6 +2,7 @@
 package Clases;
 
 import Estructuras.Lista;
+import Estructuras.NodoLista;
 
 
 public class Biblioteca extends Lista {
@@ -37,6 +38,6 @@ public class Biblioteca extends Lista {
 
     public void setLibros(Libro libros) {
         this.libros = libros;
-    }    
+    }      
     
 }

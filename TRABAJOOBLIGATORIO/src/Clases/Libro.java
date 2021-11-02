@@ -13,12 +13,12 @@ public class Libro extends Lista {
     private Reserva espera;
     //nodo libro
 
-    public Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares, Calificacion calificacion, Reserva reserva, Reserva espera) {
+    public Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares) {
         this.NumUnico = NumUnico;
         this.Titulo = Titulo;
         this.Editorial = Editorial;
         this.Ejemplares = Ejemplares;
-        this.calificacion = calificacion;
+        this.calificacion = null;
         this.reserva = null;
         this.espera = null;
     }
