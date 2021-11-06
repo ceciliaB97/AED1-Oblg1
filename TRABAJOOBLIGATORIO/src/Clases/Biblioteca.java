@@ -23,6 +23,7 @@ public class Biblioteca extends Lista {
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
+        this.limite = 0;
     }
 
     public Biblioteca getInicioB() {
@@ -128,9 +129,9 @@ public class Biblioteca extends Lista {
     //POS: Borra el primer nodo
     @Override
     public boolean borrarInicio() {
-        this.actual--;
         if (!this.esVacia()) {
             this.inicio = this.inicio.getSiguiente();
+            this.actual--;
         }
         return true;
     }
