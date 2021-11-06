@@ -34,11 +34,8 @@ public class Lista implements ILista {
         return fin;
     }
 
-    /**
-     * ***Métodos Básicos****
-     */
-    //PRE:
-    //POS: Retorna true si la lista no tiene nodos
+  
+    @Override
     public boolean esVacia() {
         return this.inicio == null;
     }
@@ -84,8 +81,8 @@ public class Lista implements ILista {
         return false;
     }
 
-    //PRE:
-    //POS: Borra el primer nodo
+ 
+    @Override
     public boolean borrarInicio() {
         this.actual--;
         if (!this.esVacia()) {
@@ -94,8 +91,8 @@ public class Lista implements ILista {
         return true;
     }
 
-    //PRE:
-    //POS: Borra el último nodo
+    
+    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -113,8 +110,8 @@ public class Lista implements ILista {
         return true;
     }
 
-    //PRE:
-    //POS: elimina todos los nodos de una lista dada
+    
+    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -420,4 +417,6 @@ public class Lista implements ILista {
     public int contarNodos(TDato n) {
         return this.cantElementos();
     }
+    
+    
 }

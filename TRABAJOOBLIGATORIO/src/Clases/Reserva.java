@@ -10,6 +10,25 @@ public class Reserva extends Lista {
     private Reserva siguiente;
     private Reserva primero;
     private Reserva ultimo;
+    private int actual;
+    private int limite;
+
+    public int getActual() {
+        return actual;
+    }
+
+    public void setActual(int actual) {
+        this.actual = actual;
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
+    
 
     public Reserva getPrimero() {
         return primero;
@@ -31,6 +50,10 @@ public class Reserva extends Lista {
         this.cliente = cliente;
         this.numero = numero;
         this.fecha = fecha;
+        this.primero = null;
+        this.ultimo = null;        
+        this.actual = 0;
+        this.limite = 0;
     }
 
     public Reserva getSiguiente() {
@@ -72,8 +95,26 @@ public class Reserva extends Lista {
         return this.primero == null;
     }
     
-    public boolean puedoInsertar() { //CONSULTAR NECESIDAD DE MÉTODO, SE REALIZA CON EJEMPLARES DE LIBRO
-        return true; 
+    
+    @Override
+    public boolean puedoInsertar() {
+        if (this.limite == 0) {
+            return true;
+        }
+        return this.limite > this.actual;
+    }
+
+    @Override
+    public int cantElementos() {
+        int cont = 0;
+        if (!this.esVacia()) {
+            Reserva aux = this.primero;
+            while (aux != null) {
+                aux = aux.getSiguiente();
+                cont++;
+            }
+        }
+        return cont;
     }
    
     public boolean agregarFinal(Reserva n) {
@@ -86,30 +127,43 @@ public class Reserva extends Lista {
                 Reserva aux = this.primero;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
-                }
-                Reserva nuevo = new Reserva(n.cliente, n.numero, n.fecha);
-                aux.setSiguiente(nuevo);
-                this.ultimo = nuevo;
+                }                
+                aux.setSiguiente(n);
+                this.ultimo = n;
                 return true;
             }
         }
         return false;
     }
     
+    public boolean agregarInicio(Reserva n) {
+        if (puedoInsertar()) {
+            this.actual++;                
+            n.setSiguiente(this.primero); 
+            this.primero = n;
+            if (this.ultimo == null)//estoy insertando el primer nodo
+            {
+                this.ultimo = n;
+            }
+            return true;
+        }
+        return false;
+    }
+    
     public Reserva obtenerElemento(Reserva n) {
         if (!this.esVacia()) {
-            if (this.primero.getDato() == n) {
+            if (this.primero== n) {
                 return primero;
             }
-            if (this.ultimo.getDato() == n) {
+            if (this.ultimo == n) {
                 return ultimo;
             } else {
                 Reserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getDato() == n) {
+                    if (aux == n) {
                         return aux;
                     }
-                    aux = aux.getSig();
+                    aux = aux.getSiguiente();
                 }
             }
         }
@@ -132,8 +186,8 @@ public class Reserva extends Lista {
                 Reserva aux = this.obtenerElemento(n);
 
                 if (aux.getSiguiente() != getUltimo()) {
-                    aux.getSiguiente() = aux.getSiguiente().getSiguiente();
-                    return true;
+                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                return true;
 
                 }
             }
@@ -142,13 +196,46 @@ public class Reserva extends Lista {
         return false;
     }
     
-     public void mostrarREC(Reserva l) {
-        if (l != null) {
-            System.out.println(l.getDato());
-            mostrarREC(l.getSiguiente());
+    @Override
+    public boolean borrarInicio() {        
+        if (!this.esVacia()) {
+            this.actual--;
+            this.primero = this.primero.getSiguiente();
         }
+        return true;
     }
-     
+    
+//    public void mostrarREC(Reserva l) {
+//        if (l != null) {
+//            System.out.println(l.cliente);
+//            System.out.println(l.getSiguiente().numero);
+//            mostrarREC(l.getSiguiente());
+//        }
+//    }
+      
+    public void mostrarREC(Reserva n, int cont) {
+        if (n.getSiguiente() == null) {
+            if(n != this.primero){
+                System.out.println((cont++)+" - <"+n.cliente+">");
+            }else{           
+            System.out.println(cont +" - <"+n.cliente+">");
+            }
+        }else{            
+             mostrarREC(n.siguiente, cont++);  
+             System.out.println(cont+" - <"+n.cliente+">");  
+        }     
+    }
+    
+    public void mostrarREC2(Reserva n, int cont) {
+        if (n.getSiguiente() == null) {                      
+            System.out.println(cont +" - <"+n.cliente+">");            
+        }else{            
+             mostrarREC(n.siguiente, cont++);  
+             System.out.println((cont++)+" - <"+n.cliente+">");  
+        }     
+    }
+   
+    @Override
      public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
