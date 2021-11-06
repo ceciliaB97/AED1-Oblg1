@@ -8,6 +8,7 @@ public class NodoLista {
 
     private TDato dato;
     private NodoLista sig;
+      
 
     public NodoLista(TDato n) {
         this.dato = n;
@@ -30,4 +31,7 @@ public class NodoLista {
     public NodoLista getSig() {
         return this.sig;
     }
+
+      
+   
 }
