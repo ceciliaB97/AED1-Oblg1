@@ -34,7 +34,6 @@ public class Lista implements ILista {
         return fin;
     }
 
-  
     @Override
     public boolean esVacia() {
         return this.inicio == null;
@@ -81,7 +80,6 @@ public class Lista implements ILista {
         return false;
     }
 
- 
     @Override
     public boolean borrarInicio() {
         this.actual--;
@@ -91,7 +89,6 @@ public class Lista implements ILista {
         return true;
     }
 
-    
     @Override
     public boolean borrarFin() {
         this.actual--;
@@ -110,7 +107,6 @@ public class Lista implements ILista {
         return true;
     }
 
-    
     @Override
     public void vaciar() {
         this.actual = 0;
@@ -219,10 +215,28 @@ public class Lista implements ILista {
      */
     //PRE:
     //POS: muestra los datos de la lista en orden de enlace
-    public void mostrarREC(NodoLista l) {
-        if (l != null) {
-            System.out.println(l.getDato());
-            mostrarREC(l.getSig());
+    
+    
+//    public void mostrarREC(NodoLista l) {
+//        if (l != null) {
+//            System.out.println(l.getDato());
+//            mostrarREC(l.getSig());
+//        }
+//    }
+
+    public void mostrarREC(NodoLista nodo) {
+
+        mostrarREC2(nodo, this.cantElementos());
+    }
+
+    public void mostrarREC2(NodoLista nodo, int cont
+    ) {
+        if (nodo.getSig() == null) {
+            System.out.println(cont - 1 + "-" + nodo.getDato());
+
+        } else {
+            mostrarREC2(nodo.getSig(), --cont);
+            System.out.println(cont + "-" + nodo.getDato());
         }
     }
 
@@ -386,29 +400,29 @@ public class Lista implements ILista {
         return null;
     }
 
-     @Override
+    @Override
     public boolean eliminarElemento(TDato n) {
         //si no es null
         if (!esVacia()) {
             if (n == getInicio().getDato()) {
                 borrarInicio();
                 return true;
- 
+
             } else if (n == getFin().getDato()) {
                 borrarFin();
                 return true;
- 
+
             } else {
- 
+
                 NodoLista aux = this.obtenerElemento(n);
- 
+
                 if (aux.getSig() != getFin()) {
                     aux.setSig(aux.getSig().getSig());
                     return true;
- 
+
                 }
             }
- 
+
         }
         return false;
     }
@@ -417,6 +431,5 @@ public class Lista implements ILista {
     public int contarNodos(TDato n) {
         return this.cantElementos();
     }
-    
-    
+
 }
