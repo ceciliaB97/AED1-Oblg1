@@ -386,29 +386,29 @@ public class Lista implements ILista {
         return null;
     }
 
-    @Override
+     @Override
     public boolean eliminarElemento(TDato n) {
         //si no es null
         if (!esVacia()) {
             if (n == getInicio().getDato()) {
                 borrarInicio();
                 return true;
-
+ 
             } else if (n == getFin().getDato()) {
                 borrarFin();
                 return true;
-
+ 
             } else {
-
+ 
                 NodoLista aux = this.obtenerElemento(n);
-
+ 
                 if (aux.getSig() != getFin()) {
-                    aux.getSig() = aux.getSig().getSig();
+                    aux.setSig(aux.getSig().getSig());
                     return true;
-
+ 
                 }
             }
-
+ 
         }
         return false;
     }

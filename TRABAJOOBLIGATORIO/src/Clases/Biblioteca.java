@@ -419,9 +419,9 @@ public class Biblioteca extends Lista {
                 Biblioteca aux = this.obtenerElemento(n);
 
                 if (aux.getSiguiente() != getFinB()) {
-                    aux.getSiguiente() = aux.getSiguiente().getSiguiente();
+                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
                     return true;
-
+ 
                 }
             }
 
