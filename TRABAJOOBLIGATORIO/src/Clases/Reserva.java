@@ -1,9 +1,9 @@
-
 package Clases;
+
 import Estructuras.Lista;
 
-
 public class Reserva extends Lista {
+
     private int cliente;
     private int numero;
     private String fecha;
@@ -28,7 +28,6 @@ public class Reserva extends Lista {
     public void setLimite(int limite) {
         this.limite = limite;
     }
-    
 
     public Reserva getPrimero() {
         return primero;
@@ -45,13 +44,13 @@ public class Reserva extends Lista {
     public void setUltimo(Reserva ultimo) {
         this.ultimo = ultimo;
     }
-    
+
     public Reserva(int cliente, int numero, String fecha) {
         this.cliente = cliente;
         this.numero = numero;
         this.fecha = fecha;
         this.primero = null;
-        this.ultimo = null;        
+        this.ultimo = null;
         this.actual = 0;
         this.limite = 0;
     }
@@ -86,16 +85,13 @@ public class Reserva extends Lista {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    } 
-    
+    }
+
     //Metodos para sobrecarga 
-    
-    
     public boolean esVacia() {
         return this.primero == null;
     }
-    
-    
+
     @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
@@ -116,7 +112,7 @@ public class Reserva extends Lista {
         }
         return cont;
     }
-   
+
     public boolean agregarFinal(Reserva n) {
         if (puedoInsertar()) {
             this.actual++;
@@ -127,7 +123,7 @@ public class Reserva extends Lista {
                 Reserva aux = this.primero;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
-                }                
+                }
                 aux.setSiguiente(n);
                 this.ultimo = n;
                 return true;
@@ -135,11 +131,11 @@ public class Reserva extends Lista {
         }
         return false;
     }
-    
+
     public boolean agregarInicio(Reserva n) {
         if (puedoInsertar()) {
-            this.actual++;                
-            n.setSiguiente(this.primero); 
+            this.actual++;
+            n.setSiguiente(this.primero);
             this.primero = n;
             if (this.ultimo == null)//estoy insertando el primer nodo
             {
@@ -149,18 +145,18 @@ public class Reserva extends Lista {
         }
         return false;
     }
-    
+
     public Reserva obtenerElemento(Reserva n) {
         if (!this.esVacia()) {
-            if (this.primero== n) {
+            if (this.primero.numero == n.numero) {
                 return primero;
             }
-            if (this.ultimo == n) {
+            if (this.ultimo.numero == n.numero) {
                 return ultimo;
             } else {
                 Reserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux == n) {
+                    if (aux.numero == n.numero) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -169,74 +165,78 @@ public class Reserva extends Lista {
         }
         return null;
     }
-    
+
+    public Reserva obtenerElementoAnterior(Reserva n) {
+        if (!this.esVacia()) {
+            if (this.primero.numero == n.numero) {
+                return null;
+            } else {
+                Reserva aux = this.getPrimero();
+                while (aux.getSiguiente() != null) {
+                    if (aux.getSiguiente().numero == n.numero) {
+                        return aux;
+                    }
+                    aux = aux.getSiguiente();
+                }
+            }
+        }
+        return null;
+    }
+
     public boolean eliminarElemento(Reserva n) {
         //si no es null
         if (!esVacia()) {
-            if (n == getPrimero()) {
+            if (n.numero == getPrimero().numero) {
                 borrarInicio();
                 return true;
 
-            } else if (n == getUltimo()) {
+            } else if (n.numero == getUltimo().numero) {
                 borrarFin();
                 return true;
 
             } else {
 
-                Reserva aux = this.obtenerElemento(n);
+                Reserva aux = this.obtenerElementoAnterior(n);
 
-                if (aux.getSiguiente() != getUltimo()) {
-                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
-                return true;
-
+                if (aux != null) {
+                    if (aux.getSiguiente() != getUltimo()) {
+                        aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                        return true;
+                    }
                 }
             }
-
         }
         return false;
     }
-    
+
     @Override
-    public boolean borrarInicio() {        
+    public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
             this.primero = this.primero.getSiguiente();
         }
         return true;
     }
-    
-//    public void mostrarREC(Reserva l) {
-//        if (l != null) {
-//            System.out.println(l.cliente);
-//            System.out.println(l.getSiguiente().numero);
-//            mostrarREC(l.getSiguiente());
-//        }
-//    }
-      
-    public void mostrarREC(Reserva n, int cont) {
+
+    public void mostrarREC(Reserva n) {
+
+        mostrarREC2(n, 1);
+    }
+
+    public void mostrarREC2(Reserva n, int cont
+    ) {
         if (n.getSiguiente() == null) {
-            if(n != this.primero){
-                System.out.println((cont++)+" - <"+n.cliente+">");
-            }else{           
-            System.out.println(cont +" - <"+n.cliente+">");
-            }
-        }else{            
-             mostrarREC(n.siguiente, cont++);  
-             System.out.println(cont+" - <"+n.cliente+">");  
-        }     
+            System.out.println(cont + "- <" + n.cliente + ">");
+
+        } else {
+            System.out.println(cont + "- <" + n.cliente + ">");
+            mostrarREC2(n.getSiguiente(), ++cont);
+
+        }
     }
-    
-    public void mostrarREC2(Reserva n, int cont) {
-        if (n.getSiguiente() == null) {                      
-            System.out.println(cont +" - <"+n.cliente+">");            
-        }else{            
-             mostrarREC(n.siguiente, cont++);  
-             System.out.println((cont++)+" - <"+n.cliente+">");  
-        }     
-    }
-   
+
     @Override
-     public void vaciar() {
+    public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
         //inicio=fin=null;
