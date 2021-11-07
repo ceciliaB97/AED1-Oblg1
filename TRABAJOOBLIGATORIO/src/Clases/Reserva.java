@@ -182,6 +182,24 @@ public class Reserva extends Lista {
         }
         return null;
     }
+    
+    @Override
+    public boolean borrarFin() {
+        this.actual--;
+        if (!this.esVacia()) {
+            if (this.primero == this.ultimo) {
+                this.borrarInicio();
+            } else {
+                Reserva aux = this.primero;
+                while (aux.getSiguiente().getSiguiente() != null) {
+                    aux = aux.getSiguiente();
+                }
+                this.ultimo = aux;
+                this.ultimo.setSiguiente(null);
+            }
+        }
+        return true;
+    }
 
     public boolean eliminarElemento(Reserva n) {
         //si no es null
@@ -212,15 +230,18 @@ public class Reserva extends Lista {
     @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
-            this.actual--;
             this.primero = this.primero.getSiguiente();
+            this.actual--;
         }
         return true;
     }
 
-    public void mostrarREC(Reserva n) {
-
-        mostrarREC2(n, 1);
+    public void mostrarREC() {
+        if(!this.esVacia()){
+           mostrarREC2(this.getPrimero(), 1); 
+        }else{
+            System.out.println("No hay reservas en la lista");
+        }  
     }
 
     public void mostrarREC2(Reserva n, int cont

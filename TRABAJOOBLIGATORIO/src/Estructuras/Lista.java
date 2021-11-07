@@ -399,6 +399,23 @@ public class Lista implements ILista {
         }
         return null;
     }
+    
+    public NodoLista obtenerElementoAnterior(TDato n) {
+        if (!this.esVacia()) {
+            if (this.inicio.getDato() == n.getO()) {
+                return null;
+            } else {
+                NodoLista aux = this.getInicio();
+                while (aux.getSig() != null) {
+                    if (aux.getSig().getDato() == n.getO()) {
+                        return aux;
+                    }
+                    aux = aux.getSig();
+                }
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean eliminarElemento(TDato n) {
@@ -414,12 +431,13 @@ public class Lista implements ILista {
 
             } else {
 
-                NodoLista aux = this.obtenerElemento(n);
+                NodoLista aux = this.obtenerElementoAnterior(n);
 
-                if (aux.getSig() != getFin()) {
-                    aux.setSig(aux.getSig().getSig());
-                    return true;
-
+                if (aux != null) {
+                    if (aux.getSig() != this.getFin()) {
+                        aux.setSig(aux.getSig().getSig());
+                        return true;
+                    }
                 }
             }
 

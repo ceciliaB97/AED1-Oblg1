@@ -75,6 +75,22 @@ public class Biblioteca extends Lista {
     public void setActual(int Actual) {
         this.actual = Actual;
     }
+    
+        /**
+     * @return the limite
+     */
+    @Override
+    public int getLimite() {
+        return limite;
+    }
+
+    /**
+     * @param limite the limite to set
+     */
+    @Override
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
 
     /**
      * ***Métodos Básicos****
@@ -88,10 +104,9 @@ public class Biblioteca extends Lista {
 
     //PRE: 
     //POS: Agrega un nuevo Nodo al principio de la lista
-    public boolean agregarInicio(String n) {
+    public boolean agregarInicio(Biblioteca nuevo) {
         if (puedoInsertar()) {
             this.actual++;
-            Biblioteca nuevo = new Biblioteca(n);
             nuevo.setSiguiente(this.inicio);
             this.inicio = nuevo;
             if (this.fin == null)//estoy insertando el primer nodo
@@ -105,20 +120,19 @@ public class Biblioteca extends Lista {
 
     //PRE:
     //POS: Agrega un nuevo Nodo al final de la lista
-    public boolean agregarFinal(String n) {
+    public boolean agregarFinal(Biblioteca n) {
         if (puedoInsertar()) {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
-                this.agregarInicio(n);
+                this.inicio = n;
             } else {
                 Biblioteca aux = this.inicio;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
-                Biblioteca nuevo = new Biblioteca(n);
-                aux.setSiguiente(nuevo);
-                this.fin = nuevo;
+                aux.setSiguiente(n);
+                this.fin = n;
                 return true;
             }
         }
@@ -130,10 +144,11 @@ public class Biblioteca extends Lista {
     @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
-            this.inicio = this.inicio.getSiguiente();
             this.actual--;
+            this.inicio = this.inicio.getSiguiente();
+            return true;
         }
-        return true;
+        return false;
     }
 
     //PRE:
@@ -170,69 +185,69 @@ public class Biblioteca extends Lista {
 
     //PRE:
     //POS: Recorre y muestra los datos de lista
-    //!!!!! Cambiar por lo que pide la letra!!!!
-    public void mostrar() {
-        if (this.esVacia()) {
-            System.out.println("Lista es vacía");
+    public void mostrarREC() {
+        if(!this.esVacia()){
+            mostrarREC2(this.getInicioB(), 1);
         } else {
-            Biblioteca aux = this.inicio;
-            while (aux != null) {
-                System.out.println(aux.getNombre());
-                aux = aux.getSiguiente();
-            }
+            System.out.println("La lista no tiene bibliotecas");
         }
+        
     }
 
-    /**
-     * ***Otros Métodos (iterativos)****
-     */
-    //PRE: lista ordenada => mantiena orden
-    //POS: inserta nuevo elemento en orden ascendente
-    public boolean agregarOrd(Biblioteca n) {
-//        if (puedoInsertar()) {
-//            this.actual++;
-//            //lista vacía o primer elemento es mayor o igual => agrego al ppio
-//            if (this.esVacia() || this.inicio.getDato().CompareTo(n.getO()) == 1) {
-//                this.agregarInicio(n);
-//                return true;
-//            }
-//            //último elemento es menor o igual => agrego al final
-//            if (this.fin.getDato().CompareTo(n.getO()) == -1) {
-//                this.agregarFinal(n);
-//                return true;
-//            }
-//            NodoLista aux = this.inicio;
-//            while (aux.getSig() != null && aux.getSig().getDato().CompareTo(n.getO()) == 1) {
-//                aux = aux.getSig();
-//            }
-//            NodoLista nuevo = new NodoLista(n);
-//            nuevo.setSig(aux.getSig());
-//            aux.setSig(nuevo);
-//            return true;
-//        }
-        return false;
+    public void mostrarREC2(Biblioteca n, int cont
+    ) {
+        if (n.getSiguiente() == null) {
+            System.out.println(cont + "- <" + n.nombre + ">");
+            //this.libros.mostrarREC(); - titulo editorial y calificacion
+
+        } else {
+            System.out.println(cont + "- <" + n.nombre + ">");
+            //this.libros.mostrarREC(); - titulo editorial y calificacion
+            mostrarREC2(n.getSiguiente(), ++cont);
+
+        }
+    }
+    
+    public Biblioteca obtenerElementoAnterior(Biblioteca n) {
+        if (!this.esVacia()) {
+            if (this.inicio.getNombre().equals(n.getNombre())) {
+                return null;
+            } else {
+                Biblioteca aux = this.getInicioB();
+                while (aux.getSiguiente() != null) {
+                    if (aux.getSiguiente().getNombre().equals(n.getNombre())) {
+                        return aux;
+                    }
+                    aux = aux.getSiguiente();
+                }
+            }
+        }
+        return null;
     }
 
     //PRE: lista ordenada
     //POS: Borra la primer ocurrencia de un elemento dado
-    public boolean borrarElemento(String n) {
-        this.actual--;
-        if (this.esVacia()) {
-            return true;
-        }
-        if (this.inicio.getNombre() == n) {
-            this.borrarInicio();
-        } else {
-            Biblioteca aux = this.inicio;
-            while (aux.getSiguiente() != null && aux.getSiguiente().getNombre() != n) {
-                aux = aux.getSiguiente();
-            }
-            //lo encontré o llegué al final de la lista
-            if (aux.getSiguiente() != null) {
-                Biblioteca borrar = aux.getSiguiente();
-                aux.setSiguiente(borrar.getSiguiente());
-                borrar.setSiguiente(null);
+    public boolean eliminarElemento(Biblioteca n) {
+        //si no es null
+        if (!esVacia()) {
+            if (n.getNombre().equals(getInicioB().getNombre())) {
+                borrarInicio();
                 return true;
+
+            } else if (n.getNombre().equals(getFinB().getNombre())) {
+                borrarFin();
+                return true;
+
+            } else {
+
+                Biblioteca aux = this.obtenerElementoAnterior(n);
+
+                if (aux != null) {
+                    if (aux.getSiguiente() != getFinB()) {
+                        aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -240,6 +255,7 @@ public class Biblioteca extends Lista {
 
     //PRE: 
     //POS: Retorna la cantidad de nodos que tiene la lista
+    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -253,66 +269,24 @@ public class Biblioteca extends Lista {
     }
 
     //PRE: //POS:
-    public Biblioteca obtenerElemento(String n) {
-        Biblioteca aux = this.inicio;
-        while (aux != null && aux.getNombre() != n) {
-            aux = aux.getSiguiente();
-        }
-        //encontré dato o llegué al final
-        return aux;
-    }
-
-    /**
-     * *** Métodos RECURSIVOS ****
-     */
-    //PRE:
-    //POS: muestra los datos de la lista en orden de enlace
-    //!!! CAMBIAR POR LO QUE PIDA LA LETRA!!
-    public void mostrarREC(Biblioteca l) {
-        if (l != null) {
-            System.out.println(l.getNombre());
-            mostrarREC(l.getSiguiente());
-        }
-    }
-
-    //PRE:
-    //POS: muestra los datos de la lista en orden inverso
-    public void mostrarInversoREC(Biblioteca l) {
-        if (l != null) {
-            mostrarInversoREC(l.getSiguiente());
-            System.out.println(l.getNombre());
-        }
-    }
-
-    //PRE:
-    //POS: retorna true si el elemento pertenece a la lista
-    //!!! CAMBIAR SEGUN LO QUE PIDA LA LETRA!!
-    public boolean existeDatoREC(Biblioteca l, String n) {
-        if (l != null) {
-            if (l.getNombre() == n) {
-                return true;
-            } else {
-                return existeDatoREC(l.getSiguiente(), n);
+   public Biblioteca obtenerElemento(Biblioteca n) {
+        if (!this.esVacia()) {
+            if (this.inicio.getNombre().equals(n.getNombre())) {
+                return inicio;
             }
-        } else {
-            return false;
+            if (this.fin.getNombre().equals(n.getNombre())) {
+                return fin;
+            } else {
+                Biblioteca aux = this.getInicioB();
+                while (aux.getSiguiente() != null) {
+                    if (aux.getNombre().equals(n.getNombre())) {
+                        return aux;
+                    }
+                    aux = aux.getSiguiente();
+                }
+            }
         }
-    }
-
-    //PRE: Posicion de la lista
-    //POS: Object en posicion i.
-    public boolean datoEnPos(int i) {
-//        int contador = 0;
-//        if (i == 0) {
-//            return this.inicio.getNombre();
-//        }
-//        Biblioteca ptr = this.inicio;
-//        while (contador < i) {
-//            ptr = ptr.getSiguiente();
-//            contador++;
-//        }
-//        return ptr.getNombre();
-        return false;
+        return null;
     }
 
     /**
@@ -326,72 +300,20 @@ public class Biblioteca extends Lista {
         }
         return this.limite > this.actual;
     }
-
-    /**
-     * @return the limite
-     */
-    @Override
-    public int getLimite() {
-        return limite;
-    }
-
-    /**
-     * @param limite the limite to set
-     */
-    @Override
-    public void setLimite(int limite) {
-        this.limite = limite;
-    }
     
-        //CORREGIR Y CORROBORAR EL COMPARE TO
-    @Override
-    public boolean agregarOrdenado(String n) {
-        boolean ret = false;
-//        //si esta vacia o si el primero es mayor a x
-//        if (this.esVacia() || n.Nombre() == n) {
-//            //se agrega al inicio
-//            this.agregarInicio(n);
-//            ret = true;
-//            //si el ultimo valor es menor a x
-//        } else if (n.CompareTo(inicio) == 1) {
-//            //se agrega al final
-//            this.agregarFinal(n);
-//            ret = true;
-//        } else {
-//            //si x no esta ni antes del primero ni despues del ultimo
-//            //RECORRER Y BUSCAR CUAL ES EL MAYOR
-//            NodoLista nuevo = new NodoLista(n);
-//            NodoLista aux = this.getInicio();
-//            NodoLista siguienteAux = null;
-//            //mientras que el siguiente del actual sea menor a x recorre
-//            while (n.CompareTo(aux.getSig()) == -1) {
-//                aux = aux.getSig();
-//            }
-//            //cuando sale el siguiente del actual es mayor a x
-//            //se guarda el siguiente del actual
-//            siguienteAux = aux.getSig();
-//            //se asigna el siguiente del actual al nuevo nodo
-//            aux.setSig(nuevo);
-//            //el siguiente del nuevo nodo es el guardado
-//            nuevo.setSig(siguienteAux);
-//            ret = true;
-//        }
-        return ret;
-    }
-
-    public boolean buscarElemento(String n) {
+    public boolean buscarElemento(Biblioteca n) {
         boolean ret = false;
         if (!this.esVacia()) {
-            if (this.inicio.getNombre() == n) {
+            if (this.inicio.getNombre().equals(n.getNombre())) {
                 ret = true;
                 return ret;
             }
-            if (this.fin.getNombre() == n) {
+            if (this.fin.getNombre().equals(n.getNombre())) {
                 ret = true;
             } else {
                 Biblioteca aux = this.getInicioB();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getNombre() == n) {
+                    if (aux.getNombre().equals(n.getNombre())) {
                         ret = true;
                         return ret;
                     }
@@ -402,32 +324,6 @@ public class Biblioteca extends Lista {
             ret = false;
         }
         return ret;
-    }
-
-    public boolean eliminarElemento(String n) {
-        //si no es null
-        if (!esVacia()) {
-            if (n == getInicioB().getNombre()) {
-                borrarInicio();
-                return true;
-
-            } else if (n == getFinB().getNombre()) {
-                borrarFin();
-                return true;
-
-            } else {
-
-                Biblioteca aux = this.obtenerElemento(n);
-
-                if (aux.getSiguiente() != getFinB()) {
-                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
-                    return true;
- 
-                }
-            }
-
-        }
-        return false;
     }
 
     public int contarNodos(Biblioteca n) {
