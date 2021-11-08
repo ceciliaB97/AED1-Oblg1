@@ -367,21 +367,4 @@ public class Libro extends Lista {
         return n.cantElementos();
     }
 
-    private Libro obtenerElementoAnterior(Libro n) {
-        if (!this.esVacia()) {
-            if (this.inicio.getTitulo().equals(n.getTitulo())) {
-                return null;
-            } else {
-                Libro aux = this.getInicioL();
-                while (aux.getSiguiente() != null) {
-                    if (aux.getSiguiente().getTitulo().equals(n.getTitulo())) {
-                        return aux;
-                    }
-                    aux = aux.getSiguiente();
-                }
-            }
-        }
-        return null;
-    }
-
 }
