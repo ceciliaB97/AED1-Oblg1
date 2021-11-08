@@ -3,8 +3,6 @@ package trabajoobligatorio;
 
 import Estructuras.Lista;
 import Clases.*;
-import Estructuras.NodoLista;
-import Estructuras.TDato;
 
 /**
  *
@@ -14,7 +12,7 @@ public class Obligatorio extends Lista implements IObligatorio{
 
     @Override
     public Retorno crearSistemaReservas() {
-         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
+         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);  
          return ret;
     }
 
@@ -38,9 +36,9 @@ public class Obligatorio extends Lista implements IObligatorio{
     public Retorno eliminarBiblioteca(String Biblioteca) {
          Retorno ret = new Retorno(Retorno.Resultado.OK);  
          //se busca y se elimina
-         TDato biblioteca = new TDato(Biblioteca);
+         Biblioteca b = new Biblioteca(Biblioteca);
          //si elimino devuelve true, si no false
-         ret.valorbooleano = this.borrarElemento(biblioteca);
+         ret.valorbooleano = b.borrarElemento(b);
          ret.valorString = "Se eliminio biblioteca es " + ret.valorbooleano;
          return ret;
     }
@@ -48,11 +46,10 @@ public class Obligatorio extends Lista implements IObligatorio{
     @Override
     public Retorno registrarLibro(String titulo, String editorial, String biblioteca, int ejemplares) {
          Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
-         TDato bibliotecaT = new TDato(biblioteca);
-         //se busca la Biblioteca
-         NodoLista bibliotecaN = this.obtenerElemento(bibliotecaT);
+         Biblioteca b = new Biblioteca(biblioteca);
          //si biblioteca NO ES NULL
-         if (bibliotecaN != null){
+         b.obtenerElemento(b);
+         if (b != null){
              //Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares) 
              Libro libro = new Libro(1, titulo, editorial, ejemplares);
          }
@@ -79,7 +76,8 @@ public class Obligatorio extends Lista implements IObligatorio{
 
     @Override
     public Retorno cancelarReserva(int cliente, int numero, String biblioteca) {
-         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
+         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA); 
+         
          return ret;
     }
 
@@ -91,7 +89,8 @@ public class Obligatorio extends Lista implements IObligatorio{
 
     @Override
     public Retorno listarLibrosBiblioteca(String biblioteca) {
-         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);    
+         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+         
          return ret;
     }
 
