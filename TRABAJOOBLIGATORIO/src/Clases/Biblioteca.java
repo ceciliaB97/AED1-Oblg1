@@ -190,8 +190,7 @@ public class Biblioteca extends Lista {
             mostrarREC2(this.getInicioB(), 1);
         } else {
             System.out.println("La lista no tiene bibliotecas");
-        }
-        
+        }        
     }
 
     public void mostrarREC2(Biblioteca n, int cont
