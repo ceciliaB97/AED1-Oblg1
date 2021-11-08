@@ -28,6 +28,10 @@ public class Libro extends Lista {
         this.calificacion = null;
         this.reserva = null;
         this.espera = null;
+        this.inicio = null;
+        this.fin = null;
+        this.limite = 0;
+        this.actual = 0;
     }
 
     @Override
