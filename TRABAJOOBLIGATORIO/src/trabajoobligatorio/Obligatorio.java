@@ -14,9 +14,9 @@ public class Obligatorio extends Lista implements IObligatorio {
     @Override
     public Retorno crearSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        NodoBiblioteca bibliotecaBase = new NodoBiblioteca("Base");
-        this.bibliotecaBase.agregarInicio(bibliotecaBase)
-        ret.valorString = "Se ha agregado el sistema de reservas";
+        NodoBiblioteca nueva = new NodoBiblioteca("nueva");
+        this.bibliotecaBase.agregarInicio(nueva);
+        ret.valorString = "Se ha creado el sistema de reservas";
         return ret;
     }
 
@@ -30,13 +30,13 @@ public class Obligatorio extends Lista implements IObligatorio {
 
     @Override
     public Retorno registrarBiblioteca(String Biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.OK);
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         //se crea una biblioteca sin libros
-        Biblioteca buscar = bibliotecaBase.obtenerElemento(Biblioteca);
+        NodoBiblioteca buscar = bibliotecaBase.obtenerElemento(Biblioteca);
 
         if (buscar == null) {
-            Biblioteca nueva = new Biblioteca(Biblioteca);
-            bibliotecaBase.agregarFinal(nueva);
+            NodoBiblioteca nueva = new NodoBiblioteca(Biblioteca);
+            this.bibliotecaBase.agregarFinal(nueva);
             ret = new Retorno(Retorno.Resultado.OK);
         } else {
             ret.valorString = "Biblioteca ya existe";
@@ -49,11 +49,11 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno eliminarBiblioteca(String Biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         //se busca y se elimina
-        Biblioteca buscar = bibliotecaBase.getInicioB().obtenerElemento(Biblioteca);
+        NodoBiblioteca buscar = bibliotecaBase.obtenerElemento(Biblioteca);
 
         if (buscar != null) {
-            bibliotecaBase.eliminarElemento(buscar);
-            ret.valorString = "Biblioteca eliminada0";
+            bibliotecaBase.eliminarElemento(Biblioteca);
+            ret.valorString = "Biblioteca eliminada";
             ret = new Retorno(Retorno.Resultado.OK);
         } else {
             ret.valorString = "Biblioteca no existe";
@@ -65,20 +65,20 @@ public class Obligatorio extends Lista implements IObligatorio {
     @Override
     public Retorno registrarLibro(String titulo, String editorial, String biblioteca, int ejemplares) {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
+        NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
         if (biBuscada != null) {
             //buscar libro
-            Libro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
                 ret.valorString = "Libro ya existe en la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
                 return ret;
             } else {
-                Libro nuevo = new Libro(1, titulo, editorial, 3);
+                NodoLibro nuevo = new NodoLibro(titulo, editorial, ejemplares);
                 biBuscada.getLibros().agregarInicio(nuevo);
-                ret.valorString = "Libro ya existe en la biblioteca";
+                ret.valorString = "Se ha agregado el libro a la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
             }
         }
@@ -88,11 +88,11 @@ public class Obligatorio extends Lista implements IObligatorio {
     @Override
     public Retorno eliminarLibro(String titulo, String editorial, String biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
-        Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
+        NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
         if (biBuscada != null) {
             //buscar libro
-            Libro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
                 biBuscada.getLibros().eliminarElemento(liBuscado);
@@ -115,14 +115,14 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno RegistrarCalificacion(String titulo, String editorial, int calificacion, String biblioteca, String comentario) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
 
-        Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
+        NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
         if (biBuscada != null) {
             //buscar libro
-            Libro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
-                Calificacion nueva = new Calificacion(calificacion, comentario);
+                NodoCalificacion nueva = new NodoCalificacion(calificacion, comentario);
                 liBuscado.getCalificacion().agregarFinal(nueva);
                 ret.valorString = "Se agregó la calificación al libro";
                 ret = new Retorno(Retorno.Resultado.OK);
@@ -142,18 +142,27 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno realizarReserva(int cliente, int numero, String biblioteca, String título, String editorial, String fecha) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
 
-        Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
+        NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
         if (biBuscada != null) {
             //buscar libro
-            Libro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(título, editorial);
 
             if (liBuscado != null) {
-                Reserva nueva = new Reserva(cliente, numero, fecha, liBuscado.getEjemplares());
-                liBuscado.getReserva().agregarFinal(nueva); //o -> o -> o ->
-                ret.valorString = "Se agregó la calificación al libro";
-                ret = new Retorno(Retorno.Resultado.OK);
-                return ret;
+                if (!liBuscado.getReserva().esLLena()) {
+                    NodoReserva nueva = new NodoReserva(cliente, numero, fecha);
+                    liBuscado.getReserva().agregarFinal(nueva);
+                    ret.valorString = "Se agregó la reserva al libro";
+                    ret = new Retorno(Retorno.Resultado.OK);
+                    return ret;
+                } else {
+                    NodoReserva nueva = new NodoReserva(cliente, numero, fecha);
+                    liBuscado.getEspera().agregarFinal(nueva);
+                    ret.valorString = "La lista de reserva está llena, se agregó a la lista de espera";
+                    ret = new Retorno(Retorno.Resultado.OK);
+                    return ret;
+                }
+
             } else {
                 ret.valorString = "Libro no existe en la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
