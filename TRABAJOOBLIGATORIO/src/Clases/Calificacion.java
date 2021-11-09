@@ -229,6 +229,7 @@ public class Calificacion extends Lista {
         return null;
     }
     
+    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
