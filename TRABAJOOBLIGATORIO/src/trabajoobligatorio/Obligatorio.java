@@ -27,7 +27,7 @@ public class Obligatorio extends Lista implements IObligatorio{
          Retorno ret = new Retorno(Retorno.Resultado.OK);
          //se crea una biblioteca sin libros
          Biblioteca bibliotecaB = new Biblioteca(Biblioteca);
-         ret.valorString = "Se creo la bilbioteca " + Biblioteca;
+         ret.valorString = "Se creo la bilbioteca " + bibliotecaB.getNombre();
          ret.valorbooleano = true;
          return ret;
     }
@@ -47,11 +47,22 @@ public class Obligatorio extends Lista implements IObligatorio{
     public Retorno registrarLibro(String titulo, String editorial, String biblioteca, int ejemplares) {
          Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
          Biblioteca b = new Biblioteca(biblioteca);
-         //si biblioteca NO ES NULL
-         b.obtenerElemento(b);
-         if (b != null){
+        
+        Biblioteca bEncontrada = b.obtenerElemento(b);
+         if (bEncontrada != null){
+             
+               Libro libro = new Libro(1, titulo, editorial, ejemplares);
+           Libro libroBuscado = bEncontrada.getLibros().getInicioL().obtenerElemento(libro);
+               
+            if( libroBuscado!= null){
+              
+            }
+         
+             b.getLibros().agregarFinal(libro);
+             
+            
              //Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares) 
-             Libro libro = new Libro(1, titulo, editorial, ejemplares);
+          
          }
          return ret;
     }
