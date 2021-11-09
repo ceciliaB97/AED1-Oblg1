@@ -9,9 +9,9 @@ public class Sistema {
         Prueba p = new Prueba();
         Obligatorio o = new Obligatorio();
         juegodeprueba(o, p);
-        Reserva r1 = new Reserva(11111111, 120, "06/11/21");
-        Reserva r2 = new Reserva(22222222, 121, "06/11/21");
-        Reserva r3 = new Reserva(33333333, 122, "06/11/21");
+        Reserva r1 = new Reserva(11111111, 120, "06/11/21", 3);
+        Reserva r2 = new Reserva(22222222, 121, "06/11/21", 2);
+        Reserva r3 = new Reserva(33333333, 122, "06/11/21", 1);
 
         r1.agregarFinal(r1);
         r1.agregarFinal(r2);
@@ -52,6 +52,8 @@ public class Sistema {
         b1.eliminarElemento(b1);
         System.out.println("ES VACIA? " + b1.esVacia());
         b1.mostrarREC();
+        
+        
     }
 
     public static void juegodeprueba(Obligatorio o, Prueba p) {

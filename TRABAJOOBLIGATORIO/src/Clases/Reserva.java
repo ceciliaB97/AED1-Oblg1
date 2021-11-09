@@ -45,14 +45,14 @@ public class Reserva extends Lista {
         this.ultimo = ultimo;
     }
 
-    public Reserva(int cliente, int numero, String fecha) {
+    public Reserva(int cliente, int numero, String fecha, int limiteAceptado) {
         this.cliente = cliente;
         this.numero = numero;
         this.fecha = fecha;
         this.primero = null;
         this.ultimo = null;
         this.actual = 0;
-        this.limite = 0;
+        this.limite = limiteAceptado;
     }
 
     public Reserva getSiguiente() {
@@ -88,6 +88,11 @@ public class Reserva extends Lista {
     }
 
     //Metodos para sobrecarga 
+    
+    public boolean esLLena(){
+         return this.actual == limite;
+    }
+    
     public boolean esVacia() {
         return this.primero == null;
     }

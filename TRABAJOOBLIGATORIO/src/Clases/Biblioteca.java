@@ -268,17 +268,17 @@ public class Biblioteca extends Lista {
     }
 
     //PRE: //POS:
-   public Biblioteca obtenerElemento(Biblioteca n) {
+   public Biblioteca obtenerElemento(String n) {
         if (!this.esVacia()) {
-            if (this.inicio.getNombre().equals(n.getNombre())) {
+            if (this.inicio.getNombre().equals(n)) {
                 return inicio;
             }
-            if (this.fin.getNombre().equals(n.getNombre())) {
+            if (this.fin.getNombre().equals(n)) {
                 return fin;
             } else {
                 Biblioteca aux = this.getInicioB();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getNombre().equals(n.getNombre())) {
+                    if (aux.getNombre().equals(n)) {
                         return aux;
                     }
                     aux = aux.getSiguiente();

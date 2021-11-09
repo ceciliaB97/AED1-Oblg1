@@ -13,7 +13,7 @@ public class Calificacion extends Lista {
     //propiedades de calificacion
     private int calificacion;
     private String comentario;
-    private int id;
+    private static int id;
 
     public Calificacion getInicioC() {
         return inicio;
@@ -79,7 +79,7 @@ public class Calificacion extends Lista {
         this.id = id;
     }
 
-    public Calificacion(int id, int calificacion, String comentario) {
+    public Calificacion(int calificacion, String comentario) {
         this.calificacion = calificacion;
         this.comentario = comentario;
         this.inicio = null;
@@ -87,7 +87,7 @@ public class Calificacion extends Lista {
         this.limite = 0;
         this.actual = 0;
         //identificador autonumerado de calificación
-        this.id = id;
+        this.id++;
     }
     
     
