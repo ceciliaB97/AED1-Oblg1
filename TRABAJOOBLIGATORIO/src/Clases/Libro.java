@@ -4,30 +4,14 @@ import Estructuras.Lista;
 
 public class Libro extends Lista {
 
-    private Libro inicio;
-    private Libro fin;
-    private Libro siguiente;
+    private NodoLibro inicio;
+    private NodoLibro fin;
     private int limite;
     private int actual;
     //propiedades de libro
-    private int NumUnico;
-    private String Titulo;
-    private String Editorial;
-    private int Ejemplares;
-    //listas de libro
-    private Calificacion calificacion;
-    private Reserva reserva;
-    private Reserva espera;
-    //nodo libro
 
-    public Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares) {
-        this.NumUnico = NumUnico;
-        this.Titulo = Titulo;
-        this.Editorial = Editorial;
-        this.Ejemplares = Ejemplares;
-        this.calificacion = null;
-        this.reserva = null;
-        this.espera = null;
+    public Libro(int limite) {
+
         this.inicio = null;
         this.fin = null;
         this.limite = 0;
@@ -53,86 +37,22 @@ public class Libro extends Lista {
         this.actual = actual;
     }
 
-    public Libro getInicioL() {
+    public NodoLibro getInicioL() {
         return inicio;
     }
 
-    public void setInicio(Libro inicio) {
+    public void setInicio(NodoLibro inicio) {
         this.inicio = inicio;
     }
 
-    public Libro getFinL() {
+    public NodoLibro getFinL() {
         return fin;
     }
 
-    public void setFin(Libro fin) {
+    public void setFin(NodoLibro fin) {
         this.fin = fin;
     }
-
-    public Libro getSiguiente() {
-        return siguiente;
-    }
-
-    public void setSiguiente(Libro siguiente) {
-        this.siguiente = siguiente;
-    }
-
-    public int getNumUnico() {
-        return NumUnico;
-    }
-
-    public void setNumUnico(int NumUnico) {
-        this.NumUnico = NumUnico;
-    }
-
-    public String getTitulo() {
-        return Titulo;
-    }
-
-    public void setTitulo(String Titulo) {
-        this.Titulo = Titulo;
-    }
-
-    public String getEditorial() {
-        return Editorial;
-    }
-
-    public void setEditorial(String Editorial) {
-        this.Editorial = Editorial;
-    }
-
-    public int getEjemplares() {
-        return Ejemplares;
-    }
-
-    public void setEjemplares(int Ejemplares) {
-        this.Ejemplares = Ejemplares;
-    }
-
-    public Calificacion getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(Calificacion calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-
-    public Reserva getEspera() {
-        return espera;
-    }
-
-    public void setEspera(Reserva espera) {
-        this.espera = espera;
-    }
-
+    
     /**
      * ***Métodos Básicos****
      */
@@ -145,7 +65,7 @@ public class Libro extends Lista {
 
     //PRE: 
     //POS: Agrega un nuevo Nodo al principio de la lista
-    public boolean agregarInicio(Libro nuevo) {
+    public boolean agregarInicio(NodoLibro nuevo) {
         if (puedoInsertar()) {
             this.actual++;
             nuevo.setSiguiente(this.inicio);
@@ -161,14 +81,14 @@ public class Libro extends Lista {
 
     //PRE:
     //POS: Agrega un nuevo Nodo al final de la lista
-    public boolean agregarFinal(Libro n) {
+    public boolean agregarFinal(NodoLibro n) {
         if (puedoInsertar()) {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
             } else {
-                Libro aux = this.inicio;
+                NodoLibro aux = this.inicio;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -201,7 +121,7 @@ public class Libro extends Lista {
             if (this.inicio == this.fin) {
                 this.borrarInicio();
             } else {
-                Libro aux = this.inicio;
+                NodoLibro aux = this.inicio;
                 while (aux.getSiguiente().getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -235,26 +155,26 @@ public class Libro extends Lista {
 
     }
 
-    public void mostrarREC2(Libro n, int cont
+    public void mostrarREC2(NodoLibro n, int cont
     ) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.Titulo + ">");
+            System.out.println(cont + "- <" + n.getTitulo() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
 
         } else {
-            System.out.println(cont + "- <" + n.Titulo + ">");
+            System.out.println(cont + "- <" + n.getTitulo() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
             mostrarREC2(n.getSiguiente(), ++cont);
 
         }
     }
 
-    public Libro obtenerElementoAnterior(Libro n) {
+    public NodoLibro obtenerElementoAnterior(NodoLibro n) {
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(n.getTitulo())) {
                 return null;
             } else {
-                Libro aux = this.getInicioL();
+                NodoLibro aux = this.getInicioL();
                 while (aux.getSiguiente() != null) {
                     if (aux.getSiguiente().getTitulo().equals(n.getTitulo())) {
                         return aux;
@@ -268,7 +188,7 @@ public class Libro extends Lista {
 
     //PRE: lista ordenada
     //POS: Borra la primer ocurrencia de un elemento dado
-    public boolean eliminarElemento(Libro n) {
+    public boolean eliminarElemento(NodoLibro n) {
         //si no es null
         if (!esVacia()) {
             if (n.getTitulo().equals(getInicioL().getTitulo())) {
@@ -281,7 +201,7 @@ public class Libro extends Lista {
 
             } else {
 
-                Libro aux = this.obtenerElementoAnterior(n);
+                NodoLibro aux = this.obtenerElementoAnterior(n);
 
                 if (aux != null) {
                     if (aux.getSiguiente() != getFinL()) {
@@ -300,7 +220,7 @@ public class Libro extends Lista {
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
-            Libro aux = this.inicio;
+            NodoLibro aux = this.inicio;
             while (aux != null) {
                 aux = aux.getSiguiente();
                 cont++;
@@ -310,7 +230,7 @@ public class Libro extends Lista {
     }
 
     //PRE: //POS:
-    public Libro obtenerElemento(String titulo, String editorial) {
+    public NodoLibro obtenerElemento(String titulo, String editorial) {
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(titulo) && this.inicio.getEditorial().equals(editorial)) {
                 return inicio;
@@ -318,7 +238,7 @@ public class Libro extends Lista {
             if (this.fin.getTitulo().equals(titulo) && this.fin.getEditorial().equals(editorial)) {
                 return fin;
             } else {
-                Libro aux = this.getInicioL();
+                NodoLibro aux = this.getInicioL();
                 while (aux.getSiguiente() != null) {
                     if (aux.getTitulo().equals(titulo) && aux.getEditorial().equals(editorial)) {
                         return aux;
@@ -342,7 +262,7 @@ public class Libro extends Lista {
         return this.limite > this.actual;
     }
 
-    public boolean buscarElemento(Libro n) {
+    public boolean buscarElemento(NodoLibro n) {
         boolean ret = false;
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(n.getTitulo())) {
@@ -352,7 +272,7 @@ public class Libro extends Lista {
             if (this.fin.getTitulo().equals(n.getTitulo())) {
                 ret = true;
             } else {
-                Libro aux = this.getInicioL();
+                NodoLibro aux = this.getInicioL();
                 while (aux.getSiguiente() != null) {
                     if (aux.getTitulo().equals(n.getTitulo())) {
                         ret = true;
