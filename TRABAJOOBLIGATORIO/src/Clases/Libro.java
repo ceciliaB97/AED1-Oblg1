@@ -312,10 +312,10 @@ public class Libro extends Lista {
     //PRE: //POS:
     public Libro obtenerElemento(Libro n) {
         if (!this.esVacia()) {
-            if (this.inicio.getTitulo().equals(n.getTitulo())) {
+            if(this.inicio.getTitulo().equals(n.getTitulo())&& this.inicio.getEditorial().equals(n.getEditorial())) {
                 return inicio;
             }
-            if (this.fin.getTitulo().equals(n.getTitulo())) {
+            if (this.fin.getTitulo().equals(n.getTitulo())&& this.fin.getEditorial().equals(n.getEditorial())) {
                 return fin;
             } else {
                 Libro aux = this.getInicioL();
