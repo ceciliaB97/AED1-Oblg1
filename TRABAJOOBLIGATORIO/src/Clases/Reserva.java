@@ -4,10 +4,10 @@ import Estructuras.Lista;
 
 public class Reserva extends Lista {
 
-    private int cliente;
-    private int numero;
-    private String fecha;
-    private Reserva siguiente;
+//    private int cliente;
+//    private int numero;
+//    private String fecha;
+//    private Reserva siguiente;
     private Reserva primero;
     private Reserva ultimo;
     private int actual;
@@ -45,46 +45,11 @@ public class Reserva extends Lista {
         this.ultimo = ultimo;
     }
 
-    public Reserva(int cliente, int numero, String fecha, int limiteAceptado) {
-        this.cliente = cliente;
-        this.numero = numero;
-        this.fecha = fecha;
+    public Reserva(int limiteAceptado) {
         this.primero = null;
         this.ultimo = null;
         this.actual = 0;
         this.limite = limiteAceptado;
-    }
-
-    public Reserva getSiguiente() {
-        return siguiente;
-    }
-
-    public void setSiguiente(Reserva reserva) {
-        this.siguiente = reserva;
-    }
-
-    public int getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(int cliente) {
-        this.cliente = cliente;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 
     //Metodos para sobrecarga 
