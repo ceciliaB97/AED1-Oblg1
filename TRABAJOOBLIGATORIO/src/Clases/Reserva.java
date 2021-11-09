@@ -8,8 +8,8 @@ public class Reserva extends Lista {
 //    private int numero;
 //    private String fecha;
 //    private Reserva siguiente;
-    private Reserva primero;
-    private Reserva ultimo;
+    private NodoReserva primero;
+    private NodoReserva ultimo;
     private int actual;
     private int limite;
 
@@ -29,19 +29,19 @@ public class Reserva extends Lista {
         this.limite = limite;
     }
 
-    public Reserva getPrimero() {
+    public NodoReserva getPrimero() {
         return primero;
     }
 
-    public void setPrimero(Reserva primero) {
+    public void setPrimero(NodoReserva primero) {
         this.primero = primero;
     }
 
-    public Reserva getUltimo() {
+    public NodoReserva getUltimo() {
         return ultimo;
     }
 
-    public void setUltimo(Reserva ultimo) {
+    public void setUltimo(NodoReserva ultimo) {
         this.ultimo = ultimo;
     }
 
@@ -74,7 +74,7 @@ public class Reserva extends Lista {
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
-            Reserva aux = this.primero;
+            NodoReserva aux = this.primero;
             while (aux != null) {
                 aux = aux.getSiguiente();
                 cont++;
@@ -83,14 +83,14 @@ public class Reserva extends Lista {
         return cont;
     }
 
-    public boolean agregarFinal(Reserva n) {
+    public boolean agregarFinal(NodoReserva n) {
         if (puedoInsertar()) {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.primero = n;
             } else {
-                Reserva aux = this.primero;
+                NodoReserva aux = this.primero;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -102,7 +102,7 @@ public class Reserva extends Lista {
         return false;
     }
 
-    public boolean agregarInicio(Reserva n) {
+    public boolean agregarInicio(NodoReserva n) {
         if (puedoInsertar()) {
             this.actual++;
             n.setSiguiente(this.primero);
@@ -116,17 +116,17 @@ public class Reserva extends Lista {
         return false;
     }
 
-    public Reserva obtenerElemento(Reserva n) {
+    public NodoReserva obtenerElemento(NodoReserva n) {
         if (!this.esVacia()) {
-            if (this.primero.numero == n.numero) {
+            if (this.primero.getNumero() == n.getNumero()) {
                 return primero;
             }
-            if (this.ultimo.numero == n.numero) {
+            if (this.ultimo.getNumero() == n.getNumero()) {
                 return ultimo;
             } else {
-                Reserva aux = this.getPrimero();
+                NodoReserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux.numero == n.numero) {
+                    if (aux.getNumero() == n.getNumero()) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -136,14 +136,14 @@ public class Reserva extends Lista {
         return null;
     }
 
-    public Reserva obtenerElementoAnterior(Reserva n) {
+    public NodoReserva obtenerElementoAnterior(NodoReserva n) {
         if (!this.esVacia()) {
-            if (this.primero.numero == n.numero) {
+            if (this.primero.getNumero() == n.getNumero()) {
                 return null;
             } else {
-                Reserva aux = this.getPrimero();
+                NodoReserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getSiguiente().numero == n.numero) {
+                    if (aux.getSiguiente().getNumero() == n.getNumero()) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -160,7 +160,7 @@ public class Reserva extends Lista {
             if (this.primero == this.ultimo) {
                 this.borrarInicio();
             } else {
-                Reserva aux = this.primero;
+                NodoReserva aux = this.primero;
                 while (aux.getSiguiente().getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -171,20 +171,20 @@ public class Reserva extends Lista {
         return true;
     }
 
-    public boolean eliminarElemento(Reserva n) {
+    public boolean eliminarElemento(NodoReserva n) {
         //si no es null
         if (!esVacia()) {
-            if (n.numero == getPrimero().numero) {
+            if (n.getNumero() == getPrimero().getNumero()) {
                 borrarInicio();
                 return true;
 
-            } else if (n.numero == getUltimo().numero) {
+            } else if (n.getNumero() == getUltimo().getNumero()) {
                 borrarFin();
                 return true;
 
             } else {
 
-                Reserva aux = this.obtenerElementoAnterior(n);
+                NodoReserva aux = this.obtenerElementoAnterior(n);
 
                 if (aux != null) {
                     if (aux.getSiguiente() != getUltimo()) {
@@ -214,13 +214,13 @@ public class Reserva extends Lista {
         }  
     }
 
-    public void mostrarREC2(Reserva n, int cont
+    public void mostrarREC2(NodoReserva n, int cont
     ) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.cliente + ">");
+            System.out.println(cont + "- <" + n.getCliente() + ">");
 
         } else {
-            System.out.println(cont + "- <" + n.cliente + ">");
+            System.out.println(cont + "- <" + n.getCliente() + ">");
             mostrarREC2(n.getSiguiente(), ++cont);
 
         }
