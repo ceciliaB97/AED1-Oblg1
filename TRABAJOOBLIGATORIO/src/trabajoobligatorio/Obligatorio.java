@@ -8,7 +8,6 @@ import Clases.*;
  * @author RAFAEL
  */
 public class Obligatorio extends Lista implements IObligatorio {
-<<<<<<< HEAD
 
     Biblioteca bibliotecaBase;
 
@@ -18,24 +17,14 @@ public class Obligatorio extends Lista implements IObligatorio {
         Biblioteca bibliotecaBase = new Biblioteca("Base");
         this.bibliotecaBase.agregarInicio(bibliotecaBase);
         ret.valorString = "Se ha agregado el sistema de reservas";
-=======
-
-    @Override
-    public Retorno crearSistemaReservas() {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
     @Override
     public Retorno destruirSistemaReservas() {
-<<<<<<< HEAD
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         bibliotecaBase.vaciar();
         ret.valorString = "Se ha destruido el sistema de reservas";
-=======
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
@@ -43,7 +32,6 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno registrarBiblioteca(String Biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         //se crea una biblioteca sin libros
-<<<<<<< HEAD
         Biblioteca buscar = bibliotecaBase.obtenerElemento(Biblioteca);
 
         if (buscar == null) {
@@ -54,11 +42,6 @@ public class Obligatorio extends Lista implements IObligatorio {
             ret.valorString = "Biblioteca ya existe";
             ret = new Retorno(Retorno.Resultado.ERROR);
         }
-=======
-        Biblioteca bibliotecaB = new Biblioteca(Biblioteca);
-        ret.valorString = "Se creo la bilbioteca " + bibliotecaB.getNombre();
-        ret.valorbooleano = true;
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
@@ -66,7 +49,6 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno eliminarBiblioteca(String Biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         //se busca y se elimina
-<<<<<<< HEAD
         Biblioteca buscar = bibliotecaBase.getInicioB().obtenerElemento(Biblioteca);
 
         if (buscar != null) {
@@ -77,19 +59,11 @@ public class Obligatorio extends Lista implements IObligatorio {
             ret.valorString = "Biblioteca no existe";
             ret = new Retorno(Retorno.Resultado.ERROR);
         }
-=======
-        Biblioteca b = new Biblioteca(Biblioteca);
-        //si elimino devuelve true, si no false
-        ret.valorbooleano = b.borrarElemento(b);
-        ret.valorString = "Se eliminio biblioteca es " + ret.valorbooleano;
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
-    
     @Override
     public Retorno registrarLibro(String titulo, String editorial, String biblioteca, int ejemplares) {
-<<<<<<< HEAD
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
@@ -107,33 +81,12 @@ public class Obligatorio extends Lista implements IObligatorio {
                 ret.valorString = "Libro ya existe en la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
             }
-=======
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
-        Biblioteca b = new Biblioteca(biblioteca);
-        ret.valorString = "No se puddo agregar";
-        Biblioteca bEncontrada = b.obtenerElemento(b);
-        if (bEncontrada != null) {
-
-            Libro libro = new Libro(1, titulo, editorial, ejemplares);
-            Libro libroBuscado = bEncontrada.getLibros().obtenerElemento(libro);
-
-            if (libroBuscado != null) {
-                libroBuscado.setActual(libroBuscado.getActual() + ejemplares);
-
-                b.getLibros().agregarFinal(libro);
-
-                ret.valorString = "Se agrearon " + ejemplares + " Ejemplares del libro" + titulo + "Editorial " + editorial;
-            }
-
-            //Libro(int NumUnico, String Titulo, String Editorial, int Ejemplares) 
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         }
         return ret;
     }
 
     @Override
     public Retorno eliminarLibro(String titulo, String editorial, String biblioteca) {
-<<<<<<< HEAD
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
@@ -155,15 +108,11 @@ public class Obligatorio extends Lista implements IObligatorio {
             ret = new Retorno(Retorno.Resultado.ERROR);
         }
 
-=======
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
     @Override
     public Retorno RegistrarCalificacion(String titulo, String editorial, int calificacion, String biblioteca, String comentario) {
-<<<<<<< HEAD
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
 
         Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
@@ -186,15 +135,11 @@ public class Obligatorio extends Lista implements IObligatorio {
             ret.valorString = "Biblioteca no existe";
             ret = new Retorno(Retorno.Resultado.ERROR);
         }
-=======
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 
     @Override
     public Retorno realizarReserva(int cliente, int numero, String biblioteca, String título, String editorial, String fecha) {
-<<<<<<< HEAD
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
 
         Biblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
@@ -217,9 +162,6 @@ public class Obligatorio extends Lista implements IObligatorio {
             ret.valorString = "Biblioteca no existe";
             ret = new Retorno(Retorno.Resultado.ERROR);
         }
-=======
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
->>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
         return ret;
     }
 

@@ -1,8 +1,4 @@
-
 package trabajoobligatorio;
-import Clases.Libro;
-
-
 
 
 
@@ -15,7 +11,6 @@ public class Retorno {
 	String valorString;
          boolean valorbooleano;
 	Resultado resultado;
-        Libro Libro;
 
     public Retorno(Resultado resultado) {
 
