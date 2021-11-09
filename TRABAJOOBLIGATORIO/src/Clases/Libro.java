@@ -312,10 +312,17 @@ public class Libro extends Lista {
     //PRE: //POS:
     public Libro obtenerElemento(String titulo, String editorial) {
         if (!this.esVacia()) {
+<<<<<<< HEAD
             if (this.inicio.getTitulo().equals(titulo) && this.inicio.getEditorial().equals(editorial)) {
                 return inicio;
             }
             if (this.fin.getTitulo().equals(titulo) && this.fin.getEditorial().equals(editorial)) {
+=======
+            if(this.inicio.getTitulo().equals(n.getTitulo())&& this.inicio.getEditorial().equals(n.getEditorial())) {
+                return inicio;
+            }
+            if (this.fin.getTitulo().equals(n.getTitulo())&& this.fin.getEditorial().equals(n.getEditorial())) {
+>>>>>>> 0df4fc4de593a2187adad7e3a3833289a16189b1
                 return fin;
             } else {
                 Libro aux = this.getInicioL();
