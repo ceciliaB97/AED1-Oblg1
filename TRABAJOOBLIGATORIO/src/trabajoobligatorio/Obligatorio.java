@@ -14,8 +14,8 @@ public class Obligatorio extends Lista implements IObligatorio {
     @Override
     public Retorno crearSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        Biblioteca bibliotecaBase = new Biblioteca("Base");
-        this.bibliotecaBase.agregarInicio(bibliotecaBase);
+        NodoBiblioteca bibliotecaBase = new NodoBiblioteca("Base");
+        this.bibliotecaBase.agregarInicio(bibliotecaBase)
         ret.valorString = "Se ha agregado el sistema de reservas";
         return ret;
     }

@@ -6,8 +6,8 @@ import Estructuras.NodoLista;
 public class Biblioteca extends Lista {
 
     //atributos de lista<biblioteca>
-    private Biblioteca inicio;
-    private Biblioteca fin;
+    private NodoBiblioteca inicio;
+    private NodoBiblioteca fin;
     //limite actual
     private int actual;
     private int limite;
@@ -26,19 +26,19 @@ public class Biblioteca extends Lista {
         this.limite = 0;
     }
 
-    public Biblioteca getInicioB() {
+    public NodoBiblioteca getInicioB() {
         return inicio;
     }
 
-    public void setPrimero(Biblioteca Inicio) {
+    public void setPrimero(NodoBiblioteca Inicio) {
         this.inicio = Inicio;
     }
 
-    public Biblioteca getFinB() {
+    public NodoBiblioteca getFinB() {
         return fin;
     }
 
-    public void setUltimo(Biblioteca Fin) {
+    public void setUltimo(NodoBiblioteca Fin) {
         this.fin = Fin;
     }
 
@@ -104,7 +104,7 @@ public class Biblioteca extends Lista {
 
     //PRE: 
     //POS: Agrega un nuevo Nodo al principio de la lista
-    public boolean agregarInicio(Biblioteca nuevo) {
+    public boolean agregarInicio(NodoBiblioteca nuevo) {
         if (puedoInsertar()) {
             this.actual++;
             nuevo.setSiguiente(this.inicio);
@@ -120,14 +120,14 @@ public class Biblioteca extends Lista {
 
     //PRE:
     //POS: Agrega un nuevo Nodo al final de la lista
-    public boolean agregarFinal(Biblioteca n) {
+    public boolean agregarFinal(NodoBiblioteca n) {
         if (puedoInsertar()) {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
             } else {
-                Biblioteca aux = this.inicio;
+                NodoBiblioteca aux = this.inicio;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -160,7 +160,7 @@ public class Biblioteca extends Lista {
             if (this.inicio == this.fin) {
                 this.borrarInicio();
             } else {
-                Biblioteca aux = this.inicio;
+                NodoBiblioteca aux = this.inicio;
                 while (aux.getSiguiente().getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -193,7 +193,7 @@ public class Biblioteca extends Lista {
         }        
     }
 
-    public void mostrarREC2(Biblioteca n, int cont
+    public void mostrarREC2(NodoBiblioteca n, int cont
     ) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.nombre + ">");
@@ -207,14 +207,14 @@ public class Biblioteca extends Lista {
         }
     }
     
-    public Biblioteca obtenerElementoAnterior(Biblioteca n) {
+    public NodoBiblioteca obtenerElementoAnterior(String n) {
         if (!this.esVacia()) {
-            if (this.inicio.getNombre().equals(n.getNombre())) {
+            if (this.inicio.getNombre().equals(n)) {
                 return null;
             } else {
-                Biblioteca aux = this.getInicioB();
+                NodoBiblioteca aux = this.getInicioB();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getSiguiente().getNombre().equals(n.getNombre())) {
+                    if (aux.getSiguiente().getNombre().equals(n)) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -226,20 +226,20 @@ public class Biblioteca extends Lista {
 
     //PRE: lista ordenada
     //POS: Borra la primer ocurrencia de un elemento dado
-    public boolean eliminarElemento(Biblioteca n) {
+    public boolean eliminarElemento(String n) {
         //si no es null
         if (!esVacia()) {
-            if (n.getNombre().equals(getInicioB().getNombre())) {
+            if (n.equals(getInicioB().getNombre())) {
                 borrarInicio();
                 return true;
 
-            } else if (n.getNombre().equals(getFinB().getNombre())) {
+            } else if (n.equals(getFinB().getNombre())) {
                 borrarFin();
                 return true;
 
             } else {
 
-                Biblioteca aux = this.obtenerElementoAnterior(n);
+                NodoBiblioteca aux = this.obtenerElementoAnterior(n);
 
                 if (aux != null) {
                     if (aux.getSiguiente() != getFinB()) {
@@ -258,7 +258,7 @@ public class Biblioteca extends Lista {
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
-            Biblioteca aux = this.inicio;
+            NodoBiblioteca aux = this.inicio;
             while (aux != null) {
                 aux = aux.getSiguiente();
                 cont++;
@@ -268,7 +268,7 @@ public class Biblioteca extends Lista {
     }
 
     //PRE: //POS:
-   public Biblioteca obtenerElemento(String n) {
+   public NodoBiblioteca obtenerElemento(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
                 return inicio;
@@ -276,7 +276,7 @@ public class Biblioteca extends Lista {
             if (this.fin.getNombre().equals(n)) {
                 return fin;
             } else {
-                Biblioteca aux = this.getInicioB();
+                NodoBiblioteca aux = this.getInicioB();
                 while (aux.getSiguiente() != null) {
                     if (aux.getNombre().equals(n)) {
                         return aux;
@@ -300,19 +300,19 @@ public class Biblioteca extends Lista {
         return this.limite > this.actual;
     }
     
-    public boolean buscarElemento(Biblioteca n) {
+    public boolean buscarElemento(String n) {
         boolean ret = false;
         if (!this.esVacia()) {
-            if (this.inicio.getNombre().equals(n.getNombre())) {
+            if (this.inicio.getNombre().equals(n)) {
                 ret = true;
                 return ret;
             }
-            if (this.fin.getNombre().equals(n.getNombre())) {
+            if (this.fin.getNombre().equals(n)) {
                 ret = true;
             } else {
-                Biblioteca aux = this.getInicioB();
+                NodoBiblioteca aux = this.getInicioB();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getNombre().equals(n.getNombre())) {
+                    if (aux.getNombre().equals(n)) {
                         ret = true;
                         return ret;
                     }
