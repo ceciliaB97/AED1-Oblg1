@@ -12,14 +12,11 @@ public class Biblioteca extends Lista {
     private int actual;
     private int limite;
     //atributos de biblioteca
-    private String nombre;
     private Libro libros;
-    private Biblioteca siguiente;
+
 
     public Biblioteca(String nombre) {
-        this.nombre = nombre;
         this.libros = null;
-        this.siguiente = null;
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
@@ -40,22 +37,6 @@ public class Biblioteca extends Lista {
 
     public void setUltimo(NodoBiblioteca Fin) {
         this.fin = Fin;
-    }
-
-    public Biblioteca getSiguiente() {
-        return siguiente;
-    }
-
-    public void setSiguiente(Biblioteca siguiente) {
-        this.siguiente = siguiente;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Libro getLibros() {
