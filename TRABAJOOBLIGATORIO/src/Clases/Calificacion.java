@@ -5,29 +5,29 @@ import Estructuras.Lista;
 public class Calificacion extends Lista {
 
     //propiedades de lista
-    private Calificacion inicio;
-    private Calificacion fin;
-    private Calificacion siguiente;
+    private NodoCalificacion inicio;
+    private NodoCalificacion fin;
+//    private Calificacion siguiente;
     private int actual;
     private int limite;
     //propiedades de calificacion
-    private int calificacion;
-    private String comentario;
-    private static int id;
+//    private int calificacion;
+//    private String comentario;
+//    private static int id;
 
-    public Calificacion getInicioC() {
+    public NodoCalificacion getInicioC() {
         return inicio;
     }
 
-    public void setInicio(Calificacion inicio) {
+    public void setInicio(NodoCalificacion inicio) {
         this.inicio = inicio;
     }
 
-    public Calificacion getFinC() {
+    public NodoCalificacion getFinC() {
         return fin;
     }
 
-    public void setFin(Calificacion fin) {
+    public void setFin(NodoCalificacion fin) {
         this.fin = fin;
     }
 
@@ -46,48 +46,12 @@ public class Calificacion extends Lista {
     public void setLimite(int limite) {
         this.limite = limite;
     }
-
-    public Calificacion getSiguiente() {
-        return siguiente;
-    }
-
-    public void setSiguiente(Calificacion siguiente) {
-        this.siguiente = siguiente;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Calificacion(int calificacion, String comentario) {
-        this.calificacion = calificacion;
-        this.comentario = comentario;
+    
+    public Calificacion() {
         this.inicio = null;
         this.fin = null;
         this.limite = 0;
         this.actual = 0;
-        //identificador autonumerado de calificación
-        this.id++;
     }
     
     
@@ -98,7 +62,7 @@ public class Calificacion extends Lista {
     }
     
     
-    public boolean agregarInicio(Calificacion nuevo) {
+    public boolean agregarInicio(NodoCalificacion nuevo) {
         if (puedoInsertar()) {
             this.actual++;
             nuevo.setSiguiente(this.inicio);
@@ -113,14 +77,14 @@ public class Calificacion extends Lista {
     }
     
     
-    public boolean agregarFinal(Calificacion n) {
+    public boolean agregarFinal(NodoCalificacion n) {
         if (puedoInsertar()) {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
             } else {
-                Calificacion aux = this.inicio;
+                NodoCalificacion aux = this.inicio;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -132,7 +96,6 @@ public class Calificacion extends Lista {
         return false;
     }
     
-    @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -148,7 +111,7 @@ public class Calificacion extends Lista {
             if (this.inicio == this.fin) {
                 this.borrarInicio();
             } else {
-                Calificacion aux = this.inicio;
+                NodoCalificacion aux = this.inicio;
                 while (aux.getSiguiente().getSiguiente() != null) {
                     aux = aux.getSiguiente();
                 }
@@ -159,7 +122,6 @@ public class Calificacion extends Lista {
         return true;
     }
     
-    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -177,28 +139,28 @@ public class Calificacion extends Lista {
         }        
     }
     
-    public void mostrarREC2(Calificacion n, int cont
+    public void mostrarREC2(NodoCalificacion n, int cont
     ) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.comentario + ">");
+            System.out.println(cont + "- <" + n.getComentario() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
 
         } else {
-            System.out.println(cont + "- <" + n.comentario + ">");
+            System.out.println(cont + "- <" + n.getComentario() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
             mostrarREC2(n.getSiguiente(), ++cont);
 
         }
     }
     
-    public Calificacion obtenerElementoAnterior(Calificacion n) {
+    public NodoCalificacion obtenerElementoAnterior(NodoCalificacion n) {
         if (!this.esVacia()) {
-            if (this.inicio.id == n.id) {
+            if (this.inicio.getId() == n.getId()) {
                 return null;
             } else {
-                Calificacion aux = this.getInicioC();
+                NodoCalificacion aux = this.getInicioC();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getSiguiente().id == n.id) {
+                    if (aux.getSiguiente().getId() == n.getId()) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -208,20 +170,20 @@ public class Calificacion extends Lista {
         return null;
     }
     
-    public boolean eliminarElemento(Calificacion n) {
+    public boolean eliminarElemento(NodoCalificacion n) {
         //si no es null
         if (!esVacia()) {
-            if (this.inicio.id == n.id) {
+            if (this.inicio.getId() == n.getId()) {
                 borrarInicio();
                 return true;
 
-            } else if (this.inicio.id == n.id) {
+            } else if (this.inicio.getId() == n.getId()) {
                 borrarFin();
                 return true;
 
             } else {
 
-                Calificacion aux = this.obtenerElementoAnterior(n);
+                NodoCalificacion aux = this.obtenerElementoAnterior(n);
 
                 if (aux != null) {
                     if (aux.getSiguiente() != getFinC()) {
@@ -238,7 +200,7 @@ public class Calificacion extends Lista {
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
-            Calificacion aux = this.inicio;
+            NodoCalificacion aux = this.inicio;
             while (aux != null) {
                 aux = aux.getSiguiente();
                 cont++;
@@ -247,17 +209,17 @@ public class Calificacion extends Lista {
         return cont;
     }
     
-    public Calificacion obtenerElemento(Calificacion n) {
+    public NodoCalificacion obtenerElemento(NodoCalificacion n) {
         if (!this.esVacia()) {
-            if (this.inicio.id == n.id) {
+            if (this.inicio.getId() == n.getId()) {
                 return inicio;
             }
-            if (this.fin.id == n.id) {
+            if (this.fin.getId() == n.getId()) {
                 return fin;
             } else {
-                Calificacion aux = this.getInicioC();
+                NodoCalificacion aux = this.getInicioC();
                 while (aux.getSiguiente() != null) {
-                    if (aux.id == n.id) {
+                    if (aux.getId() == n.getId()) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -267,7 +229,6 @@ public class Calificacion extends Lista {
         return null;
     }
     
-    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
@@ -275,19 +236,19 @@ public class Calificacion extends Lista {
         return this.limite > this.actual;
     }
     
-    public boolean buscarElemento(Calificacion n) {
+    public boolean buscarElemento(NodoCalificacion n) {
         boolean ret = false;
         if (!this.esVacia()) {
-            if (this.inicio.id == n.id) {
+            if (this.inicio.getId() == n.getId()) {
                 ret = true;
                 return ret;
             }
-            if (this.fin.id == n.id) {
+            if (this.fin.getId() == n.getId()) {
                 ret = true;
             } else {
-                Calificacion aux = this.getInicioC();
+                NodoCalificacion aux = this.getInicioC();
                 while (aux.getSiguiente() != null) {
-                    if (aux.id == n.id) {
+                    if (aux.getId() == n.getId()) {
                         ret = true;
                         return ret;
                     }
