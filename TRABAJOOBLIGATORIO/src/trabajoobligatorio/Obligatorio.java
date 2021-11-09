@@ -176,8 +176,22 @@ public class Obligatorio extends Lista implements IObligatorio {
 
     @Override
     public Retorno cancelarReserva(int cliente, int numero, String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
-
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
+        NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
+        
+//        if (auxBiblioteca != null){
+//            boolean encontrada = false;
+//            //si la biblioteca existe, se corrobora
+//            NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
+//            
+//            while (auxLibro.getSiguiente() != null && !encontrada){
+//                
+//            }
+//            
+//            for (int i = 0; i < auxLibro.get; i++) {
+//                
+//            }
+//        }
         return ret;
     }
 
