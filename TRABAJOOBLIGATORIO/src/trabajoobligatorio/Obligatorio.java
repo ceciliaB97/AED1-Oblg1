@@ -9,7 +9,7 @@ import Clases.*;
  */
 public class Obligatorio extends Lista implements IObligatorio {
 
-    Biblioteca bibliotecaBase;
+    Biblioteca bibliotecaBase = new Biblioteca("Bibliotecas");
 
     @Override
     public Retorno crearSistemaReservas() {
@@ -67,17 +67,25 @@ public class Obligatorio extends Lista implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
-        if (biBuscada != null) {
+        if (biBuscada != null) {                       
             //buscar libro
-            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
-
+            NodoLibro liBuscado = null;
+            if(biBuscada.getLibros()!=null){
+                liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            }            
             if (liBuscado != null) {
                 ret.valorString = "Libro ya existe en la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
                 return ret;
             } else {
                 NodoLibro nuevo = new NodoLibro(titulo, editorial, ejemplares);
-                biBuscada.getLibros().agregarInicio(nuevo);
+                if(biBuscada.getLibros()!=null){
+                biBuscada.getLibros().agregarFinal(nuevo);
+                }else{
+                    Libro libro = new Libro(0);
+                    biBuscada.setLibros(libro);
+                    biBuscada.getLibros().agregarFinal(nuevo);
+                }
                 ret.valorString = "Se ha agregado el libro a la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
             }
@@ -197,7 +205,14 @@ public class Obligatorio extends Lista implements IObligatorio {
 
     @Override
     public Retorno listarLibros(String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
+        NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);        
+        if(auxB != null){
+            auxB.getLibros().mostrarREC();
+            ret = new Retorno(Retorno.Resultado.OK);
+        }else{
+            ret.valorString = "La biblioteca no existe";
+        }        
         return ret;
     }
 
