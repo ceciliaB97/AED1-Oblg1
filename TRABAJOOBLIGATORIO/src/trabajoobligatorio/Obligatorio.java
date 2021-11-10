@@ -235,9 +235,32 @@ public class Obligatorio extends Lista implements IObligatorio {
         return ret;
     }
 
-    @Override
+   @Override
     public Retorno listarComentarios(String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
+
+        NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);
+
+        if (auxB != null) {
+
+            NodoLibro lb = auxB.getLibros().getInicioL();
+
+            while (lb.getSiguiente() != null) {
+
+                lb.getCalificacion().mostrarREC();
+                lb = lb.getSiguiente();
+                
+            }
+         
+
+            ret.resultado = Retorno.Resultado.OK;
+
+        }else{
+            
+            ret.valorString ="La Biblioteca no existe";
+        }
+
         return ret;
     }
 
