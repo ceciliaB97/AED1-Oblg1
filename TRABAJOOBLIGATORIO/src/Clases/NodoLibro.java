@@ -70,6 +70,8 @@ public class NodoLibro {
     public void setCalificacion(Calificacion calificacion) {
         this.calificacion = calificacion;
     }
+    
+   
 
     public Reserva getReserva() {
         return reserva;

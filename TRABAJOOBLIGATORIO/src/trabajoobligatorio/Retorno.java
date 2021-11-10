@@ -15,6 +15,7 @@ public class Retorno {
     public Retorno(Resultado resultado) {
 
         this.resultado = resultado;
+        valorString ="";
     }
         
         
