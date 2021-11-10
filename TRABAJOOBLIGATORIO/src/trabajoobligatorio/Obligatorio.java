@@ -179,19 +179,25 @@ public class Obligatorio extends Lista implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         
-//        if (auxBiblioteca != null){
-//            boolean encontrada = false;
-//            //si la biblioteca existe, se corrobora
-//            NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
-//            
-//            while (auxLibro.getSiguiente() != null && !encontrada){
-//                
-//            }
-//            
-//            for (int i = 0; i < auxLibro.get; i++) {
-//                
-//            }
-//        }
+        if (auxBiblioteca != null){
+            boolean encontrada = false;
+            //si la biblioteca existe, se corrobora
+            NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
+
+            while (auxLibro.getSiguiente() != null && !encontrada){
+                NodoReserva reserva = auxLibro.getReserva().obtenerElemento(cliente, numero);
+                //si no es null encontró la reserva
+                if (reserva != null){
+                    auxLibro.getReserva().eliminarElemento(cliente, numero);
+                    ret = new Retorno(Retorno.Resultado.OK);
+                    encontrada = true;
+                }
+                auxLibro = auxLibro.getSiguiente();
+            }
+        } else {
+            ret.valorString = "Biblioteca no existe";
+            ret = new Retorno(Retorno.Resultado.ERROR);
+        }
         return ret;
     }
 

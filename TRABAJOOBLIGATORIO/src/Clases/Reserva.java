@@ -116,17 +116,17 @@ public class Reserva extends Lista {
         return false;
     }
 
-    public NodoReserva obtenerElemento(NodoReserva n) {
+    public NodoReserva obtenerElemento(int cliente, int numero) {
         if (!this.esVacia()) {
-            if (this.primero.getNumero() == n.getNumero()) {
+            if (this.primero.getNumero() == numero && this.primero.getCliente() == numero) {
                 return primero;
             }
-            if (this.ultimo.getNumero() == n.getNumero()) {
+            if (this.ultimo.getNumero() == numero && this.ultimo.getCliente() == cliente) {
                 return ultimo;
             } else {
                 NodoReserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getNumero() == n.getNumero()) {
+                    if (aux.getNumero() == numero && aux.getCliente() == cliente) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -136,14 +136,14 @@ public class Reserva extends Lista {
         return null;
     }
 
-    public NodoReserva obtenerElementoAnterior(NodoReserva n) {
+    public NodoReserva obtenerElementoAnterior(int cliente, int numero) {
         if (!this.esVacia()) {
-            if (this.primero.getNumero() == n.getNumero()) {
+            if (this.primero.getNumero() == numero && this.primero.getCliente() == cliente) {
                 return null;
             } else {
                 NodoReserva aux = this.getPrimero();
                 while (aux.getSiguiente() != null) {
-                    if (aux.getSiguiente().getNumero() == n.getNumero()) {
+                    if (aux.getSiguiente().getNumero() == numero && aux.getCliente() == cliente) {
                         return aux;
                     }
                     aux = aux.getSiguiente();
@@ -171,20 +171,20 @@ public class Reserva extends Lista {
         return true;
     }
 
-    public boolean eliminarElemento(NodoReserva n) {
+    public boolean eliminarElemento(int cliente, int numero) {
         //si no es null
         if (!esVacia()) {
-            if (n.getNumero() == getPrimero().getNumero()) {
+            if (numero == getPrimero().getNumero() && cliente == getPrimero().getCliente()) {
                 borrarInicio();
                 return true;
 
-            } else if (n.getNumero() == getUltimo().getNumero()) {
+            } else if (numero == getUltimo().getNumero() && cliente == getUltimo().getCliente()) {
                 borrarFin();
                 return true;
 
             } else {
 
-                NodoReserva aux = this.obtenerElementoAnterior(n);
+                NodoReserva aux = this.obtenerElementoAnterior(cliente, numero);
 
                 if (aux != null) {
                     if (aux.getSiguiente() != getUltimo()) {
