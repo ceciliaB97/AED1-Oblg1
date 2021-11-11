@@ -2,12 +2,12 @@ package Clases;
 
 import Estructuras.Lista;
 
-public class Calificacion extends Lista {
+public class ListaCalificaciones extends Lista {
 
     //propiedades de lista
     private NodoCalificacion inicio;
     private NodoCalificacion fin;
-//    private Calificacion siguiente;
+//    private ListaCalificaciones siguiente;
     private int actual;
     private int limite;
     //propiedades de calificacion
@@ -47,7 +47,7 @@ public class Calificacion extends Lista {
         this.limite = limite;
     }
     
-    public Calificacion() {
+    public ListaCalificaciones() {
         this.inicio = null;
         this.fin = null;
         this.limite = 0;
@@ -262,7 +262,7 @@ public class Calificacion extends Lista {
         return ret;
     }
 
-    public int contarNodos(Calificacion n) {
+    public int contarNodos(ListaCalificaciones n) {
         return n.cantElementos();
     }
         

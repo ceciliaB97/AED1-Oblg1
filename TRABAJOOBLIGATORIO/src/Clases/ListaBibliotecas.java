@@ -3,7 +3,7 @@ package Clases;
 import Estructuras.Lista;
 import Estructuras.NodoLista;
 
-public class Biblioteca extends Lista {
+public class ListaBibliotecas extends Lista {
 
     //atributos de lista<biblioteca>
     private NodoBiblioteca inicio;
@@ -12,15 +12,15 @@ public class Biblioteca extends Lista {
     private int actual;
     private int limite;
     //atributos de biblioteca
-    private Libro libros;
+    private ListaLibros libros;
 
 
-    public Biblioteca(String nombre) {        
+    public ListaBibliotecas(String nombre) {        
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
         this.limite = 0;        
-        this.libros = new Libro(0);
+        this.libros = new ListaLibros(0);
     }
 
     public NodoBiblioteca getInicioB() {
@@ -39,11 +39,11 @@ public class Biblioteca extends Lista {
         this.fin = Fin;
     }
 
-    public Libro getLibros() {
+    public ListaLibros getLibros() {
         return libros;
     }
 
-    public void setLibros(Libro libros) {
+    public void setLibros(ListaLibros libros) {
         this.libros = libros;
     }
 
@@ -306,7 +306,7 @@ public class Biblioteca extends Lista {
         return ret;
     }
 
-    public int contarNodos(Biblioteca n) {
+    public int contarNodos(ListaBibliotecas n) {
         return n.cantElementos();
     }
 }

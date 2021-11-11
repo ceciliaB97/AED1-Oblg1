@@ -9,7 +9,7 @@ import Clases.*;
  */
 public class Obligatorio extends Lista implements IObligatorio {
 
-    Biblioteca bibliotecaBase;
+    ListaBibliotecas bibliotecaBase;
 
     @Override
     public Retorno crearSistemaReservas() {

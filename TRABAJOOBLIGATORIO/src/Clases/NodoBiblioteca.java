@@ -12,7 +12,7 @@ package Clases;
 public class NodoBiblioteca {
     //ESTO ES UNA LISTA
     String nombre;
-    private Libro libros;
+    private ListaLibros libros;
     NodoBiblioteca siguiente;
 
     public String getNombre() {
@@ -31,11 +31,11 @@ public class NodoBiblioteca {
         this.siguiente = siguiente;
     }
 
-    public Libro getLibros() {
+    public ListaLibros getLibros() {
         return libros;
     }
 
-    public void setLibros(Libro libros) {
+    public void setLibros(ListaLibros libros) {
         this.libros = libros;
     }
     

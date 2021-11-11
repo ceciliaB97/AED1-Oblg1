@@ -2,7 +2,7 @@ package Clases;
 
 import Estructuras.Lista;
 
-public class Libro extends Lista {
+public class ListaLibros extends Lista {
 
     private NodoLibro inicio;
     private NodoLibro fin;
@@ -10,7 +10,7 @@ public class Libro extends Lista {
     private int actual;
     //propiedades de libro
 
-    public Libro(int limite) {
+    public ListaLibros(int limite) {
         this.inicio = null;
         this.fin = null;
         this.limite = limite;
@@ -286,7 +286,7 @@ public class Libro extends Lista {
         return ret;
     }
 
-    public int contarNodos(Libro n) {
+    public int contarNodos(ListaLibros n) {
         return n.cantElementos();
     }
 

@@ -19,9 +19,9 @@ public class NodoLibro {
     private String Editorial;
     private int Ejemplares;
     //listas de libro
-    private Calificacion calificacion;
-    private Reserva reserva;
-    private Reserva espera;
+    private ListaCalificaciones calificacion;
+    private ListaReservas reserva;
+    private ListaReservas espera;
 
     public NodoLibro getSiguiente() {
         return siguiente;
@@ -63,29 +63,29 @@ public class NodoLibro {
         this.Ejemplares = Ejemplares;
     }
 
-    public Calificacion getCalificacion() {
+    public ListaCalificaciones getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Calificacion calificacion) {
+    public void setCalificacion(ListaCalificaciones calificacion) {
         this.calificacion = calificacion;
     }
     
    
 
-    public Reserva getReserva() {
+    public ListaReservas getReserva() {
         return reserva;
     }
 
-    public void setReserva(Reserva reserva) {
+    public void setReserva(ListaReservas reserva) {
         this.reserva = reserva;
     }
 
-    public Reserva getEspera() {
+    public ListaReservas getEspera() {
         return espera;
     }
 
-    public void setEspera(Reserva espera) {
+    public void setEspera(ListaReservas espera) {
         this.espera = espera;
     }
 

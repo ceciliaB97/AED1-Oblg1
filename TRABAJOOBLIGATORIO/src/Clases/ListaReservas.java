@@ -2,12 +2,12 @@ package Clases;
 
 import Estructuras.Lista;
 
-public class Reserva extends Lista {
+public class ListaReservas extends Lista {
 
 //    private int cliente;
 //    private int numero;
 //    private String fecha;
-//    private Reserva siguiente;
+//    private ListaReservas siguiente;
     private NodoReserva primero;
     private NodoReserva ultimo;
     private int actual;
@@ -45,7 +45,7 @@ public class Reserva extends Lista {
         this.ultimo = ultimo;
     }
 
-    public Reserva(int limiteAceptado) {
+    public ListaReservas(int limiteAceptado) {
         this.primero = null;
         this.ultimo = null;
         this.actual = 0;
