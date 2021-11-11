@@ -213,7 +213,8 @@ public class Obligatorio extends Lista implements IObligatorio {
     public Retorno listarLibros(String biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);        
-        if(auxB != null){
+        if(auxB != null){  
+            System.out.println("Libros de la biblioteca: " +biblioteca);
             auxB.getLibros().mostrarREC();
             ret = new Retorno(Retorno.Resultado.OK);
         }else{
@@ -221,6 +222,8 @@ public class Obligatorio extends Lista implements IObligatorio {
         }        
         return ret;
     }
+    
+    
 
     @Override
     public Retorno listarLibrosBiblioteca(String biblioteca) {
