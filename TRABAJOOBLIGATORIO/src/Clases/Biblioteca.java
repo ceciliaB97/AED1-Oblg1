@@ -15,12 +15,12 @@ public class Biblioteca extends Lista {
     private Libro libros;
 
 
-    public Biblioteca(String nombre) {
-        this.libros = null;
+    public Biblioteca(String nombre) {        
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
-        this.limite = 0;
+        this.limite = 0;        
+        this.libros = new Libro(0);
     }
 
     public NodoBiblioteca getInicioB() {

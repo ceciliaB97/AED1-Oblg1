@@ -11,10 +11,9 @@ public class Libro extends Lista {
     //propiedades de libro
 
     public Libro(int limite) {
-
         this.inicio = null;
         this.fin = null;
-        this.limite = 0;
+        this.limite = limite;
         this.actual = 0;
     }
 

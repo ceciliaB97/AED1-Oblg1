@@ -102,7 +102,7 @@ public class NodoLibro {
         this.numLibro = NumUnico++;
         this.Titulo = Titulo;
         this.Editorial = Editorial;
-        this.Ejemplares = Ejemplares;
+        this.Ejemplares = Ejemplares;        
     }
 
 }
