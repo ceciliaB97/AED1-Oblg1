@@ -7,15 +7,15 @@ import Clases.*;
  *
  * @author RAFAEL
  */
-public class Obligatorio extends Lista implements IObligatorio {
+public class Obligatorio implements IObligatorio {
 
     ListaBibliotecas bibliotecaBase;
 
     @Override
     public Retorno crearSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        NodoBiblioteca nueva = new NodoBiblioteca("nueva");
-        this.bibliotecaBase.agregarInicio(nueva);
+     
+        this.bibliotecaBase = new ListaBibliotecas(0);
         ret.valorString = "Se ha creado el sistema de reservas";
         return ret;
     }
@@ -229,15 +229,14 @@ public class Obligatorio extends Lista implements IObligatorio {
 
                 lb.getCalificacion().mostrarREC();
                 lb = lb.getSiguiente();
-                
+
             }
-         
 
             ret.resultado = Retorno.Resultado.OK;
 
-        }else{
-            
-            ret.valorString ="La Biblioteca no existe";
+        } else {
+
+            ret.valorString = "La Biblioteca no existe";
         }
 
         return ret;

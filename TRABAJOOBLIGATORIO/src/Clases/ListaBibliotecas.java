@@ -15,11 +15,11 @@ public class ListaBibliotecas extends Lista {
     private ListaLibros libros;
 
 
-    public ListaBibliotecas(String nombre) {        
+    public ListaBibliotecas(int limite) {        
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
-        this.limite = 0;        
+        this.limite = limite;        
         this.libros = new ListaLibros(0);
     }
 
