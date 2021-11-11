@@ -186,8 +186,8 @@ public class Biblioteca extends Lista {
             mostrarREC2(n.getSiguiente(), ++cont);
 
         }
-    }
-    
+    } 
+      
     public NodoBiblioteca obtenerElementoAnterior(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {

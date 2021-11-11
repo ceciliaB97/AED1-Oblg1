@@ -86,6 +86,7 @@ public class Libro extends Lista {
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
+                this.fin = n;
             } else {
                 NodoLibro aux = this.inicio;
                 while (aux.getSiguiente() != null) {
