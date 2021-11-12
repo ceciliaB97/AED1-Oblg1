@@ -1,8 +1,6 @@
 package Clases;
 
-import Estructuras.Lista;
-
-public class ListaLibros extends Lista {
+public class ListaLibros {
 
     private NodoLibro inicio;
     private NodoLibro fin;
@@ -17,12 +15,10 @@ public class ListaLibros extends Lista {
         this.actual = 0;
     }
 
-    @Override
     public int getLimite() {
         return limite;
     }
 
-    @Override
     public void setLimite(int limite) {
         this.limite = limite;
     }
@@ -31,7 +27,6 @@ public class ListaLibros extends Lista {
         return actual;
     }
 
-    @Override
     public void setActual(int actual) {
         this.actual = actual;
     }
@@ -51,13 +46,7 @@ public class ListaLibros extends Lista {
     public void setFin(NodoLibro fin) {
         this.fin = fin;
     }
-    
-    /**
-     * ***Métodos Básicos****
-     */
-    //PRE:
-    //POS: Retorna true si la lista no tiene nodos
-    @Override
+
     public boolean esVacia() {
         return this.inicio == null;
     }
@@ -101,7 +90,6 @@ public class ListaLibros extends Lista {
 
     //PRE:
     //POS: Borra el primer nodo
-    @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -113,7 +101,6 @@ public class ListaLibros extends Lista {
 
     //PRE:
     //POS: Borra el último nodo
-    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -133,7 +120,6 @@ public class ListaLibros extends Lista {
 
     //PRE:
     //POS: elimina todos los nodos de una lista dada
-    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -154,8 +140,7 @@ public class ListaLibros extends Lista {
 
     }
 
-    public void mostrarREC2(NodoLibro n, int cont
-    ) {
+    public void mostrarREC2(NodoLibro n, int cont) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getTitulo() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
@@ -164,6 +149,25 @@ public class ListaLibros extends Lista {
             System.out.println(cont + "- <" + n.getTitulo() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
             mostrarREC2(n.getSiguiente(), ++cont);
+
+        }
+    }
+    
+    public void mostrarRECExtenso() {
+        if (!this.esVacia()) {
+            mostrarRECExtenso2(this.getInicioL(), 1);
+        } else {
+            System.out.println("La lista no tiene bibliotecas");
+        }
+
+    }
+
+    public void mostrarRECExtenso2(NodoLibro n, int cont) {
+        if (n.getSiguiente() == null) {
+            System.out.println(cont + "- <" + n.getTitulo() +" "+ n.getEditorial() +" "+ n.getCalifPromedio() + ">");          
+        } else {
+            System.out.println(cont + "- <" + n.getTitulo() +" "+ n.getEditorial() +" "+ n.getCalifPromedio() + ">");
+            mostrarRECExtenso2(n.getSiguiente(), ++cont);
 
         }
     }
@@ -215,7 +219,6 @@ public class ListaLibros extends Lista {
 
     //PRE: 
     //POS: Retorna la cantidad de nodos que tiene la lista
-    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -253,7 +256,6 @@ public class ListaLibros extends Lista {
      * Si actual < a limite, inserto //PRE: -- //POS: True si actualmente no
      * paso el limite de la lista. @return T/F
      */
-    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
@@ -290,4 +292,15 @@ public class ListaLibros extends Lista {
         return n.cantElementos();
     }
 
+    public void PromedioCalificaciones(NodoLibro l){
+        int promedio = 0; 
+        int suma = 0;
+        int contador = 0;
+        for (NodoCalificacion i = l.getCalificacion().getInicioC(); i.getSiguiente() != null; i = i.getSiguiente()) {
+            suma = suma + i.getCalificacion();
+            contador++;
+        }
+        promedio = suma/contador;
+        l.setCalifPromedio(promedio);
+    }
 }

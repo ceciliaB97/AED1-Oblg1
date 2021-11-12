@@ -1,9 +1,6 @@
 package Clases;
 
-import Estructuras.Lista;
-import Estructuras.NodoLista;
-
-public class ListaBibliotecas<NodoLibro> extends Lista {
+public class ListaBibliotecas {
 
 //    atributos de lista<biblioteca>
     private NodoBiblioteca inicio;
@@ -14,12 +11,11 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
     //atributos de biblioteca
     private ListaLibros libros;
 
-
-    public ListaBibliotecas(int limite) {        
+    public ListaBibliotecas(int limite) {
         this.inicio = null;
         this.fin = null;
         this.actual = 0;
-        this.limite = limite;        
+        this.limite = limite;
         this.libros = new ListaLibros(0);
     }
 
@@ -47,38 +43,22 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
         this.libros = libros;
     }
 
-    @Override
     public int getActual() {
         return actual;
     }
 
-    @Override
     public void setActual(int Actual) {
         this.actual = Actual;
     }
-    
-        /**
-     * @return the limite
-     */
-    @Override
+
     public int getLimite() {
         return limite;
     }
 
-    /**
-     * @param limite the limite to set
-     */
-    @Override
     public void setLimite(int limite) {
         this.limite = limite;
     }
 
-    /**
-     * ***Métodos Básicos****
-     */
-    //PRE:
-    //POS: Retorna true si la lista no tiene nodos
-    @Override
     public boolean esVacia() {
         return this.inicio == null;
     }
@@ -107,7 +87,7 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
-                   this.fin = n;
+                this.fin = n;
             } else {
                 NodoBiblioteca aux = this.inicio;
                 while (aux.getSiguiente() != null) {
@@ -123,7 +103,6 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
 
     //PRE:
     //POS: Borra el primer nodo
-    @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -135,7 +114,6 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
 
     //PRE:
     //POS: Borra el último nodo
-    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -155,7 +133,6 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
 
     //PRE:
     //POS: elimina todos los nodos de una lista dada
-    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -168,11 +145,11 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
     //PRE:
     //POS: Recorre y muestra los datos de lista
     public void mostrarREC() {
-        if(!this.esVacia()){
+        if (!this.esVacia()) {
             mostrarREC2(this.getInicioB(), 1);
         } else {
             System.out.println("La lista no tiene bibliotecas");
-        }        
+        }
     }
 
     public void mostrarREC2(NodoBiblioteca n, int cont
@@ -188,7 +165,12 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
 
         }
     }
-    
+
+    public void mostrarRECLibro(NodoBiblioteca b) {
+        System.out.println("Libros de la biblioteca: " + b.getNombre());
+        b.getLibros().mostrarREC();
+    }
+
     public NodoBiblioteca obtenerElementoAnterior(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
@@ -236,7 +218,6 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
 
     //PRE: 
     //POS: Retorna la cantidad de nodos que tiene la lista
-    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -250,7 +231,7 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
     }
 
     //PRE: //POS:
-   public NodoBiblioteca obtenerElemento(String n) {
+    public NodoBiblioteca obtenerElemento(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
                 return inicio;
@@ -274,14 +255,13 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
      * Si actual < a limite, inserto //PRE: -- //POS: True si actualmente no
      * paso el limite de la lista. @return T/F
      */
-    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-    
+
     public boolean buscarElemento(String n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -310,4 +290,32 @@ public class ListaBibliotecas<NodoLibro> extends Lista {
     public int contarNodos(ListaBibliotecas n) {
         return n.cantElementos();
     }
+
+    public void OrdenarLibrosPorCalifPromedio(NodoBiblioteca b) {
+        if (!b.getLibros().esVacia()) {
+
+            for (NodoLibro i = b.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
+                for (NodoLibro j = i; j.getSiguiente() != null; j = j.getSiguiente()) {
+                    if (i.getCalifPromedio() > j.getCalifPromedio()) {
+                        NodoLibro aux = j.getSiguiente();
+                        NodoLibro auxi = i;
+                        b.getLibros().eliminarElemento(i);
+                        j.setSiguiente(auxi);
+                        i.setSiguiente(aux);
+                    }
+                }
+            }
+        }
+    }
+
+    public void PromedioGeneralLibros() {
+        for (NodoBiblioteca j = this.getInicioB(); j.getSiguiente() != null; j = j.getSiguiente()) {
+            if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
+                for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
+                    this.getLibros().PromedioCalificaciones(i);
+                }
+            }
+        }
+    }
+
 }

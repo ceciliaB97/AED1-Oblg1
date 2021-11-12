@@ -1,8 +1,6 @@
 package Clases;
 
-import Estructuras.Lista;
-
-public class ListaReservas extends Lista {
+public class ListaReservas{
 
 //    private int cliente;
 //    private int numero;
@@ -62,7 +60,6 @@ public class ListaReservas extends Lista {
         return this.primero == null;
     }
 
-    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
@@ -70,7 +67,6 @@ public class ListaReservas extends Lista {
         return this.limite > this.actual;
     }
 
-    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -153,7 +149,6 @@ public class ListaReservas extends Lista {
         return null;
     }
     
-    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -197,7 +192,6 @@ public class ListaReservas extends Lista {
         return false;
     }
 
-    @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.primero = this.primero.getSiguiente();
@@ -226,7 +220,6 @@ public class ListaReservas extends Lista {
         }
     }
 
-    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -234,5 +227,6 @@ public class ListaReservas extends Lista {
         while (primero != null) {
             borrarInicio();
         }
-    }
+    }    
+   
 }

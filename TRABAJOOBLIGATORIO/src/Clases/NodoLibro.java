@@ -22,6 +22,19 @@ public class NodoLibro {
     private ListaCalificaciones calificaciones;
     private ListaReservas reserva;
     private ListaReservas espera;
+    private int califPromedio;
+    
+    //constructor
+    public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
+        this.numLibro = NumUnico++;
+        this.Titulo = Titulo;
+        this.Editorial = Editorial;
+        this.Ejemplares = Ejemplares; 
+        this.calificaciones = new ListaCalificaciones(0);
+        this.reserva = new ListaReservas(Ejemplares);
+        this.espera = new ListaReservas(0);
+        this.califPromedio = 0;       
+    }
 
     public NodoLibro getSiguiente() {
         return siguiente;
@@ -95,18 +108,31 @@ public class NodoLibro {
 
     public void setNumLibro(int numLibro) {
         this.numLibro = numLibro;
+    }   
+
+    public ListaCalificaciones getCalificaciones() {
+        return calificaciones;
     }
 
-    //constructor
-    public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
-        this.numLibro = NumUnico++;
-        this.Titulo = Titulo;
-        this.Editorial = Editorial;
-        this.Ejemplares = Ejemplares; 
-        this.calificaciones = new ListaCalificaciones(0);
-        this.reserva = new ListaReservas(Ejemplares);
-        this.espera = new ListaReservas(0);
-       
+    public void setCalificaciones(ListaCalificaciones calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    public int getCalifPromedio() {
+        return califPromedio;
+    }
+
+    public void setCalifPromedio(int califPromedio) {
+        this.califPromedio = califPromedio;
+    }
+    
+    public void EliminarReserva(NodoReserva r, NodoLibro l) {
+        l.getReserva().eliminarElemento(r.getCliente(), r.getNumero());
+        if (l.getEspera() != null) {
+            NodoReserva espera = l.getEspera().getPrimero();
+            l.getReserva().agregarFinal(espera);
+            l.getEspera().eliminarElemento(espera.getCliente(), espera.getNumero());
+        }
     }
 
 }

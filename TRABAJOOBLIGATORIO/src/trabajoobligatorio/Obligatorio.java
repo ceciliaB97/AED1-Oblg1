@@ -1,6 +1,5 @@
 package trabajoobligatorio;
 
-import Estructuras.Lista;
 import Clases.*;
 
 /**
@@ -14,7 +13,7 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno crearSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-     
+
         this.bibliotecaBase = new ListaBibliotecas(0);
         ret.valorString = "Se ha creado el sistema de reservas";
         return ret;
@@ -73,7 +72,7 @@ public class Obligatorio implements IObligatorio {
 
             if (liBuscado != null) {
                 ret.valorString = "Libro ya existe en la biblioteca";
-               ret.resultado = Retorno.Resultado.ERROR;
+                ret.resultado = Retorno.Resultado.ERROR;
                 return ret;
             } else {
                 NodoLibro nuevo = new NodoLibro(titulo, editorial, ejemplares);
@@ -122,6 +121,7 @@ public class Obligatorio implements IObligatorio {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
+                //Agregar restricciones calificacion
                 NodoCalificacion nueva = new NodoCalificacion(calificacion, comentario);
                 liBuscado.getCalificacion().agregarFinal(nueva);
                 ret.valorString = "Se agregó la calificación al libro";
@@ -179,38 +179,62 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
 
-//        if (auxBiblioteca != null){
-//            boolean encontrada = false;
-//            //si la biblioteca existe, se corrobora
-//            NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
-//            
-//            while (auxLibro.getSiguiente() != null && !encontrada){
-//                
-//            }
-//            
-//            for (int i = 0; i < auxLibro.get; i++) {
-//                
-//            }
-//        }
+        if (auxBiblioteca != null) {
+            boolean encontrada = false;
+//            si la biblioteca existe, se corrobora
+            NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
+            while (auxLibro.getSiguiente() != null && !encontrada) {
+                NodoReserva rBuscada = auxLibro.getReserva().obtenerElemento(cliente, numero);
+                if (rBuscada != null) {
+                    //EliminarReserva
+                    auxLibro.EliminarReserva(rBuscada, auxLibro);
+                    ret.resultado = Retorno.Resultado.OK;
+                    encontrada = true;
+                }
+                auxLibro = auxLibro.getSiguiente();
+            }
+        }
         return ret;
     }
 
     @Override
     public Retorno listarLibros(String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
+        NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
+        if (auxBiblioteca != null) {
+            this.bibliotecaBase.mostrarRECLibro(auxBiblioteca);
+            ret.resultado = Retorno.Resultado.OK;
+        }
         return ret;
     }
 
     @Override
     public Retorno listarLibrosBiblioteca(String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
-
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
+        NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
+        if (auxBiblioteca != null) {
+            this.bibliotecaBase.PromedioGeneralLibros();
+            this.bibliotecaBase.OrdenarLibrosPorCalifPromedio(auxBiblioteca);
+            System.out.println("Listar libros de la biblioteca: " + biblioteca);
+            auxBiblioteca.getLibros().mostrarRECExtenso();
+        }
         return ret;
     }
 
     @Override
     public Retorno listarBibliotecaRanking() {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        Retorno ret = new Retorno(Retorno.Resultado.OK);
+        System.out.println("Bibliotecas ordenadas por ranking");
+        this.bibliotecaBase.PromedioGeneralLibros();
+        for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i.getSiguiente() != null; i = i.getSiguiente()) {
+            this.bibliotecaBase.OrdenarLibrosPorCalifPromedio(i);
+            System.out.println("Biblioteca: " + i.getNombre());
+            if (i.getLibros() != null) {
+                i.getLibros().mostrarREC();
+            } else {
+                System.out.println("La biblioteca no tiene libros");
+            }
+        }
         return ret;
     }
 

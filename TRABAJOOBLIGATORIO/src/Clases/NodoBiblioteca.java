@@ -4,15 +4,7 @@
  * and open the template in the editor.
  */
 package Clases;
-import Estructuras.NodoLista;
-import Estructuras.TDato;
 
-
-
-/**
- *
- * @author cecil
- */
 public class NodoBiblioteca  {
     //ESTO ES UNA LISTA
     String nombre;

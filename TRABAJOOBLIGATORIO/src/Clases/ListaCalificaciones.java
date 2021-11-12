@@ -1,8 +1,6 @@
 package Clases;
 
-import Estructuras.Lista;
-
-public class ListaCalificaciones extends Lista {
+public class ListaCalificaciones{
 
     //propiedades de lista
     private NodoCalificacion inicio;
@@ -133,7 +131,7 @@ public class ListaCalificaciones extends Lista {
     
     public void mostrarREC() {
         if(!this.esVacia()){
-            mostrarREC2(this.getInicio(), 1);
+            mostrarREC2(this.getInicioC(), 1);
         } else {
             System.out.println("La lista no tiene bibliotecas");
         }        
@@ -196,7 +194,6 @@ public class ListaCalificaciones extends Lista {
         return false;
     }
     
-    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -229,7 +226,6 @@ public class ListaCalificaciones extends Lista {
         return null;
     }
     
-    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
