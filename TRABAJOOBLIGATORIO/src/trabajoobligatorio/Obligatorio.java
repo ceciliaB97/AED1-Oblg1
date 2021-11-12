@@ -73,13 +73,13 @@ public class Obligatorio implements IObligatorio {
 
             if (liBuscado != null) {
                 ret.valorString = "Libro ya existe en la biblioteca";
-                ret = new Retorno(Retorno.Resultado.ERROR);
+               ret.resultado = Retorno.Resultado.ERROR;
                 return ret;
             } else {
                 NodoLibro nuevo = new NodoLibro(titulo, editorial, ejemplares);
                 biBuscada.getLibros().agregarInicio(nuevo);
                 ret.valorString = "Se ha agregado el libro a la biblioteca";
-                ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.resultado = Retorno.Resultado.OK;
             }
         }
         return ret;

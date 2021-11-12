@@ -3,9 +3,9 @@ package Clases;
 import Estructuras.Lista;
 import Estructuras.NodoLista;
 
-public class ListaBibliotecas extends Lista {
+public class ListaBibliotecas<NodoLibro> extends Lista {
 
-    //atributos de lista<biblioteca>
+//    atributos de lista<biblioteca>
     private NodoBiblioteca inicio;
     private NodoBiblioteca fin;
     //limite actual
@@ -107,6 +107,7 @@ public class ListaBibliotecas extends Lista {
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.inicio = n;
+                   this.fin = n;
             } else {
                 NodoBiblioteca aux = this.inicio;
                 while (aux.getSiguiente() != null) {

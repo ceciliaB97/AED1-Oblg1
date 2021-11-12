@@ -47,10 +47,10 @@ public class ListaCalificaciones extends Lista {
         this.limite = limite;
     }
     
-    public ListaCalificaciones() {
+    public ListaCalificaciones(int l) {
         this.inicio = null;
         this.fin = null;
-        this.limite = 0;
+        this.limite = l;
         this.actual = 0;
     }
     
@@ -82,7 +82,7 @@ public class ListaCalificaciones extends Lista {
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
-                this.inicio = n;
+                this.inicio = fin;
             } else {
                 NodoCalificacion aux = this.inicio;
                 while (aux.getSiguiente() != null) {

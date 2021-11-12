@@ -10,7 +10,7 @@ package Clases;
  * @author cecil
  */
 public class NodoLibro {
-    //ESTO ES UNA LISTA
+   
     private NodoLibro siguiente;
     //propiedades de libro
     private static int NumUnico = 0;
@@ -19,7 +19,7 @@ public class NodoLibro {
     private String Editorial;
     private int Ejemplares;
     //listas de libro
-    private ListaCalificaciones calificacion;
+    private ListaCalificaciones calificaciones;
     private ListaReservas reserva;
     private ListaReservas espera;
 
@@ -64,11 +64,11 @@ public class NodoLibro {
     }
 
     public ListaCalificaciones getCalificacion() {
-        return calificacion;
+        return calificaciones;
     }
 
     public void setCalificacion(ListaCalificaciones calificacion) {
-        this.calificacion = calificacion;
+        this.calificaciones = calificacion;
     }
     
    
@@ -102,7 +102,11 @@ public class NodoLibro {
         this.numLibro = NumUnico++;
         this.Titulo = Titulo;
         this.Editorial = Editorial;
-        this.Ejemplares = Ejemplares;        
+        this.Ejemplares = Ejemplares; 
+        this.calificaciones = new ListaCalificaciones(0);
+        this.reserva = new ListaReservas(Ejemplares);
+        this.espera = new ListaReservas(0);
+       
     }
 
 }
