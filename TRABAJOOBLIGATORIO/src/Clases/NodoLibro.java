@@ -76,13 +76,9 @@ public class NodoLibro {
         this.Ejemplares = Ejemplares;
     }
 
-    public ListaCalificaciones getCalificacion() {
-        return calificaciones;
-    }
 
-    public void setCalificacion(ListaCalificaciones calificacion) {
-        this.calificaciones = calificacion;
-    }
+
+ 
     
    
 
@@ -132,6 +128,22 @@ public class NodoLibro {
             NodoReserva espera = l.getEspera().getPrimero();
             l.getReserva().agregarFinal(espera);
             l.getEspera().eliminarElemento(espera.getCliente(), espera.getNumero());
+        }
+    }
+    
+       public void EstablecerPromedioCalificacionesDeUnLibro(){// obtenemos el promedio de calificaciones de un libro
+        int promedio = 1; 
+        int suma = 0;
+        int contador = 0;
+        if( this.getCalificaciones().getInicioC()!=null){
+        for (NodoCalificacion i = this.getCalificaciones().getInicioC(); i.getSiguiente() != null; i = i.getSiguiente()) {
+            
+            
+            suma = suma + i.getCalificacion();
+            contador++;
+        }
+        promedio = suma/contador;
+        this.setCalifPromedio(promedio);
         }
     }
 

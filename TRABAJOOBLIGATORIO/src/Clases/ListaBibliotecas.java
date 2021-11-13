@@ -291,7 +291,7 @@ public class ListaBibliotecas {
         return n.cantElementos();
     }
 
-    public void OrdenarLibrosPorCalifPromedio(NodoBiblioteca b) {
+    public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
 
             for (NodoLibro i = b.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
@@ -308,14 +308,6 @@ public class ListaBibliotecas {
         }
     }
 
-    public void PromedioGeneralLibros() {
-        for (NodoBiblioteca j = this.getInicioB(); j.getSiguiente() != null; j = j.getSiguiente()) {
-            if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
-                for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
-                    this.getLibros().PromedioCalificaciones(i);
-                }
-            }
-        }
-    }
+  
 
 }

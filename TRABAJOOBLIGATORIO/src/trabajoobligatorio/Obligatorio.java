@@ -123,7 +123,8 @@ public class Obligatorio implements IObligatorio {
             if (liBuscado != null) {
                 //Agregar restricciones calificacion
                 NodoCalificacion nueva = new NodoCalificacion(calificacion, comentario);
-                liBuscado.getCalificacion().agregarFinal(nueva);
+                liBuscado.getCalificaciones().agregarInicio(nueva);
+                liBuscado.EstablecerPromedioCalificacionesDeUnLibro();
                 ret.valorString = "Se agregó la calificación al libro";
                 ret = new Retorno(Retorno.Resultado.OK);
                 return ret;
@@ -213,8 +214,8 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
-            this.bibliotecaBase.PromedioGeneralLibros();
-            this.bibliotecaBase.OrdenarLibrosPorCalifPromedio(auxBiblioteca);
+            auxBiblioteca.PromedioGeneralLibros();
+            this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(auxBiblioteca);
             System.out.println("Listar libros de la biblioteca: " + biblioteca);
             auxBiblioteca.getLibros().mostrarRECExtenso();
         }
@@ -225,12 +226,12 @@ public class Obligatorio implements IObligatorio {
     public Retorno listarBibliotecaRanking() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
-        this.bibliotecaBase.PromedioGeneralLibros();
+    
         for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i.getSiguiente() != null; i = i.getSiguiente()) {
-            this.bibliotecaBase.OrdenarLibrosPorCalifPromedio(i);
+            this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
             System.out.println("Biblioteca: " + i.getNombre());
             if (i.getLibros() != null) {
-                i.getLibros().mostrarREC();
+                i.getLibros().mostrarRECExtenso();
             } else {
                 System.out.println("La biblioteca no tiene libros");
             }
@@ -251,7 +252,7 @@ public class Obligatorio implements IObligatorio {
 
             while (lb.getSiguiente() != null) {
 
-                lb.getCalificacion().mostrarREC();
+                lb.getCalificaciones().mostrarREC();
                 lb = lb.getSiguiente();
 
             }

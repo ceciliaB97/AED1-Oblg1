@@ -5,7 +5,8 @@
  */
 package Clases;
 
-public class NodoBiblioteca  {
+public class NodoBiblioteca {
+
     //ESTO ES UNA LISTA
     String nombre;
     private ListaLibros libros;
@@ -34,12 +35,22 @@ public class NodoBiblioteca  {
     public void setLibros(ListaLibros libros) {
         this.libros = libros;
     }
-    
+
     //constructor
-    public NodoBiblioteca( String  Nombre) {
+    public NodoBiblioteca(String Nombre) {
         this.nombre = Nombre;
         this.libros = new ListaLibros(0);
         this.siguiente = null;
     }
 
+    public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca
+
+        if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
+            for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
+                i.EstablecerPromedioCalificacionesDeUnLibro();// promedio calificaciones de cada libro
+            }
+        }
+    }
 }
+
+

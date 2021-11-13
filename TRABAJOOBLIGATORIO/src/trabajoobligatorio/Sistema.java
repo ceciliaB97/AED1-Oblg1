@@ -9,7 +9,7 @@ public class Sistema {
         Prueba p = new Prueba();
         Obligatorio o = new Obligatorio();
 //        juegodeprueba(o, p);
-        
+
         o.crearSistemaReservas();
         o.registrarBiblioteca("Prueba");
         o.registrarBiblioteca("PruebaFor");
@@ -17,18 +17,20 @@ public class Sistema {
         o.registrarLibro("Libro2", "editorial", "Prueba", 3);
         o.registrarLibro("Libro3", "editorial", "Prueba", 3);
         o.listarLibros("Prueba");
-        o.RegistrarCalificacion("Libro1", "editorial", 4, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro1", "editorial", 4, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro2", "editorial", 4, "Prueba", "Muy bueno");
+        o.RegistrarCalificacion("Libro1", "editorial", 1, "Prueba", "Muy bueno");
+        o.RegistrarCalificacion("Libro1", "editorial", 1, "Prueba", "Muy bueno");
         o.RegistrarCalificacion("Libro2", "editorial", 2, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro3", "editorial", 2, "Prueba", "Muy bueno");
-        System.out.println("Hasta acá todo ok");
-        //Falla el calculo del promedio general por la condicion del if
-        o.bibliotecaBase.PromedioGeneralLibros();
-        System.out.println(o.bibliotecaBase.getInicioB().getLibros().getInicioL().getCalifPromedio());
-        System.out.println("Hasta acá todo ok 2");
-        o.listarLibrosBiblioteca("Prueba");
-        System.out.println("Hasta acá todo ok 3");
+        o.RegistrarCalificacion("Libro2", "editorial", 2, "Prueba", "Muy bueno");
+        o.RegistrarCalificacion("Libro3", "editorial", 4, "Prueba", "Muy bueno");
+        System.out.println("    Aca se imprime bibliotecas por ranking");
+       o.listarBibliotecaRanking();
+//        System.out.println("Hasta acá todo ok");
+//        //Falla el calculo del promedio general por la condicion del if
+//        o.bibliotecaBase.PromedioGeneralLibros();
+//        System.out.println(o.bibliotecaBase.getInicioB().getLibros().getInicioL().getCalifPromedio());
+//        System.out.println("Hasta acá todo ok 2");
+//        o.listarLibrosBiblioteca("Prueba");
+//        System.out.println("Hasta acá todo ok 3");
 
     }
 
@@ -144,6 +146,5 @@ public class Sistema {
 //        p.ver(o.listarComentarios("Segunda").resultado, Retorno.Resultado.OK, "" + o.listarComentarios("Segunda").valorString);
 //
 //        p.imprimirResultadosPrueba();
-
-    }
+//}
 }

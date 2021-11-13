@@ -292,15 +292,5 @@ public class ListaLibros {
         return n.cantElementos();
     }
 
-    public void PromedioCalificaciones(NodoLibro l){
-        int promedio = 0; 
-        int suma = 0;
-        int contador = 0;
-        for (NodoCalificacion i = l.getCalificacion().getInicioC(); i.getSiguiente() != null; i = i.getSiguiente()) {
-            suma = suma + i.getCalificacion();
-            contador++;
-        }
-        promedio = suma/contador;
-        l.setCalifPromedio(promedio);
-    }
+ 
 }
