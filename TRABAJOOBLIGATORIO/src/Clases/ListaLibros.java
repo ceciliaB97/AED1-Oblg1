@@ -152,7 +152,7 @@ public class ListaLibros {
 
         }
     }
-    
+
     public void mostrarRECExtenso() {
         if (!this.esVacia()) {
             mostrarRECExtenso2(this.getInicioL(), 1);
@@ -164,9 +164,9 @@ public class ListaLibros {
 
     public void mostrarRECExtenso2(NodoLibro n, int cont) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.getTitulo() +" "+ n.getEditorial() +" "+ n.getCalifPromedio() + ">");          
+            System.out.println(cont + "- <" + n.getTitulo() + " " + n.getEditorial() + " " + n.getCalifPromedio() + ">");
         } else {
-            System.out.println(cont + "- <" + n.getTitulo() +" "+ n.getEditorial() +" "+ n.getCalifPromedio() + ">");
+            System.out.println(cont + "- <" + n.getTitulo() + " " + n.getEditorial() + " " + n.getCalifPromedio() + ">");
             mostrarRECExtenso2(n.getSiguiente(), ++cont);
 
         }
@@ -292,5 +292,38 @@ public class ListaLibros {
         return n.cantElementos();
     }
 
- 
+    //auxiliar
+    public boolean eliminarElementoDesdeNodo(NodoLibro n, NodoLibro nodoDesde) {
+        if (n.getTitulo().equals(getFinL().getTitulo())) {
+            borrarFin();
+            return true;
+        } else {
+            NodoLibro aux = this.obtenerElementoAnteriorNodoDesde(n, nodoDesde);
+            if (aux != null) {
+                if (aux.getSiguiente() != getFinL()) {
+                    aux.setSiguiente(aux.getSiguiente().getSiguiente());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public NodoLibro obtenerElementoAnteriorNodoDesde(NodoLibro n, NodoLibro desde) {
+        if (!this.esVacia()) {
+            if (this.inicio.getTitulo().equals(n.getTitulo())) {
+                return null;
+            } else {
+                NodoLibro aux = desde;
+                while (aux.getSiguiente() != null) {
+                    if (aux.getSiguiente().getTitulo().equals(n.getTitulo())) {
+                        return aux;
+                    }
+                    aux = aux.getSiguiente();
+                }
+            }
+        }
+        return null;
+    }
+
 }

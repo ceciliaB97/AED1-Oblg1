@@ -312,12 +312,13 @@ public class Obligatorio implements IObligatorio {
             }
             //si es el m[1...n][0]
             if (fila != 0 && columna == 0) {
-                //obtener 5 libros mas solicitados del sistema
-                System.out.print("hola1");
+                //top N
+                System.out.print("TOP " + fila);
             }
             //si es el m[1...n][1...n]
             if (fila != 0 && columna != 0) {
-                //para cada libro de la lista anterior, obtener su total de reservas
+                //nombre de libro
+                this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
                 System.out.print("hola2");
             }
             //System.out.print(m[fila][columna] + " ");

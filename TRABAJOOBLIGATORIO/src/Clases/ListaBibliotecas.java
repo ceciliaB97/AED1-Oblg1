@@ -293,7 +293,6 @@ public class ListaBibliotecas {
 
     public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
-
             for (NodoLibro i = b.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
                 for (NodoLibro j = i; j.getSiguiente() != null; j = j.getSiguiente()) {
                     if (i.getCalifPromedio() > j.getCalifPromedio()) {
@@ -308,6 +307,36 @@ public class ListaBibliotecas {
         }
     }
 
-  
+    public boolean OrdenarLibrosCalificacionPromedioPorBiblioteca(NodoBiblioteca b) {
+        if (!b.getLibros().esVacia()) {
+            ListaLibros lista = b.getLibros();
+            int limite = lista.cantElementos();
+            //busco el libro con la minima calificacion promedio
+            NodoLibro pmax = buscoposmax(lista.getInicioL(), Integer.MIN_VALUE);
+            //nodo auxiliar para iteracion
+            NodoLibro aux = lista.getInicioL();
+            while (limite >= 0) {
+                //agrego al inicio el maximo
+                lista.agregarInicio(pmax);
+                //elimino el nodo repetido
+                lista.eliminarElementoDesdeNodo(pmax, lista.getInicioL().getSiguiente());
+                limite--;
+            }
+        }
+        return false;
+    }
+
+    public NodoLibro buscoposmax(NodoLibro nodoLibro, int maximo) {
+        int valorMaximo = maximo;
+        NodoLibro aux = nodoLibro;
+        while (aux.getSiguiente() != null) {
+            if (aux.getCalifPromedio() > valorMaximo) {
+                valorMaximo = aux.getCalifPromedio();
+            }
+            aux = aux.getSiguiente();
+        }
+        return aux;
+
+    }
 
 }
