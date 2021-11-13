@@ -9,21 +9,42 @@ public class Sistema {
         Prueba p = new Prueba();
         Obligatorio o = new Obligatorio();
 //        juegodeprueba(o, p);
-
+        //
         o.crearSistemaReservas();
-        o.registrarBiblioteca("Prueba");
-        o.registrarBiblioteca("PruebaFor");
-        o.registrarLibro("Libro1", "editorial", "Prueba", 3);
-        o.registrarLibro("Libro2", "editorial", "Prueba", 3);
-        o.registrarLibro("Libro3", "editorial", "Prueba", 3);
+        o.registrarBiblioteca("Biblioteca Nacional");
+        o.registrarBiblioteca("Biblioteca de Canelones");
+        o.registrarBiblioteca("Biblioteca de Montevideo");
+        //
+        o.registrarLibro("Artigas y su historia", "Libros del litoral", "Biblioteca Nacional", 2);
+        o.registrarLibro("Cuentos de los Andes", "Las aventuras", "Biblioteca Nacional", 3);
+        o.registrarLibro("Aprende a amoldar cerámica", "Didacticos", "Biblioteca Nacional", 2);
+        //
+        o.registrarLibro("Palabras interesantes", "Didacticos", "Biblioteca de Canelones", 2);
+        o.registrarLibro("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones", 1);
+        //
+        o.registrarLibro("Destinos turísticos del Uruguay", "Biblioteca de Montevideo", "Prueba", 2);
+        o.registrarLibro("Montevideo historito", "Didacticos", "Biblioteca de Montevideo", 1);
+        //
         o.listarLibros("Prueba");
-        o.RegistrarCalificacion("Libro1", "editorial", 1, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro1", "editorial", 1, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro2", "editorial", 2, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro2", "editorial", 2, "Prueba", "Muy bueno");
-        o.RegistrarCalificacion("Libro3", "editorial", 4, "Prueba", "Muy bueno");
+        //o.realizarReserva(0, 0, biblioteca, título, editorial, fecha);
+        o.realizarReserva(1, 1, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
+        o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(4, 4, "Biblioteca de Montevideo", "Montevideo historito", "Didacticos", "16/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        //o.RegistrarCalificacion(titulo, editorial, 0, biblioteca, comentario)
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 5, "Prueba", "Muy bueno");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 1, "Biblioteca de Canelones", "Muy malo");
+        o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
+        o.RegistrarCalificacion("Cuentos de los Andes", "editorial", 4, "Biblioteca Nacional", "Bueno");
+        o.RegistrarCalificacion("Palabras interesantes", "editorial", 2, "Biblioteca de Canelones", "Malo");
+        
+        o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
+        o.RegistrarCalificacion("Destinos turísticos del Uruguay", "editorial", 4, "Biblioteca de Montevideo", "Bueno");
+        //
         System.out.println("    Aca se imprime bibliotecas por ranking");
        o.listarBibliotecaRanking();
+       //o.mostrarReservasBiblioteca();
 //        System.out.println("Hasta acá todo ok");
 //        //Falla el calculo del promedio general por la condicion del if
 //        o.bibliotecaBase.PromedioGeneralLibros();

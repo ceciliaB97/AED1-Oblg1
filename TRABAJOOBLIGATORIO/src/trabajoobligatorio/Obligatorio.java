@@ -228,15 +228,16 @@ public class Obligatorio implements IObligatorio {
     public Retorno listarBibliotecaRanking() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
-
-        for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i.getSiguiente() != null; i = i.getSiguiente()) {
-            this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
-            System.out.println("Biblioteca: " + i.getNombre());
-            if (i.getLibros() != null) {
-                i.getLibros().mostrarRECExtenso();
+        NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
+        while(aux != null){
+            this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
+            System.out.println("Biblioteca: " + aux.getNombre());
+            if (aux.getLibros() != null) {
+                aux.getLibros().mostrarRECExtenso();
             } else {
                 System.out.println("La biblioteca no tiene libros");
             }
+            aux = aux.getSiguiente();
         }
         return ret;
     }
@@ -300,7 +301,7 @@ public class Obligatorio implements IObligatorio {
             columna = i % columnas;
             //si es el m[0][0]
             if (fila == 0 && columna == 0) {
-                System.out.print("reservas/biblioteca");
+                System.out.print(" reservas/biblioteca ");
             }
             //si es el m[0][1...n]
             if (fila == 0 && columna != 0) {
@@ -313,13 +314,13 @@ public class Obligatorio implements IObligatorio {
             //si es el m[1...n][0]
             if (fila != 0 && columna == 0) {
                 //top N
-                System.out.print("TOP " + fila);
+                System.out.println(" TOP " + fila);
             }
             //si es el m[1...n][1...n]
             if (fila != 0 && columna != 0) {
                 //nombre de libro
-                this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
-                System.out.print("hola2");
+                //this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
+                System.out.print(" hola2 ");
             }
             //System.out.print(m[fila][columna] + " ");
 
