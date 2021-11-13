@@ -10,7 +10,7 @@ package Clases;
  * @author cecil
  */
 public class NodoLibro {
-   
+
     private NodoLibro siguiente;
     //propiedades de libro
     private static int NumUnico = 0;
@@ -23,17 +23,17 @@ public class NodoLibro {
     private ListaReservas reserva;
     private ListaReservas espera;
     private int califPromedio;
-    
+
     //constructor
     public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
         this.numLibro = NumUnico++;
         this.Titulo = Titulo;
         this.Editorial = Editorial;
-        this.Ejemplares = Ejemplares; 
+        this.Ejemplares = Ejemplares;
         this.calificaciones = new ListaCalificaciones(0);
         this.reserva = new ListaReservas(Ejemplares);
         this.espera = new ListaReservas(0);
-        this.califPromedio = 0;       
+        this.califPromedio = 0;
     }
 
     public NodoLibro getSiguiente() {
@@ -76,12 +76,6 @@ public class NodoLibro {
         this.Ejemplares = Ejemplares;
     }
 
-
-
- 
-    
-   
-
     public ListaReservas getReserva() {
         return reserva;
     }
@@ -104,7 +98,7 @@ public class NodoLibro {
 
     public void setNumLibro(int numLibro) {
         this.numLibro = numLibro;
-    }   
+    }
 
     public ListaCalificaciones getCalificaciones() {
         return calificaciones;
@@ -118,33 +112,43 @@ public class NodoLibro {
         return califPromedio;
     }
 
-    public void setCalifPromedio(int califPromedio) {
-        this.califPromedio = califPromedio;
-    }
-    
-    public void EliminarReserva(NodoReserva r, NodoLibro l) {
-        l.getReserva().eliminarElemento(r.getCliente(), r.getNumero());
-        if (l.getEspera() != null) {
-            NodoReserva espera = l.getEspera().getPrimero();
-            l.getReserva().agregarFinal(espera);
-            l.getEspera().eliminarElemento(espera.getCliente(), espera.getNumero());
-        }
-    }
-    
-       public void EstablecerPromedioCalificacionesDeUnLibro(){// obtenemos el promedio de calificaciones de un libro
-        int promedio = 1; 
-        int suma = 0;
-        int contador = 0;
-        if( this.getCalificaciones().getInicioC()!=null){
-        for (NodoCalificacion i = this.getCalificaciones().getInicioC(); i.getSiguiente() != null; i = i.getSiguiente()) {
-            
-            
-            suma = suma + i.getCalificacion();
-            contador++;
-        }
-        promedio = suma/contador;
-        this.setCalifPromedio(promedio);
-        }
+    public void setCalifPromedio() {
+        this.califPromedio = EstablecerPromedioCalificacionesDeUnLibro();
     }
 
+    public boolean EliminarReserva(NodoReserva reserva, NodoLibro libro) {
+        if (!libro.getReserva().esVacia()) {
+            NodoReserva reservaBuscar = libro.getReserva().obtenerElemento(reserva.getCliente(), reserva.getNumero());
+            if (reservaBuscar != null) {
+                libro.getReserva().eliminarElemento(reserva.getCliente(), reserva.getNumero());
+                return true;
+            }
+        }
+        //buscar en lista de espera
+        if (!libro.getEspera().esVacia()) {
+            NodoReserva nuevo = libro.getEspera().getPrimero();
+            libro.getReserva().agregarFinal(nuevo);
+            libro.getEspera().eliminarElemento(nuevo.getCliente(), nuevo.getNumero());
+            return true;
+        }
+        return false;
+    }
+
+    public int EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
+        int promedio = 0;
+        if (!this.getCalificaciones().esVacia()) {
+            int sumatoria = 0;
+            int contador = 0;
+
+            NodoCalificacion aux = this.getCalificaciones().getInicioC();
+            while (aux.getSiguiente() != null) {
+                sumatoria += aux.getCalificacion();
+                contador++;
+                aux = aux.getSiguiente();
+            }
+
+            promedio = sumatoria / contador;
+        } 
+        return promedio;
+    }
 }

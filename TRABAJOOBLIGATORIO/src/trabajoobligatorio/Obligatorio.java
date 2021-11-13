@@ -113,7 +113,6 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno RegistrarCalificacion(String titulo, String editorial, int calificacion, String biblioteca, String comentario) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
-
         NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
 
         if (biBuscada != null) {
@@ -121,21 +120,24 @@ public class Obligatorio implements IObligatorio {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
-                //Agregar restricciones calificacion
-                NodoCalificacion nueva = new NodoCalificacion(calificacion, comentario);
-                liBuscado.getCalificaciones().agregarInicio(nueva);
-                liBuscado.EstablecerPromedioCalificacionesDeUnLibro();
-                ret.valorString = "Se agregó la calificación al libro";
+                NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
+                liBuscado.getCalificaciones().agregarFinal(nuevo);
+                //actualizar la calificacion promedio
+                liBuscado.setCalifPromedio();
                 ret = new Retorno(Retorno.Resultado.OK);
-                return ret;
+                ret.valorString = "Se agregó la calificación al libro";
+
             } else {
-                ret.valorString = "Libro no existe en la biblioteca";
                 ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.valorString = "No existe el libro";
+
             }
         } else {
-            ret.valorString = "Biblioteca no existe";
             ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.valorString = "No existe la bilbioteca";
+
         }
+
         return ret;
     }
 
@@ -226,7 +228,7 @@ public class Obligatorio implements IObligatorio {
     public Retorno listarBibliotecaRanking() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
-    
+
         for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i.getSiguiente() != null; i = i.getSiguiente()) {
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
             System.out.println("Biblioteca: " + i.getNombre());
@@ -270,12 +272,35 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno listarEspera(String titulo, String editorial, String biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
+        if (biBuscada != null) {
+            NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
+            if (liBuscado != null) {
+               liBuscado.getEspera().mostrarREC();
+               ret.valorString = "Lista Espera";
+               ret = new Retorno(Retorno.Resultado.OK);
+            }
+        }
         return ret;
     }
 
     @Override
     public Retorno mostrarReservasBiblioteca() {
         Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        int[][] m = {{2,2},{2,2},{2,2}};
+        //2 2
+        //2 2
+        //2 2
+        int filas = 6;
+        int columnas = m[0].length;
+        int elementos = filas * columnas; //este es el largo del vector, sumando todas las filas de la matriz en una sola fila
+        int fila, columna;
+        ret.valorString = "\n";
+        for (int i = 0; i < elementos; i++) {
+            fila = i / columnas;
+            columna = i % columnas;
+            ret.valorString += m[fila][columna] + " ";
+        }
         return ret;
     }
 

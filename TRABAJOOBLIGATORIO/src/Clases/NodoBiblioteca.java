@@ -8,7 +8,8 @@ package Clases;
 public class NodoBiblioteca {
 
     //ESTO ES UNA LISTA
-    String nombre;
+    private String nombre;
+    private int CalificacionPromedioBiblioteca;
     private ListaLibros libros;
     NodoBiblioteca siguiente;
 
@@ -41,6 +42,15 @@ public class NodoBiblioteca {
         this.nombre = Nombre;
         this.libros = new ListaLibros(0);
         this.siguiente = null;
+        this.CalificacionPromedioBiblioteca = 0;
+    }
+
+    public int getCalificacionPromedioBiblioteca() {
+        return CalificacionPromedioBiblioteca;
+    }
+
+    public void setCalificacionPromedioBiblioteca(int Calificacion) {
+        this.CalificacionPromedioBiblioteca = Calificacion;
     }
 
     public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca

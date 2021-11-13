@@ -155,11 +155,11 @@ public class ListaBibliotecas {
     public void mostrarREC2(NodoBiblioteca n, int cont
     ) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.nombre + ">");
+            System.out.println(cont + "- <" + n.getNombre() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
 
         } else {
-            System.out.println(cont + "- <" + n.nombre + ">");
+            System.out.println(cont + "- <" + n.getNombre() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
             mostrarREC2(n.getSiguiente(), ++cont);
 

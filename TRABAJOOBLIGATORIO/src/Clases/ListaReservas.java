@@ -85,6 +85,7 @@ public class ListaReservas{
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
                 this.primero = n;
+                this.ultimo = n;
             } else {
                 NodoReserva aux = this.primero;
                 while (aux.getSiguiente() != null) {
