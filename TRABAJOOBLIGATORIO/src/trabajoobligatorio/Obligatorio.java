@@ -243,35 +243,24 @@ public class Obligatorio implements IObligatorio {
 
     @Override
     public Retorno listarComentarios(String biblioteca) {
-
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
-
         NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);
-
         if (auxB != null) {
-
             NodoLibro lb = auxB.getLibros().getInicioL();
-
             while (lb.getSiguiente() != null) {
-
                 lb.getCalificaciones().mostrarREC();
                 lb = lb.getSiguiente();
-
             }
-
             ret.resultado = Retorno.Resultado.OK;
-
         } else {
-
             ret.valorString = "La Biblioteca no existe";
         }
-
         return ret;
     }
 
     @Override
     public Retorno listarEspera(String titulo, String editorial, String biblioteca) {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+        Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca biBuscada = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (biBuscada != null) {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
@@ -279,23 +268,30 @@ public class Obligatorio implements IObligatorio {
                 liBuscado.getEspera().mostrarREC();
                 ret.valorString = "Lista Espera";
                 ret = new Retorno(Retorno.Resultado.OK);
+            } else {
+                ret.valorString = "Libro no existe";
+                ret = new Retorno(Retorno.Resultado.ERROR);
             }
+        } else {
+            ret.valorString = "Biblioteca no existe";
+            ret = new Retorno(Retorno.Resultado.ERROR);
         }
         return ret;
     }
 
     @Override
     public Retorno mostrarReservasBiblioteca() {
-        Retorno ret = new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
-        int[][] m = {{2, 2}, {2, 2}, {2, 2}};
+        Retorno ret = new Retorno(Retorno.Resultado.OK);
+        //int[][] m = {{2, 2}, {2, 2}, {2, 2}};
+        int cantElementos = this.bibliotecaBase.cantElementos();
         //reservas/biblioteca | biblioteca 1 | biblioteca 2 | biblioteca 3 | ...
-        //nombre Libro 1      |     5        |     3        |     9
-        //nombre Libro 2      |     4        |     3        |     5
-        //nombre Libro 3      |     3        |     4        |     5
-        //nombre Libro 4      |     5        |     2        |     7
-        //nombre Libro 5      |     1        |     3        |     3
+        //    top 1           |    nombre    |    nombre    |    nombre    |
+        //    top 2           |    nombre    |    nombre    |    nombre    |
+        //    top 3           |    nombre    |    nombre    |    nombre    |
+        //    top 4           |    nombre    |    nombre    |    nombre    |
+        //    top 5           |    nombre    |    nombre    |    nombre    |
         int filas = 6;
-        int columnas = m[0].length;
+        int columnas = cantElementos + 1;
         int elementos = filas * columnas; //este es el largo del vector, sumando todas las filas de la matriz en una sola fila
         int fila, columna;
         ret.valorString = "\n";
@@ -309,20 +305,22 @@ public class Obligatorio implements IObligatorio {
             //si es el m[0][1...n]
             if (fila == 0 && columna != 0) {
                 NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
-                while(aux.getSiguiente() != null){
+                while (aux.getSiguiente() != null) {
                     System.out.print(aux.getNombre());
                     aux = aux.getSiguiente();
                 }
             }
             //si es el m[1...n][0]
-            if (fila != 0 && columna == 0){
+            if (fila != 0 && columna == 0) {
                 //obtener 5 libros mas solicitados del sistema
+                System.out.print("hola1");
             }
             //si es el m[1...n][1...n]
-            if (fila != 0 && columna != 0){
+            if (fila != 0 && columna != 0) {
                 //para cada libro de la lista anterior, obtener su total de reservas
+                System.out.print("hola2");
             }
-//            System.out.print(m[fila][columna] + " ");
+            //System.out.print(m[fila][columna] + " ");
 
             ret.valorString = "Lista de 5 libros mas reservados";
         }
