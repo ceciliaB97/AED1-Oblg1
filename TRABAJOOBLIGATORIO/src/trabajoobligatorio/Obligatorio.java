@@ -36,10 +36,10 @@ public class Obligatorio implements IObligatorio {
         if (buscar == null) {
             NodoBiblioteca nueva = new NodoBiblioteca(Biblioteca);
             this.bibliotecaBase.agregarFinal(nueva);
-            ret = new Retorno(Retorno.Resultado.OK);
+            ret.resultado = Retorno.Resultado.OK;
         } else {
             ret.valorString = "Biblioteca ya existe";
-            ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
@@ -53,10 +53,10 @@ public class Obligatorio implements IObligatorio {
         if (buscar != null) {
             bibliotecaBase.eliminarElemento(Biblioteca);
             ret.valorString = "Biblioteca eliminada";
-            ret = new Retorno(Retorno.Resultado.OK);
+            ret.resultado = Retorno.Resultado.OK;
         } else {
             ret.valorString = "Biblioteca no existe";
-            ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
@@ -80,6 +80,9 @@ public class Obligatorio implements IObligatorio {
                 ret.valorString = "Se ha agregado el libro a la biblioteca";
                 ret.resultado = Retorno.Resultado.OK;
             }
+        } else {
+            ret.valorString = "Biblioteca no existe";
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
@@ -96,15 +99,15 @@ public class Obligatorio implements IObligatorio {
             if (liBuscado != null) {
                 biBuscada.getLibros().eliminarElemento(liBuscado);
                 ret.valorString = "Se eliminó el libro";
-                ret = new Retorno(Retorno.Resultado.OK);
+                ret.resultado = Retorno.Resultado.OK;
                 return ret;
             } else {
                 ret.valorString = "Libro no existe en la biblioteca";
-                ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.resultado = Retorno.Resultado.ERROR;
             }
         } else {
             ret.valorString = "Biblioteca no existe";
-            ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.resultado = Retorno.Resultado.ERROR;
         }
 
         return ret;
@@ -120,13 +123,17 @@ public class Obligatorio implements IObligatorio {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
-                NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
+                if (calificacion >= 0 && calificacion <= 5){
+                    NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
                 liBuscado.getCalificaciones().agregarFinal(nuevo);
                 //actualizar la calificacion promedio
                 liBuscado.setCalifPromedio();
                 ret = new Retorno(Retorno.Resultado.OK);
                 ret.valorString = "Se agregó la calificación al libro";
-
+                } else{
+                     ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.valorString = "Calificacion fuera de rango";
+                }
             } else {
                 ret = new Retorno(Retorno.Resultado.ERROR);
                 ret.valorString = "No existe el libro";
@@ -156,23 +163,23 @@ public class Obligatorio implements IObligatorio {
                     NodoReserva nueva = new NodoReserva(cliente, numero, fecha);
                     liBuscado.getReserva().agregarFinal(nueva);
                     ret.valorString = "Se agregó la reserva al libro";
-                    ret = new Retorno(Retorno.Resultado.OK);
+                    ret.resultado = Retorno.Resultado.OK;
                     return ret;
                 } else {
                     NodoReserva nueva = new NodoReserva(cliente, numero, fecha);
                     liBuscado.getEspera().agregarFinal(nueva);
                     ret.valorString = "La lista de reserva está llena, se agregó a la lista de espera";
-                    ret = new Retorno(Retorno.Resultado.OK);
+                    ret.resultado = Retorno.Resultado.OK;
                     return ret;
                 }
 
             } else {
                 ret.valorString = "Libro no existe en la biblioteca";
-                ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.resultado = Retorno.Resultado.ERROR;
             }
         } else {
             ret.valorString = "Biblioteca no existe";
-            ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
@@ -220,6 +227,11 @@ public class Obligatorio implements IObligatorio {
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(auxBiblioteca);
             System.out.println("Listar libros de la biblioteca: " + biblioteca);
             auxBiblioteca.getLibros().mostrarRECExtenso();
+            ret.resultado = Retorno.Resultado.OK;
+            ret.valorString = "Lista de libros por biblioteca";
+        } else {
+            ret.resultado = Retorno.Resultado.ERROR;
+            ret.valorString = "Biblioteca no existe";
         }
         return ret;
     }
@@ -268,14 +280,14 @@ public class Obligatorio implements IObligatorio {
             if (liBuscado != null) {
                 liBuscado.getEspera().mostrarREC();
                 ret.valorString = "Lista Espera";
-                ret = new Retorno(Retorno.Resultado.OK);
+                ret.resultado = Retorno.Resultado.OK;
             } else {
                 ret.valorString = "Libro no existe";
-                ret = new Retorno(Retorno.Resultado.ERROR);
+                ret.resultado = Retorno.Resultado.ERROR;
             }
         } else {
             ret.valorString = "Biblioteca no existe";
-            ret = new Retorno(Retorno.Resultado.ERROR);
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }

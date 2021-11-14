@@ -157,7 +157,7 @@ public class ListaLibros {
         if (!this.esVacia()) {
             mostrarRECExtenso2(this.getInicioL(), 1);
         } else {
-            System.out.println("La lista no tiene bibliotecas");
+            System.out.println("No hay libros");
         }
 
     }
