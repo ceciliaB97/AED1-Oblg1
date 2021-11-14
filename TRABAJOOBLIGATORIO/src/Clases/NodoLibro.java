@@ -150,4 +150,17 @@ public class NodoLibro {
         } 
         return promedio;
     }
+    
+    public int CantidadSolicitudes(){
+        ListaReservas reservas = this.getReserva();
+        ListaReservas esperas = this.getEspera();
+        int cantSolicitudes = 0;
+        if(!reservas.esVacia()){
+            cantSolicitudes += reservas.getActual();
+            if (!esperas.esVacia()) {
+                cantSolicitudes += esperas.getActual();
+            }
+        }
+        return cantSolicitudes;
+    }
 }

@@ -310,6 +310,21 @@ public class Obligatorio implements IObligatorio {
         return ret;
     }
 
+//    @Override
+//    public Retorno mostrarmatriz(int[][] m) {
+//        Retorno ret = new Retorno(Retorno.Resultado.OK);
+//        int filas = m.length;
+//        int columnas = m[0].length;
+//        ret.valorString = "\n";
+//
+//        for (int i = 0; i < filas; i++) {
+//            for (int j = 0; j < columnas; j++) {
+//                ret.valorString += m[i][j] + " ";
+//            }
+//            ret.valorString += "\n";
+//        }
+//        return ret;
+//    }
     @Override
     public Retorno mostrarReservasBiblioteca() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
@@ -326,15 +341,20 @@ public class Obligatorio implements IObligatorio {
         int elementos = filas * columnas; //este es el largo del vector, sumando todas las filas de la matriz en una sola fila
         int fila, columna;
         ret.valorString = "\n";
+
         for (int i = 0; i < elementos; i++) {
             fila = i / columnas;
             columna = i % columnas;
+            //salto de linea
+            if (columna == 0) {
+                ret.valorString += "\n";
+            }
             //si es el m[0][0]
             if (fila == 0 && columna == 0) {
                 System.out.print(" reservas/biblioteca ");
             }
             //si es el m[0][1...n]
-            if (fila == 0 && columna != 0) {
+            if (fila == 0 && columna > 0) {
                 NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
                 while (aux.getSiguiente() != null) {
                     System.out.print(aux.getNombre());
@@ -342,20 +362,32 @@ public class Obligatorio implements IObligatorio {
                 }
             }
             //si es el m[1...n][0]
-            if (fila != 0 && columna == 0) {
-                //top N
+            if (fila > 0 && columna == 0) {
+                //nombre de libro
+                NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
+                this.bibliotecaBase.OrdenarLibrosPorCantidadSolicitudes(aux);
+                while (aux != null) {
+                    System.out.print(aux.getNombre());
+                    aux = aux.getSiguiente();
+                }
                 System.out.println(" TOP " + fila);
             }
             //si es el m[1...n][1...n]
-            if (fila != 0 && columna != 0) {
-                //nombre de libro
-                //this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(i);
-                System.out.print(" hola2 ");
+            if (fila > 0 && columna > 0) {
+                //numero de reservas
+                NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
+                this.bibliotecaBase.OrdenarLibrosPorCantidadSolicitudes(aux);
+                while (aux != null) {
+                    System.out.print(aux.getNombre());
+                    aux = aux.getSiguiente();
+                }
             }
-            //System.out.print(m[fila][columna] + " ");
-
-            ret.valorString = "Lista de 5 libros mas reservados";
+            System.out.print(" hola2 ");
         }
+        //System.out.print(m[fila][columna] + " ");
+
+        ret.valorString = "Lista de 5 libros mas reservados";
+
         return ret;
     }
 

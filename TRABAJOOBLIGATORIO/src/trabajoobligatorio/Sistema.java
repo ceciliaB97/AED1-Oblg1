@@ -118,6 +118,10 @@ public class Sistema {
         o.listarEspera("Biblioteca de Canelones", "Libros del litoral", "Biblioteca Nacional");
         o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
         o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
+        //
+        System.out.println("*******************");
+        
+        o.mostrarReservasBiblioteca();
 
         //o.mostrarReservasBiblioteca();
 //        System.out.println("Hasta acá todo ok");
