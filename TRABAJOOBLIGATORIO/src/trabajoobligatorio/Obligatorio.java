@@ -229,6 +229,9 @@ public class Obligatorio implements IObligatorio {
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
             auxBiblioteca.PromedioGeneralLibros();
+            //metodo selection
+            //this.bibliotecaBase.OrdenarLibrosCalificacionPromedioPorBiblioteca(auxBiblioteca);
+            //metodo bubble
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(auxBiblioteca);
             System.out.println("Listar libros de la biblioteca: " + biblioteca);
             auxBiblioteca.getLibros().mostrarRECExtenso();

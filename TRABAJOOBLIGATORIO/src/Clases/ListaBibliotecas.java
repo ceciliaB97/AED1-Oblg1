@@ -310,30 +310,43 @@ public class ListaBibliotecas {
     public boolean OrdenarLibrosCalificacionPromedioPorBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
             ListaLibros lista = b.getLibros();
-            int limite = lista.cantElementos();
-            //busco el libro con la minima calificacion promedio
-            NodoLibro pmax = buscoposmax(lista.getInicioL(), Integer.MIN_VALUE);
-            while (limite >= 0) {
+            //busco el libro con la maxima calificacion promedio, sin saber cual es el maximo primero
+            //con esto ya tengo el maxim absoluto de la lista de libros
+            NodoLibro pmax = buscoposmax(lista.getInicioL(), Integer.MIN_VALUE, Integer.MAX_VALUE);
+            int calificacionMaximo = pmax.getCalifPromedio();
+            pmax = buscoposmax(lista.getInicioL().getSiguiente(),Integer.MIN_VALUE, calificacionMaximo);
+            NodoLibro iteracion = lista.getInicioL();
+            while (iteracion.getSiguiente() != null) {
                 //agrego al inicio el maximo
                 lista.agregarInicio(pmax);
-                //elimino el nodo repetido
+                //elimino el nodo repetido, porque el maximo lo agregué al inicio
+                //lista.getInicioL().getSiguiente() significa que busco desde el inicio + 1 nodo
                 lista.eliminarElementoDesdeNodo(pmax, lista.getInicioL().getSiguiente());
-                limite--;
+                //buscar el maximo que sea menor al maximo anerior de la lista
+                //y mayor a integer.min_value
+                pmax = buscoposmax(lista.getInicioL().getSiguiente(),Integer.MIN_VALUE, calificacionMaximo);
+                //recorro esto por el numero de nodos que haya, y le resto cuando ya hace una iteracion
+                //al llegar a 0 se sale
+                iteracion = iteracion.getSiguiente();
             }
         }
         return false;
     }
-
-    public NodoLibro buscoposmax(NodoLibro nodoLibro, int maximo) {
-        int valorMaximo = maximo;
-        NodoLibro aux = nodoLibro;
+    //metodo auxiliar
+    public NodoLibro buscoposmax(NodoLibro nodoLibro, int maximo, int hasta) {
+        int valorMaximo = maximo; //integer.min_value
+        NodoLibro aux = nodoLibro; //nodo auxiliar de iteracion a comparar
+        NodoLibro devolucion = null; //nodo de retorno del metodo
         while (aux.getSiguiente() != null) {
-            if (aux.getCalifPromedio() > valorMaximo) {
+            //todos los que sean mayor al maximo [INTEGER.MIN_VALUE], se guarda el nodo con el valor mas grande
+            //y que sean menor al maximo anterior, pasado por parametro en hasta
+            if (aux.getCalifPromedio() > valorMaximo && aux.getCalifPromedio() < hasta) {
                 valorMaximo = aux.getCalifPromedio();
+                devolucion = aux;
             }
             aux = aux.getSiguiente();
         }
-        return aux;
+        return devolucion;
 
     }
 
