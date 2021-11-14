@@ -93,14 +93,15 @@ public class Sistema {
         p.ver(o.registrarBiblioteca("Segunda").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Segunda");
         p.ver(o.registrarBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Tercera");
         p.ver(o.registrarBiblioteca("Primera").resultado, Retorno.Resultado.ERROR, "Ya esta la biblioteca: Primera"); //Prueba repetido
-//
+        p.ver(o.registrarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Biblioteca Nacional"); //Prueba repetido
+
 //        PUNTO 2.12
         p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "" + o.listarBibliotecaRanking().valorString);
 //
 //         PUNTO 2.4
+        p.ver(o.eliminarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.OK, "Se elimino la biblioteca: Biblioteca Nacional"); //Eliminar la tercera
         p.ver(o.eliminarBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Se elimino la biblioteca: Tercera"); //Eliminar la tercera
         p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "" + o.listarBibliotecaRanking().valorString);
-        p.ver(o.registrarBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Tercera");
 //         PUNTO 2.5
         p.ver(o.registrarLibro("Zelda", "Nintendo", "Primera", 2).resultado, Retorno.Resultado.OK, "Se agrego el libro: Zelda a biblioteca: Primera");
         p.ver(o.registrarLibro("Zelda2", "Nintendo", "Primera", 10).resultado, Retorno.Resultado.OK, "Se agrego el libro: Zelda2 a biblioteca: Primera");
@@ -112,7 +113,9 @@ public class Sistema {
 //        //validamos libros por biblioteca
         p.ver(o.listarLibrosBiblioteca("Primera").resultado, Retorno.Resultado.OK, "Listar libros Biblioteca" + o.listarLibrosBiblioteca("Primera").valorString);
         p.ver(o.listarLibrosBiblioteca("Segunda").resultado, Retorno.Resultado.OK, "Listar libros Biblioteca" + o.listarLibrosBiblioteca("Segunda").valorString);
+        p.ver(o.listarLibrosBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.ERROR, "biblioteca inexistente ");
         p.ver(o.listarLibrosBiblioteca("Tercera").resultado, Retorno.Resultado.ERROR, "biblioteca inexistente ");
+
 //
 ////        // PUNTO 2.6    
         p.ver(o.eliminarLibro("Zelda3", "Nintendo", "Primera").resultado, Retorno.Resultado.OK, "Se elimino libro: Zelda3 de biblioteca: Primera");  //Eliminar el ultimo
