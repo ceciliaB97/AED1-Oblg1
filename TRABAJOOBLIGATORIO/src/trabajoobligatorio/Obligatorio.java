@@ -129,8 +129,8 @@ public class Obligatorio implements IObligatorio {
 
             if (liBuscado != null) {
                 if (calificacion >= 0 && calificacion <= 5) {
-                    NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
-                    liBuscado.getCalificaciones().agregarFinal(nuevo);
+                    //agregar calificacion al final
+                    liBuscado.getCalificaciones().agregarFinal(calificacion, comentario);
                     //actualizar la calificacion promedio
                     liBuscado.setCalifPromedio();
                     ret = new Retorno(Retorno.Resultado.OK);

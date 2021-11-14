@@ -139,7 +139,6 @@ public class NodoLibro {
         if (!this.getCalificaciones().esVacia()) {
             int sumatoria = 0;
             int contador = 0;
-
             NodoCalificacion aux = this.getCalificaciones().getInicioC();
             while (aux.getSiguiente() != null) {
                 sumatoria += aux.getCalificacion();

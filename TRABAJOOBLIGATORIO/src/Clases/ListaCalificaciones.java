@@ -1,6 +1,6 @@
 package Clases;
 
-public class ListaCalificaciones{
+public class ListaCalificaciones {
 
     //propiedades de lista
     private NodoCalificacion inicio;
@@ -44,25 +44,23 @@ public class ListaCalificaciones{
     public void setLimite(int limite) {
         this.limite = limite;
     }
-    
+
     public ListaCalificaciones(int l) {
         this.inicio = null;
         this.fin = null;
         this.limite = l;
         this.actual = 0;
     }
-    
-    
+
     //Metodos 
-    
     public boolean esVacia() {
         return this.inicio == null;
     }
-    
-    
-    public boolean agregarInicio(NodoCalificacion nuevo) {
+
+    public boolean agregarInicio(int calificacion, String comentario) {
         if (puedoInsertar()) {
             this.actual++;
+            NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
             nuevo.setSiguiente(this.inicio);
             this.inicio = nuevo;
             if (this.fin == null)//estoy insertando el primer nodo
@@ -73,15 +71,18 @@ public class ListaCalificaciones{
         }
         return false;
     }
-    
-    
-    public boolean agregarFinal(NodoCalificacion n) {
+
+    public boolean agregarFinal(int calificacion, String comentario) {
         if (puedoInsertar()) {
+            NodoCalificacion n = new NodoCalificacion(calificacion, comentario);
             this.actual++;
             //NodoLista nuevo= new NodoLista(n);
             if (this.esVacia()) {
+                //se agrega el nodo al inicio
+                this.setInicio(n);
                 this.inicio = fin;
             } else {
+                //si no al final
                 NodoCalificacion aux = this.inicio;
                 while (aux.getSiguiente() != null) {
                     aux = aux.getSiguiente();
@@ -91,9 +92,9 @@ public class ListaCalificaciones{
                 return true;
             }
         }
-        return false;
+        return true;
     }
-    
+
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -102,7 +103,7 @@ public class ListaCalificaciones{
         }
         return false;
     }
-    
+
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -119,7 +120,7 @@ public class ListaCalificaciones{
         }
         return true;
     }
-    
+
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -128,15 +129,15 @@ public class ListaCalificaciones{
             borrarInicio();
         }
     }
-    
+
     public void mostrarREC() {
-        if(!this.esVacia()){
+        if (!this.esVacia()) {
             mostrarREC2(this.getInicioC(), 1);
         } else {
             System.out.println("La lista no tiene bibliotecas");
-        }        
+        }
     }
-    
+
     public void mostrarREC2(NodoCalificacion n, int cont
     ) {
         if (n.getSiguiente() == null) {
@@ -150,7 +151,7 @@ public class ListaCalificaciones{
 
         }
     }
-    
+
     public NodoCalificacion obtenerElementoAnterior(NodoCalificacion n) {
         if (!this.esVacia()) {
             if (this.inicio.getId() == n.getId()) {
@@ -167,7 +168,7 @@ public class ListaCalificaciones{
         }
         return null;
     }
-    
+
     public boolean eliminarElemento(NodoCalificacion n) {
         //si no es null
         if (!esVacia()) {
@@ -193,7 +194,7 @@ public class ListaCalificaciones{
         }
         return false;
     }
-    
+
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -205,7 +206,7 @@ public class ListaCalificaciones{
         }
         return cont;
     }
-    
+
     public NodoCalificacion obtenerElemento(NodoCalificacion n) {
         if (!this.esVacia()) {
             if (this.inicio.getId() == n.getId()) {
@@ -225,14 +226,14 @@ public class ListaCalificaciones{
         }
         return null;
     }
-    
+
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-    
+
     public boolean buscarElemento(NodoCalificacion n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -261,5 +262,5 @@ public class ListaCalificaciones{
     public int contarNodos(ListaCalificaciones n) {
         return n.cantElementos();
     }
-        
+
 }
