@@ -130,7 +130,7 @@ public class Obligatorio implements IObligatorio {
             if (liBuscado != null) {
                 if (calificacion >= 0 && calificacion <= 5) {
                     //agregar calificacion al final
-                    liBuscado.getCalificaciones().agregarFinal(calificacion, comentario);
+                    liBuscado.getCalificaciones().agregarInicio(calificacion, comentario);
                     //actualizar la calificacion promedio
                     liBuscado.setCalifPromedio();
                     ret = new Retorno(Retorno.Resultado.OK);
@@ -219,6 +219,9 @@ public class Obligatorio implements IObligatorio {
         if (auxBiblioteca != null) {
             this.bibliotecaBase.mostrarRECLibro(auxBiblioteca);
             ret.resultado = Retorno.Resultado.OK;
+        } else {
+            ret.valorString = "Biblioteca no existe";
+            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
@@ -250,6 +253,9 @@ public class Obligatorio implements IObligatorio {
         System.out.println("Bibliotecas ordenadas por ranking");
         NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
         while (aux != null) {
+            //version selection
+            //this.bibliotecaBase.OrdenarLibrosCalificacionPromedioPorBiblioteca(aux);
+            //version bubble
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
             System.out.println("Biblioteca: " + aux.getNombre());
             if (aux.getLibros() != null) {

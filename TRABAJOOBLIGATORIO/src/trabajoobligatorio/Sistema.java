@@ -14,7 +14,7 @@ public class Sistema {
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
 
-        //juegodeprueba(o, p);
+        juegodeprueba(o, p);
         //
         o.crearSistemaReservas();
         System.out.println("************************************");
@@ -52,14 +52,32 @@ public class Sistema {
         o.cancelarReserva(1, 5, "Biblioteca Nacional");
         //o.RegistrarCalificacion(titulo, editorial, 0, biblioteca, comentario)
         System.out.println("************************************");
-        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 5, "Prueba", "Muy bueno");
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 5, "Biblioteca Nacional", "Muy bueno");
         o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 1, "Biblioteca de Canelones", "Muy malo");
-        o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
-        o.RegistrarCalificacion("Cuentos de los Andes", "editorial", 4, "Biblioteca Nacional", "Bueno");
-        o.RegistrarCalificacion("Palabras interesantes", "editorial", 2, "Biblioteca de Canelones", "Malo");
+        o.RegistrarCalificacion("Montevideo historito", "Didacticos", 3, "Biblioteca de Montevideo", "Normal");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 4, "Biblioteca Nacional", "Bueno");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, "Biblioteca de Canelones", "Malo");
+        //
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 2, "Biblioteca Nacional", "rrw");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 5, "Biblioteca de Canelones", "tewte");
+        o.RegistrarCalificacion("Montevideo historito", "Didacticos", 1, "Biblioteca de Montevideo", "rte");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 3, "Biblioteca Nacional", "werew");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, "Biblioteca de Canelones", "werew");
+        //
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 3, "Biblioteca Nacional", "werew");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, "Biblioteca de Canelones", "werew");
+        o.RegistrarCalificacion("Montevideo historito", "Didacticos", 5, "Biblioteca de Montevideo", "Nwer");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 1, "Biblioteca Nacional", "Buwerewo");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, "Biblioteca de Canelones", "Mwero");
 
         o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
         o.RegistrarCalificacion("Destinos turísticos del Uruguay", "editorial", 4, "Biblioteca de Montevideo", "Bueno");
+        //
+        System.out.println("************************************");
+        //
+        System.out.println("    Aca se imprime bibliotecas por ranking");
+        o.listarBibliotecaRanking();
+        System.out.println("************************************");
         //
         System.out.println("************************************");
         o.listarLibros("Biblioteca Nacional");
@@ -183,14 +201,14 @@ public class Sistema {
 //
 //        // PUNTO 2.10
         p.ver(o.listarLibros("Primera2").resultado, Retorno.Resultado.ERROR, "No existe la biblioteca Primera2");   //Prueba no existe la biblioteca
-        p.ver(o.listarLibros("Tercera").resultado, Retorno.Resultado.OK, "" + o.listarLibros("Tercera").valorString); //Prueba no tiene libros
-        p.ver(o.listarLibros("Primera").resultado, Retorno.Resultado.OK, "" + o.listarLibros("Primera").valorString);
-        p.ver(o.listarLibros("Segunda").resultado, Retorno.Resultado.OK, "" + o.listarLibros("Segunda").valorString);
+        p.ver(o.listarLibros("Tercera").resultado, Retorno.Resultado.ERROR, o.listarLibros("Tercera").valorString); //Prueba no tiene libros
+        p.ver(o.listarLibros("Primera").resultado, Retorno.Resultado.OK, "Listar libros primera " + o.listarLibros("Primera").valorString);
+        p.ver(o.listarLibros("Segunda").resultado, Retorno.Resultado.OK, "Listar libros segunda " + o.listarLibros("Segunda").valorString);
 //
 //        // PUNTO 2.11
         p.ver(o.listarLibrosBiblioteca("Primera").resultado, Retorno.Resultado.OK, "Calificacion libros" + o.listarLibrosBiblioteca("Primera").valorString);
         p.ver(o.listarLibrosBiblioteca("Segunda").resultado, Retorno.Resultado.OK, "Calificacion libros" + o.listarLibrosBiblioteca("Segunda").valorString);
-        p.ver(o.listarLibrosBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Calificacion libros" + o.listarLibrosBiblioteca("Tercera").valorString);
+        p.ver(o.listarLibrosBiblioteca("Tercera").resultado, Retorno.Resultado.ERROR, o.listarLibrosBiblioteca("Tercera").valorString);
 
 //        // PUNTO 2.13
         p.ver(o.listarComentarios("Primera").resultado, Retorno.Resultado.OK, "Lista comentarios" + o.listarComentarios("Primera").valorString);
@@ -202,7 +220,7 @@ public class Sistema {
 //
 //        // PUNTO 2.14    
         p.ver(o.listarEspera("Zelda", "Nintendo", "Primera").resultado, Retorno.Resultado.OK, "Lista espera" + o.listarEspera("Zelda", "Nintendo", "Primera").valorString);
-        p.ver(o.listarEspera("Zelda2", "Nintendo", "Primera").resultado, Retorno.Resultado.OK, "Lista espera" + o.listarEspera("Zelda2", "Nintendo", "Primera").valorString);
+        p.ver(o.listarEspera("Zelda2", "Nintendo", "Primera").resultado, Retorno.Resultado.OK, "test test" + o.listarEspera("Zelda2", "Nintendo", "Primera").valorString);
         p.ver(o.listarEspera("No existo", "Nintendo", "Primera").resultado, Retorno.Resultado.ERROR, "No existe el titulo No existo de la editorial Nintendo en la biblioteca Primera");
 //
 //        // PUNTO 2.2

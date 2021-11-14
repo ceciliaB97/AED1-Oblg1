@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.HashSet;
+
 public class ListaLibros {
 
     private NodoLibro inicio;
@@ -56,11 +58,12 @@ public class ListaLibros {
     public boolean agregarInicio(NodoLibro nuevo) {
         if (puedoInsertar()) {
             this.actual++;
-            nuevo.setSiguiente(this.inicio);
-            this.inicio = nuevo;
-            if (this.fin == null)//estoy insertando el primer nodo
-            {
-                this.fin = nuevo;
+            if(this.esVacia()){
+                this.setInicio(nuevo);
+                this.setFin(nuevo);
+            } else {
+                nuevo.setSiguiente(this.inicio);
+                this.inicio = nuevo;
             }
             return true;
         }
@@ -135,7 +138,7 @@ public class ListaLibros {
         if (!this.esVacia()) {
             mostrarREC2(this.getInicioL(), 1);
         } else {
-            System.out.println("La lista no tiene bibliotecas");
+            System.out.println("La lista no tiene libros");
         }
 
     }
@@ -241,7 +244,7 @@ public class ListaLibros {
                 return fin;
             } else {
                 NodoLibro aux = this.getInicioL();
-                while (aux.getSiguiente() != null) {
+                while (aux != null) {
                     if (aux.getTitulo().equals(titulo) && aux.getEditorial().equals(editorial)) {
                         return aux;
                     }

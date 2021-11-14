@@ -80,7 +80,8 @@ public class ListaCalificaciones {
             if (this.esVacia()) {
                 //se agrega el nodo al inicio
                 this.setInicio(n);
-                this.inicio = fin;
+                this.inicio = this.fin;
+                return true;
             } else {
                 //si no al final
                 NodoCalificacion aux = this.inicio;
@@ -92,7 +93,7 @@ public class ListaCalificaciones {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean borrarInicio() {

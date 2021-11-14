@@ -293,9 +293,9 @@ public class ListaBibliotecas {
 
     public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
-            for (NodoLibro i = b.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
-                for (NodoLibro j = i; j.getSiguiente() != null; j = j.getSiguiente()) {
-                    if (i.getCalifPromedio() > j.getCalifPromedio()) {
+            for (NodoLibro i = b.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
+                for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
+                    if (i.getCalifPromedio() < j.getCalifPromedio()) {
                         NodoLibro aux = j.getSiguiente();
                         NodoLibro auxi = i;
                         b.getLibros().eliminarElemento(i);
