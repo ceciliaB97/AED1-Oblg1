@@ -307,7 +307,7 @@ public class ListaBibliotecas {
             }
         }
     }
-    
+
     public void OrdenarLibrosPorCantidadSolicitudes(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
             for (NodoLibro i = b.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
@@ -324,6 +324,32 @@ public class ListaBibliotecas {
             }
         }
     }
+
+    public ListaLibros LibrosMayorRanKing() {
+     
+        ListaLibros listaNueva = new ListaLibros(0);
+        NodoBiblioteca aux = this.getInicioB();
+        while (aux != null) {
+
+            if (!aux.getLibros().esVacia()) {
+                for (NodoLibro i = aux.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
+                    NodoLibro lb = listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial());
+
+                    if (lb == null) {
+                        listaNueva.agregarInicio(aux.getLibros().getInicioL());
+                    } else {
+                        lb.setCantSolicitudes(lb.getCantSolicitudes()+i.getCantSolicitudes());
+
+                    }
+                }
+          
+            }
+            aux = aux.getSiguiente();
+        }
+
+        return null;
+    }
+
 //
 //    public boolean OrdenarLibrosPorCantidadSolicitudes(NodoBiblioteca b) {
 //        if (!b.getLibros().esVacia()) {
@@ -367,5 +393,6 @@ public class ListaBibliotecas {
 //        return devolucion;
 //
 //    }
-
+    // agregar todos los libros de todas las bibliotecas a una lista nueva metodo de lista  bibliotecaa sin ser repetidos
+    // vamos actualizando en ese metodo el atributo catnidad de reserva
 }
