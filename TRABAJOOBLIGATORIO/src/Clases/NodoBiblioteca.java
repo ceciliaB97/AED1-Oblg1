@@ -52,6 +52,21 @@ public class NodoBiblioteca {
     public void setCalificacionPromedioBiblioteca(int Calificacion) {
         this.CalificacionPromedioBiblioteca = Calificacion;
     }
+    
+    public boolean tieneReservas(){
+        boolean encontre = false;
+        ListaLibros lista = this.getLibros();
+        if(!lista.esVacia()){
+            NodoLibro aux = lista.getInicioL();
+            while(aux.getSiguiente() != null && !encontre) {
+                if(!aux.getReserva().esVacia()) {
+                    encontre = true;
+                }
+                aux = aux.getSiguiente();
+            }
+        }
+        return encontre;
+    }
 
     public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca
 

@@ -51,9 +51,14 @@ public class Obligatorio implements IObligatorio {
         NodoBiblioteca buscar = bibliotecaBase.obtenerElemento(Biblioteca);
 
         if (buscar != null) {
-            bibliotecaBase.eliminarElemento(Biblioteca);
-            ret.valorString = "Biblioteca eliminada";
-            ret.resultado = Retorno.Resultado.OK;
+            if (!buscar.tieneReservas()) {
+                bibliotecaBase.eliminarElemento(Biblioteca);
+                ret.valorString = "Biblioteca eliminada";
+                ret.resultado = Retorno.Resultado.OK;
+            } else {
+                ret.valorString = "Biblioteca NO eliminada, tiene reservas";
+                ret.resultado = Retorno.Resultado.ERROR;
+            }
         } else {
             ret.valorString = "Biblioteca no existe";
             ret.resultado = Retorno.Resultado.ERROR;
@@ -123,16 +128,16 @@ public class Obligatorio implements IObligatorio {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
 
             if (liBuscado != null) {
-                if (calificacion >= 0 && calificacion <= 5){
+                if (calificacion >= 0 && calificacion <= 5) {
                     NodoCalificacion nuevo = new NodoCalificacion(calificacion, comentario);
-                liBuscado.getCalificaciones().agregarFinal(nuevo);
-                //actualizar la calificacion promedio
-                liBuscado.setCalifPromedio();
-                ret = new Retorno(Retorno.Resultado.OK);
-                ret.valorString = "Se agregó la calificación al libro";
-                } else{
-                     ret = new Retorno(Retorno.Resultado.ERROR);
-                ret.valorString = "Calificacion fuera de rango";
+                    liBuscado.getCalificaciones().agregarFinal(nuevo);
+                    //actualizar la calificacion promedio
+                    liBuscado.setCalifPromedio();
+                    ret = new Retorno(Retorno.Resultado.OK);
+                    ret.valorString = "Se agregó la calificación al libro";
+                } else {
+                    ret = new Retorno(Retorno.Resultado.ERROR);
+                    ret.valorString = "Calificacion fuera de rango";
                 }
             } else {
                 ret = new Retorno(Retorno.Resultado.ERROR);
@@ -241,7 +246,7 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
         NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
-        while(aux != null){
+        while (aux != null) {
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
             System.out.println("Biblioteca: " + aux.getNombre());
             if (aux.getLibros() != null) {
