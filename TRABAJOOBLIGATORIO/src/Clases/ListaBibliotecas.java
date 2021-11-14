@@ -347,7 +347,7 @@ public class ListaBibliotecas {
             aux = aux.getSiguiente();
         }
 
-        return null;
+        return listaNueva;
     }
 
 //

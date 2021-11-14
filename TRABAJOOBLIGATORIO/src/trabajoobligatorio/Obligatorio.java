@@ -327,6 +327,11 @@ public class Obligatorio implements IObligatorio {
 //    }
     @Override
     public Retorno mostrarReservasBiblioteca() {
+        
+        
+        ListaLibros listalb = this.bibliotecaBase.LibrosMayorRanKing();
+        
+        
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         //int[][] m = {{2, 2}, {2, 2}, {2, 2}};
         int cantElementos = this.bibliotecaBase.cantElementos();
@@ -390,6 +395,8 @@ public class Obligatorio implements IObligatorio {
 
         return ret;
     }
+    
+   
 
 }
 

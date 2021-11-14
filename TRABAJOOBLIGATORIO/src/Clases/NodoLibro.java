@@ -24,6 +24,17 @@ public class NodoLibro {
     private ListaReservas espera;
     private int califPromedio;
 
+    public int getCantSolicitudes() {
+        return cantSolicitudes;
+    }
+
+    public void setCantSolicitudes(int cantSolicitudes) {
+        this.cantSolicitudes = cantSolicitudes;
+    }
+    private int cantSolicitudes;
+    
+   
+
     //constructor
     public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
         this.numLibro = NumUnico++;
@@ -34,6 +45,8 @@ public class NodoLibro {
         this.reserva = new ListaReservas(Ejemplares);
         this.espera = new ListaReservas(0);
         this.califPromedio = 0;
+        this.cantSolicitudes =0;
+        
     }
 
     public NodoLibro getSiguiente() {
@@ -151,7 +164,7 @@ public class NodoLibro {
         return promedio;
     }
     
-    public int CantidadSolicitudes(){
+    public void CantidadSolicitudes(){
         ListaReservas reservas = this.getReserva();
         ListaReservas esperas = this.getEspera();
         int cantSolicitudes = 0;
@@ -161,6 +174,6 @@ public class NodoLibro {
                 cantSolicitudes += esperas.getActual();
             }
         }
-        return cantSolicitudes;
+      this.setCantSolicitudes(cantSolicitudes);
     }
 }
