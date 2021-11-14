@@ -292,6 +292,10 @@ public class Obligatorio implements IObligatorio {
         if (biBuscada != null) {
             NodoLibro liBuscado = biBuscada.getLibros().obtenerElemento(titulo, editorial);
             if (liBuscado != null) {
+                System.out.println("Lista de espera del titulo " + liBuscado.getTitulo()
+                        + " de la editorial " + liBuscado.getEditorial()
+                        + " en "
+                        + biBuscada.getNombre());
                 liBuscado.getEspera().mostrarREC();
                 ret.valorString = "Lista Espera";
                 ret.resultado = Retorno.Resultado.OK;

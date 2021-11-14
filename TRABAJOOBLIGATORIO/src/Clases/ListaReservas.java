@@ -209,8 +209,7 @@ public class ListaReservas{
         }  
     }
 
-    public void mostrarREC2(NodoReserva n, int cont
-    ) {
+    public void mostrarREC2(NodoReserva n, int cont) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getCliente() + ">");
 

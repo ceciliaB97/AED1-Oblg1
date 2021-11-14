@@ -13,7 +13,6 @@ public class Sistema {
 //        o.registrarBiblioteca("Biblioteca Libros");
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
-
         juegodeprueba(o, p);
         //
         o.crearSistemaReservas();
@@ -47,6 +46,21 @@ public class Sistema {
         o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
         o.realizarReserva(4, 4, "Biblioteca de Montevideo", "Montevideo historito", "Didacticos", "16/11/2021");
         o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        //
+        o.realizarReserva(1, 1, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
+        o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(4, 4, "Biblioteca de Montevideo", "Montevideo historito", "Didacticos", "16/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        //
         //o.cancelarReserva(0, 0, biblioteca);
         System.out.println("************************************");
         o.cancelarReserva(1, 5, "Biblioteca Nacional");
@@ -100,6 +114,10 @@ public class Sistema {
         System.out.println("    Aca se imprime bibliotecas por ranking");
         o.listarBibliotecaRanking();
         System.out.println("************************************");
+        //o.listarEspera(titulo, editorial, biblioteca)
+        o.listarEspera("Biblioteca de Canelones", "Libros del litoral", "Biblioteca Nacional");
+        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
+        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
 
         //o.mostrarReservasBiblioteca();
 //        System.out.println("Hasta acá todo ok");
@@ -109,7 +127,6 @@ public class Sistema {
 //        System.out.println("Hasta acá todo ok 2");
 //        o.listarLibrosBiblioteca("Prueba");
 //        System.out.println("Hasta acá todo ok 3");
-
     }
 
     public static void juegodeprueba(Obligatorio o, Prueba p) {
