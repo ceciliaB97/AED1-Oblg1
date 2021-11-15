@@ -322,6 +322,7 @@ public class Obligatorio implements IObligatorio {
                 System.out.print("reservas/bibliotecas");
             }
             if (i > 0 && i < columnas - 1) {
+                //nombres de bibliotecas
                 NodoBiblioteca aux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
                 System.out.print(" " + aux.getNombre() + " ");
             }
@@ -336,6 +337,8 @@ public class Obligatorio implements IObligatorio {
             //for para datos, se imprime una vez
             for (int i = 0; i < columnas; i++) {
                 if (i == 0) {
+                    //nombre de los libros
+                    //en orden por la lista Mayor Ranking
                     ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
                     NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
                     if (libroAux != null) {
@@ -346,6 +349,7 @@ public class Obligatorio implements IObligatorio {
 
                 }
                 if (i > 0 && i < columnas - 1) {
+                    //obtengo el nombre de cada biblioteca por su puesto
                     NodoBiblioteca bibliotecaAux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
                     if (!bibliotecaAux.getLibros().esVacia()) {
                         //lista de libros del ranking total
@@ -354,6 +358,7 @@ public class Obligatorio implements IObligatorio {
                         NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);//se cambia m, o, i, y el valor de la tabla cambia
                         if(libroAux != null){
                             //obtengo el mismo libro en la biblioteca segun [i]
+                            //imprimo su cantidad de solicitudes en cada biblioteca
                             NodoLibro libroBuscado = bibliotecaAux.getLibros().obtenerElemento(libroAux.getTitulo(), libroAux.getEditorial());
                             if (libroBuscado != null) {
                                 System.out.print("          " + libroBuscado.getReserva().getActual()  + "          ");
@@ -365,7 +370,10 @@ public class Obligatorio implements IObligatorio {
 
                 }
                 if (i == columnas - 1) {
+                    //obtengo lista de libros ranking
                     ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                    //obtengo el libro por el puesto [m]
+                    //imprimo su cantidad total de solicitudes
                     NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
                     if (libroAux != null) {
                         System.out.print("          " + libroAux.getCantSolicitudes() + "          ");
