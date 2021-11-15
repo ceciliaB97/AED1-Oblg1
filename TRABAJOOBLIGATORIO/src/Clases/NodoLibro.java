@@ -40,6 +40,7 @@ public class NodoLibro {
     }
     
     public int getCantSolicitudes() {
+       this.CantidadSolicitudes();
         return cantSolicitudes;
     }
 

@@ -314,6 +314,7 @@ public class Obligatorio implements IObligatorio {
         return ret;
     }
 
+<<<<<<< HEAD
 //    @Override
 //    public Retorno mostrarmatriz(int[][] m) {
 //        Retorno ret = new Retorno(Retorno.Resultado.OK);
@@ -329,10 +330,13 @@ public class Obligatorio implements IObligatorio {
 //        }
 //        return ret;
 //    }
+=======
+>>>>>>> e9648af5f58595cb357ed21c4f1a9ccbffefa6be
     @Override
     public Retorno mostrarReservasBiblioteca() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         ListaLibros listalb = this.bibliotecaBase.LibrosMayorRanKing();
+<<<<<<< HEAD
 
         int filas = 6;
 
@@ -340,6 +344,13 @@ public class Obligatorio implements IObligatorio {
         for (int fil = 0; fil < filas; fil++) {// filas
             if (fil == 0) {// fila 0
 
+=======
+        int cantElementos = this.bibliotecaBase.cantElementos();
+        int columnas = cantElementos + 2;
+        //for para cabezal
+        for (int i = 0; i < columnas; i++) {
+            if (i == 0) {
+>>>>>>> e9648af5f58595cb357ed21c4f1a9ccbffefa6be
                 System.out.print("reservas/bibliotecas");
 
                 for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i != null; i = i.getSiguiente()) {
@@ -368,6 +379,7 @@ public class Obligatorio implements IObligatorio {
                 listalb.borrarInicio();
 
             }
+<<<<<<< HEAD
 
         }
 
@@ -378,6 +390,75 @@ public class Obligatorio implements IObligatorio {
 //        for (int col = 0; col < elementos; col++) {
 //            fila = col / columnas;
 //            columna = col % columnas;  
+=======
+            if (i > 0 && i < columnas - 1) {
+                //nombres de bibliotecas
+                NodoBiblioteca aux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
+                System.out.print(" " + aux.getNombre() + " ");
+            }
+            if (i == columnas - 1) {
+                System.out.print("Total");
+            }
+        }
+
+        //se repite cinco veces
+        for (int m = 0; m < 5; m++) {
+            System.out.print("\n");
+            //for para datos, se imprime una vez
+            for (int i = 0; i < columnas; i++) {
+                if (i == 0) {
+                    //nombre de los libros
+                    //en orden por la lista Mayor Ranking
+                    ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                    NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
+                    if (libroAux != null) {
+                        System.out.print(libroAux.getTitulo());
+                    } else {
+                        System.out.print(" no esta libro ");
+                    }
+
+                }
+                if (i > 0 && i < columnas - 1) {
+                    //obtengo el nombre de cada biblioteca por su puesto
+                    NodoBiblioteca bibliotecaAux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
+                    if (!bibliotecaAux.getLibros().esVacia()) {
+                        //lista de libros del ranking total
+                        ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                        //obtengo el libro del ranking total
+                        NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);//se cambia m, o, i, y el valor de la tabla cambia
+                        if(libroAux != null){
+                            //obtengo el mismo libro en la biblioteca segun [i]
+                            //imprimo su cantidad de solicitudes en cada biblioteca
+                            NodoLibro libroBuscado = bibliotecaAux.getLibros().obtenerElemento(libroAux.getTitulo(), libroAux.getEditorial());
+                            if (libroBuscado != null) {
+                                System.out.print("          " + libroBuscado.getReserva().getActual()  + "          ");
+                            } else {
+                                System.out.print("        no esta libro    ");
+                            }
+                        }
+                    }
+
+                }
+                if (i == columnas - 1) {
+                    //obtengo lista de libros ranking
+                    ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                    //obtengo el libro por el puesto [m]
+                    //imprimo su cantidad total de solicitudes
+                    NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
+                    if (libroAux != null) {
+                        System.out.print("          " + libroAux.getCantSolicitudes() + "          ");
+                    } else {
+                        System.out.print("         no esta libro    ");
+                    }
+                }
+            }
+            System.out.print("\n");
+        }
+
+//        for (int i = 0; i < elementos; i++) {
+//            fila = i / columnas;
+//            columna = i % columnas;  
+>>>>>>> e9648af5f58595cb357ed21c4f1a9ccbffefa6be
 //            if (fila == 0) {
 //                NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
 //                if (columna == 0) {
@@ -491,7 +572,13 @@ public class Obligatorio implements IObligatorio {
 //        }
 //        //System.out.print(m[fila][columna] + " ");
 //
+<<<<<<< HEAD
 //        ret.valorString = "Lista de 5 libros mas reservados";
+=======
+        ret.valorString = "Lista de 5 libros mas reservados";
+        return ret;
+    }
+>>>>>>> e9648af5f58595cb357ed21c4f1a9ccbffefa6be
 
 
 
