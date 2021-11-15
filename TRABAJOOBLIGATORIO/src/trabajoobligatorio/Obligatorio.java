@@ -310,31 +310,12 @@ public class Obligatorio implements IObligatorio {
         return ret;
     }
 
-//    @Override
-//    public Retorno mostrarmatriz(int[][] m) {
-//        Retorno ret = new Retorno(Retorno.Resultado.OK);
-//        int filas = m.length;
-//        int columnas = m[0].length;
-//        ret.valorString = "\n";
-//
-//        for (int i = 0; i < filas; i++) {
-//            for (int j = 0; j < columnas; j++) {
-//                ret.valorString += m[i][j] + " ";
-//            }
-//            ret.valorString += "\n";
-//        }
-//        return ret;
-//    }
     @Override
     public Retorno mostrarReservasBiblioteca() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         ListaLibros listalb = this.bibliotecaBase.LibrosMayorRanKing();
         int cantElementos = this.bibliotecaBase.cantElementos();
-        int filas = 6;
         int columnas = cantElementos + 2;
-        int elementos = filas * columnas;
-        int fila, columna;
-        int columnaAnt = 0;
         //for para cabezal
         for (int i = 0; i < columnas; i++) {
             if (i == 0) {
@@ -347,6 +328,53 @@ public class Obligatorio implements IObligatorio {
             if (i == columnas - 1) {
                 System.out.print("Total");
             }
+        }
+
+        //se repite cinco veces
+        for (int m = 0; m < 5; m++) {
+            System.out.print("\n");
+            //for para datos, se imprime una vez
+            for (int i = 0; i < columnas; i++) {
+                if (i == 0) {
+                    ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                    NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
+                    if (libroAux != null) {
+                        System.out.print(libroAux.getTitulo());
+                    } else {
+                        System.out.print(" no esta libro ");
+                    }
+
+                }
+                if (i > 0 && i < columnas - 1) {
+                    NodoBiblioteca bibliotecaAux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
+                    if (!bibliotecaAux.getLibros().esVacia()) {
+                        //lista de libros del ranking total
+                        ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                        //obtengo el libro del ranking total
+                        NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);//se cambia m, o, i, y el valor de la tabla cambia
+                        if(libroAux != null){
+                            //obtengo el mismo libro en la biblioteca segun [i]
+                            NodoLibro libroBuscado = bibliotecaAux.getLibros().obtenerElemento(libroAux.getTitulo(), libroAux.getEditorial());
+                            if (libroBuscado != null) {
+                                System.out.print("          " + libroBuscado.getReserva().getActual()  + "          ");
+                            } else {
+                                System.out.print("        no esta libro    ");
+                            }
+                        }
+                    }
+
+                }
+                if (i == columnas - 1) {
+                    ListaLibros listaAux = this.bibliotecaBase.LibrosMayorRanKing();
+                    NodoLibro libroAux = listaAux.ObtenerLibroPorElemento(m);
+                    if (libroAux != null) {
+                        System.out.print("          " + libroAux.getCantSolicitudes() + "          ");
+                    } else {
+                        System.out.print("         no esta libro    ");
+                    }
+                }
+            }
+            System.out.print("\n");
         }
 
 //        for (int i = 0; i < elementos; i++) {
@@ -465,7 +493,7 @@ public class Obligatorio implements IObligatorio {
 //        }
 //        //System.out.print(m[fila][columna] + " ");
 //
-//        ret.valorString = "Lista de 5 libros mas reservados";
+        ret.valorString = "Lista de 5 libros mas reservados";
         return ret;
     }
 
