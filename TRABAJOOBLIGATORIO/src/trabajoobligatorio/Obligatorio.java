@@ -335,26 +335,39 @@ public class Obligatorio implements IObligatorio {
         int elementos = filas * columnas;
         int fila, columna;
         int columnaAnt = 0;
-        for (int i = 0; i < elementos; i++) {
-            fila = i / columnas;
-            columna = i % columnas;           
-            if (fila == 0) {
-                NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
-                if (columna == 0) {
-                    System.out.print("reservas/biblioteca ");
-                } else if (columna > 0 && columna < columnas) {
-                    if(columnaAnt != columna){
-                    System.out.print("|" + aux.getNombre() + "|");
-                    aux = aux.getSiguiente();
-                    columnaAnt++;
-                    }                    
-                } else if (columna == 6) {
-                    System.out.print("Total");
-                }                
+        //for para cabezal
+        for (int i = 0; i < columnas; i++) {
+            if (i == 0) {
+                System.out.print("reservas/bibliotecas");
             }
-
+            if (i > 0 && i < columnas - 1) {
+                NodoBiblioteca aux = this.bibliotecaBase.ObtenerBibliotecaPorElemento(i);
+                System.out.print(" " + aux.getNombre() + " ");
+            }
+            if (i == columnas - 1) {
+                System.out.print("Total");
+            }
         }
 
+//        for (int i = 0; i < elementos; i++) {
+//            fila = i / columnas;
+//            columna = i % columnas;  
+//            if (fila == 0) {
+//                NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
+//                if (columna == 0) {
+//                    System.out.print("reservas/biblioteca ");
+//                } else if (columna > 0 && columna < columnas) {
+//                    if(columnaAnt != columna){
+//                    System.out.print("|" + aux.getNombre() + "|");
+//                    aux = aux.getSiguiente();
+//                    columnaAnt++;
+//                    }                    
+//                } else if (columna == 6) {
+//                    System.out.print("Total");
+//                }                
+//            }
+//
+//        }
 //            } else if (fila == 1) {
 //                NodoLibro auxLibro = listalb.getInicioL();
 //                if (columna == 0) {
