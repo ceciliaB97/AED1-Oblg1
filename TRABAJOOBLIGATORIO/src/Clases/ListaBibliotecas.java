@@ -308,45 +308,24 @@ public class ListaBibliotecas {
         }
     }
 
-    public void OrdenarLibrosPorCantidadSolicitudes(NodoBiblioteca b) {
-        if (!b.getLibros().esVacia()) {
-            for (NodoLibro i = b.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
-                for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
-                    //cantidad de solicitudes
-                    if (i.CantidadSolicitudes() < j.CantidadSolicitudes()) {
-                        NodoLibro aux = j.getSiguiente();
-                        NodoLibro auxi = i;
-                        b.getLibros().eliminarElemento(i);
-                        j.setSiguiente(auxi);
-                        i.setSiguiente(aux);
-                    }
-                }
-            }
-        }
-    }
-
     public ListaLibros LibrosMayorRanKing() {
      
         ListaLibros listaNueva = new ListaLibros(0);
         NodoBiblioteca aux = this.getInicioB();
         while (aux != null) {
-
             if (!aux.getLibros().esVacia()) {
                 for (NodoLibro i = aux.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
                     NodoLibro lb = listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial());
-
                     if (lb == null) {
                         listaNueva.agregarInicio(aux.getLibros().getInicioL());
                     } else {
                         lb.setCantSolicitudes(lb.getCantSolicitudes()+i.getCantSolicitudes());
-
                     }
-                }
-          
+                }          
             }
             aux = aux.getSiguiente();
         }
-
+        listaNueva.OrdenarLibrosPorCantidadSolicitudes();
         return listaNueva;
     }
 

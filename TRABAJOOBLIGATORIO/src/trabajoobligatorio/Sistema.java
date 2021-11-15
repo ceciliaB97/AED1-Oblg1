@@ -13,12 +13,12 @@ public class Sistema {
 //        o.registrarBiblioteca("Biblioteca Libros");
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
-        juegodeprueba(o, p);
+//        juegodeprueba(o, p);
         //
         o.crearSistemaReservas();
-        System.out.println("************************************");
-        o.registrarBiblioteca("Biblioteca Libros");
-        o.eliminarBiblioteca("Biblioteca Libros");
+//        System.out.println("************************************");
+//        o.registrarBiblioteca("Biblioteca Libros");
+//        o.eliminarBiblioteca("Biblioteca Libros");
         System.out.println("************************************");
         //
         o.registrarBiblioteca("Biblioteca Nacional");
@@ -87,38 +87,40 @@ public class Sistema {
         o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
         o.RegistrarCalificacion("Destinos turísticos del Uruguay", "editorial", 4, "Biblioteca de Montevideo", "Bueno");
         //
-        System.out.println("************************************");
-        //
-        System.out.println("    Aca se imprime bibliotecas por ranking");
-        o.listarBibliotecaRanking();
-        System.out.println("************************************");
-        //
-        System.out.println("************************************");
-        o.listarLibros("Biblioteca Nacional");
+//        System.out.println("************************************");
+//        //
+//        System.out.println("    Aca se imprime bibliotecas por ranking");
+//        o.listarBibliotecaRanking();
+//        System.out.println("************************************");
+//        //
+//        System.out.println("************************************");
+//        o.listarLibros("Biblioteca Nacional");
+//        o.listarLibros("Biblioteca de Canelones");
+//        o.listarLibros("Biblioteca de Montevideo");
+//        //
+//        System.out.println("************************************");
+//        o.listarLibrosBiblioteca("Biblioteca Nacional");
+//        o.listarLibrosBiblioteca("Biblioteca de Canelones");
+//        o.listarLibrosBiblioteca("Biblioteca de Montevideo");
+//        //
+//        System.out.println("************************************");
+//        o.listarComentarios("Biblioteca Nacional");
+//        o.listarComentarios("Biblioteca de Canelones");
+//        o.listarComentarios("Biblioteca de Montevideo");
+//        System.out.println("************************************");
+//        //o.listarEspera(titulo, editorial, biblioteca);
+//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
+//        //
+//        System.out.println("    Aca se imprime bibliotecas por ranking");
+//        o.listarBibliotecaRanking();
+//        System.out.println("************************************");
+//        //o.listarEspera(titulo, editorial, biblioteca)
+//        o.listarEspera("Biblioteca de Canelones", "Libros del litoral", "Biblioteca Nacional");
+//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
+//        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
+//        //
+
         o.listarLibros("Biblioteca de Canelones");
-        o.listarLibros("Biblioteca de Montevideo");
-        //
-        System.out.println("************************************");
-        o.listarLibrosBiblioteca("Biblioteca Nacional");
-        o.listarLibrosBiblioteca("Biblioteca de Canelones");
-        o.listarLibrosBiblioteca("Biblioteca de Montevideo");
-        //
-        System.out.println("************************************");
-        o.listarComentarios("Biblioteca Nacional");
-        o.listarComentarios("Biblioteca de Canelones");
-        o.listarComentarios("Biblioteca de Montevideo");
-        System.out.println("************************************");
-        //o.listarEspera(titulo, editorial, biblioteca);
-        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
-        //
-        System.out.println("    Aca se imprime bibliotecas por ranking");
-        o.listarBibliotecaRanking();
-        System.out.println("************************************");
-        //o.listarEspera(titulo, editorial, biblioteca)
-        o.listarEspera("Biblioteca de Canelones", "Libros del litoral", "Biblioteca Nacional");
-        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
-        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
-        //
         System.out.println("*******************");
         
         o.mostrarReservasBiblioteca();

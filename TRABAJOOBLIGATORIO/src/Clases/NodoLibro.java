@@ -23,17 +23,7 @@ public class NodoLibro {
     private ListaReservas reserva;
     private ListaReservas espera;
     private int califPromedio;
-
-    public int getCantSolicitudes() {
-        return cantSolicitudes;
-    }
-
-    public void setCantSolicitudes(int cantSolicitudes) {
-        this.cantSolicitudes = cantSolicitudes;
-    }
     private int cantSolicitudes;
-    
-   
 
     //constructor
     public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
@@ -48,6 +38,15 @@ public class NodoLibro {
         this.cantSolicitudes =0;
         
     }
+    
+    public int getCantSolicitudes() {
+        return cantSolicitudes;
+    }
+
+    public void setCantSolicitudes(int cantSolicitudes) {
+        this.cantSolicitudes = cantSolicitudes;
+    }
+    
 
     public NodoLibro getSiguiente() {
         return siguiente;
