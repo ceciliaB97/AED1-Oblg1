@@ -169,14 +169,16 @@ public class Obligatorio implements IObligatorio {
                     liBuscado.getReserva().agregarFinal(nueva);
                     ret.valorString = "Se agregó la reserva al libro";
                     ret.resultado = Retorno.Resultado.OK;
-                    return ret;
+
                 } else {
                     NodoReserva nueva = new NodoReserva(cliente, numero, fecha);
                     liBuscado.getEspera().agregarFinal(nueva);
                     ret.valorString = "La lista de reserva está llena, se agregó a la lista de espera";
                     ret.resultado = Retorno.Resultado.OK;
-                    return ret;
+
                 }
+                liBuscado.setCantSolicitudes(liBuscado.getCantSolicitudes() + 1);
+                return ret;
 
             } else {
                 ret.valorString = "Libro no existe en la biblioteca";
@@ -205,6 +207,8 @@ public class Obligatorio implements IObligatorio {
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
                     encontrada = true;
+                    auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
+
                 }
                 auxLibro = auxLibro.getSiguiente();
             }
@@ -332,7 +336,7 @@ public class Obligatorio implements IObligatorio {
 
         int filas = 6;
 
-        //for para cabezal
+      
         for (int fil = 0; fil < filas; fil++) {// filas
             if (fil == 0) {// fila 0
 
