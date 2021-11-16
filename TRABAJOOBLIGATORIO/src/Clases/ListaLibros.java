@@ -269,7 +269,7 @@ public class ListaLibros {
     public boolean buscarElemento(NodoLibro n) {
         boolean ret = false;
         if (!this.esVacia()) {
-            if (this.inicio.getTitulo().equals(n.getTitulo())) {
+            if (this.inicio.getTitulo().equals(n.getTitulo())&& this.inicio.getEditorial().equals(n.getEditorial())) {
                 ret = true;
                 return ret;
             }
@@ -328,7 +328,7 @@ public class ListaLibros {
         }
         return null;
     }
-    
+    // revisar este metodo
     public void OrdenarLibrosPorCantidadSolicitudes() {
         if (!this.esVacia()) {
             for (NodoLibro i = this.getInicioL(); i != null; i = i.getSiguiente()) {

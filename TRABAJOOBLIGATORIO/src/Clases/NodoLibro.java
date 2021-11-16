@@ -35,19 +35,18 @@ public class NodoLibro {
         this.reserva = new ListaReservas(Ejemplares);
         this.espera = new ListaReservas(0);
         this.califPromedio = 0;
-        this.cantSolicitudes =0;
-        
+        this.cantSolicitudes = 0;
+
     }
-    
+
     public int getCantSolicitudes() {
-       this.CantidadSolicitudes();
+       
         return cantSolicitudes;
     }
 
     public void setCantSolicitudes(int cantSolicitudes) {
         this.cantSolicitudes = cantSolicitudes;
     }
-    
 
     public NodoLibro getSiguiente() {
         return siguiente;
@@ -160,20 +159,8 @@ public class NodoLibro {
             }
 
             promedio = sumatoria / contador;
-        } 
+        }
         return promedio;
     }
-    
-    public void CantidadSolicitudes(){
-        ListaReservas reservas = this.getReserva();
-        ListaReservas esperas = this.getEspera();
-        int cantSolicitudes = 0;
-        if(!reservas.esVacia()){
-            cantSolicitudes += reservas.getActual();
-            if (!esperas.esVacia()) {
-                cantSolicitudes += esperas.getActual();
-            }
-        }
-      this.setCantSolicitudes(cantSolicitudes);
-    }
+
 }

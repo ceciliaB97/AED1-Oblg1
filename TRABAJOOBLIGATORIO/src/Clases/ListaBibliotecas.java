@@ -309,31 +309,36 @@ public class ListaBibliotecas {
     }
 
     public ListaLibros LibrosMayorRanKing() {
-     
+
         ListaLibros listaNueva = new ListaLibros(0);
         NodoBiblioteca aux = this.getInicioB();
         while (aux != null) {
             if (!aux.getLibros().esVacia()) {
                 for (NodoLibro i = aux.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
-                    NodoLibro lb = listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial());
-                    if (lb == null) {
-                        listaNueva.agregarInicio(aux.getLibros().getInicioL());
+                    if (!listaNueva.buscarElemento(i)) {// si no esta en la lista nueva lo agrego
+
+                        NodoLibro auxL = new NodoLibro(i.getTitulo(), i.getEditorial(), i.getEjemplares());
+                        auxL.setCantSolicitudes(i.getCantSolicitudes());
+                        listaNueva.agregarInicio(auxL);
                     } else {
-                        lb.setCantSolicitudes(lb.getCantSolicitudes()+i.getCantSolicitudes());
+                        listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial()).setCantSolicitudes(listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial()).getCantSolicitudes() + 1);
                     }
-                }          
+                }
+                aux = aux.getSiguiente();
             }
-            aux = aux.getSiguiente();
+
+          
         }
-        listaNueva.OrdenarLibrosPorCantidadSolicitudes();
-        return listaNueva;
+        
+         
+         return listaNueva;
     }
 
-    public NodoBiblioteca ObtenerBibliotecaPorElemento(int i){
+    public NodoBiblioteca ObtenerBibliotecaPorElemento(int i) {
         int contador = 1;
         NodoBiblioteca aux = this.getInicioB();
-        while(aux != null){
-            if(contador == i){
+        while (aux != null) {
+            if (contador == i) {
                 return aux;
             }
             aux = aux.getSiguiente();
