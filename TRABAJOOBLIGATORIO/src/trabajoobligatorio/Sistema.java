@@ -29,6 +29,7 @@ public class Sistema {
 
         //Funcionalidad 2.2
         //Se pone al final del sistema de pruebas 
+        
         //Funcionalidad 2.3
         //Resultados Ok
         System.out.println("Funcionalidad 2.3 - OK (Se crean 5 Bibliotecas)");
@@ -214,7 +215,7 @@ public class Sistema {
         ret = o.realizarReserva(16, 116, "Biblioteca de Cerro Largo", "Lenguas de diamantes", "Juana", "11/03/2021");
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
         //Biblioteca de Rivera
-        //Garota de Ipanema
+        //Garota de Ipanema 3 reservas (1 espera)
         ret = o.realizarReserva(17, 117, "Biblioteca de Rivera", "Garota de Ipanema", "Brasil", "11/03/2021");
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
         ret = o.realizarReserva(18, 118, "Biblioteca de Rivera", "Garota de Ipanema", "Brasil", "11/03/2021");
@@ -287,12 +288,22 @@ public class Sistema {
         System.out.println("Funcionalidad 2.13 - Error");
         ret = o.listarComentarios("No existo");
         p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
-
         
-        
-        
-        
-        
+        //Funcionalidad 2.14
+        System.out.println("Funcionalidad 2.14 - Ok");
+        ret = o.listarEspera("El Quijote", "Cervantes","Biblioteca Nacional");
+        p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
+        ret = o.listarEspera("El ombú", "Alfaguara", "Biblioteca de Montevideo");
+        p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
+        ret = o.listarEspera("Garota de Ipanema", "Brasil", "Biblioteca de Rivera");
+        p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
+        //Error
+        System.out.println("Funcionalidad 2.14 - Error (libro no existe)");
+        ret = o.listarEspera("No existe", "No existe","Biblioteca Nacional");
+        p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
+        System.out.println("Funcionalidad 2.14 - Error (biblioteca no existe)");
+        ret = o.listarEspera("No existe", "No existe","No existe");
+        p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
         
         
         p.imprimirResultadosPrueba();
