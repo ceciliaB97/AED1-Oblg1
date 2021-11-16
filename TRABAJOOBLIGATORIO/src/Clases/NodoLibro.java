@@ -40,7 +40,7 @@ public class NodoLibro {
     }
     
     public int getCantSolicitudes() {
-       this.CantidadSolicitudes();
+       //this.CantidadSolicitudes();
         return cantSolicitudes;
     }
 
@@ -163,17 +163,17 @@ public class NodoLibro {
         } 
         return promedio;
     }
-    
-    public void CantidadSolicitudes(){
-        ListaReservas reservas = this.getReserva();
-        ListaReservas esperas = this.getEspera();
-        int cantSolicitudes = 0;
-        if(!reservas.esVacia()){
-            cantSolicitudes += reservas.getActual();
-            if (!esperas.esVacia()) {
-                cantSolicitudes += esperas.getActual();
-            }
-        }
-      this.setCantSolicitudes(cantSolicitudes);
-    }
+//    
+//    public void CantidadSolicitudes(){
+//        ListaReservas reservas = this.getReserva();
+//        ListaReservas esperas = this.getEspera();
+//        int cantSolicitudes2 = 0;
+//        if(!reservas.esVacia()){
+//            cantSolicitudes2 += reservas.getActual();
+//            if (!esperas.esVacia()) {
+//                cantSolicitudes2 += esperas.getActual();
+//            }
+//        }
+//      this.setCantSolicitudes(cantSolicitudes2);
+//    }
 }

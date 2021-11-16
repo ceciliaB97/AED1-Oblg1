@@ -10,7 +10,7 @@ public class ListaBibliotecas {
     private int limite;
     //atributos de biblioteca
     private ListaLibros libros;
-
+    
     public ListaBibliotecas(int limite) {
         this.inicio = null;
         this.fin = null;
@@ -18,47 +18,47 @@ public class ListaBibliotecas {
         this.limite = limite;
         this.libros = new ListaLibros(0);
     }
-
+    
     public NodoBiblioteca getInicioB() {
         return inicio;
     }
-
+    
     public void setPrimero(NodoBiblioteca Inicio) {
         this.inicio = Inicio;
     }
-
+    
     public NodoBiblioteca getFinB() {
         return fin;
     }
-
+    
     public void setUltimo(NodoBiblioteca Fin) {
         this.fin = Fin;
     }
-
+    
     public ListaLibros getLibros() {
         return libros;
     }
-
+    
     public void setLibros(ListaLibros libros) {
         this.libros = libros;
     }
-
+    
     public int getActual() {
         return actual;
     }
-
+    
     public void setActual(int Actual) {
         this.actual = Actual;
     }
-
+    
     public int getLimite() {
         return limite;
     }
-
+    
     public void setLimite(int limite) {
         this.limite = limite;
     }
-
+    
     public boolean esVacia() {
         return this.inicio == null;
     }
@@ -151,7 +151,7 @@ public class ListaBibliotecas {
             System.out.println("No hay elementos");
         }
     }
-
+    
     public void mostrarREC2(NodoBiblioteca n, int cont
     ) {
         if (n.getSiguiente() == null) {
@@ -162,15 +162,15 @@ public class ListaBibliotecas {
             System.out.println(cont + "- <" + n.getNombre() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
             mostrarREC2(n.getSiguiente(), ++cont);
-
+            
         }
     }
-
+    
     public void mostrarRECLibro(NodoBiblioteca b) {
         System.out.println("Libros de la biblioteca: " + b.getNombre());
         b.getLibros().mostrarREC();
     }
-
+    
     public NodoBiblioteca obtenerElementoAnterior(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
@@ -196,15 +196,15 @@ public class ListaBibliotecas {
             if (n.equals(getInicioB().getNombre())) {
                 borrarInicio();
                 return true;
-
+                
             } else if (n.equals(getFinB().getNombre())) {
                 borrarFin();
                 return true;
-
+                
             } else {
-
+                
                 NodoBiblioteca aux = this.obtenerElementoAnterior(n);
-
+                
                 if (aux != null) {
                     if (aux.getSiguiente() != getFinB()) {
                         aux.setSiguiente(aux.getSiguiente().getSiguiente());
@@ -261,7 +261,7 @@ public class ListaBibliotecas {
         }
         return this.limite > this.actual;
     }
-
+    
     public boolean buscarElemento(String n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -286,11 +286,11 @@ public class ListaBibliotecas {
         }
         return ret;
     }
-
+    
     public int contarNodos(ListaBibliotecas n) {
         return n.cantElementos();
     }
-
+    
     public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
             for (NodoLibro i = b.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
@@ -307,33 +307,35 @@ public class ListaBibliotecas {
             }
         }
     }
-
+    
     public ListaLibros LibrosMayorRanKing() {
-     
+        
         ListaLibros listaNueva = new ListaLibros(0);
         NodoBiblioteca aux = this.getInicioB();
         while (aux != null) {
             if (!aux.getLibros().esVacia()) {
                 for (NodoLibro i = aux.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
+                    //boolean buscar = listaNueva.buscarElemento(i);
                     NodoLibro lb = listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial());
                     if (lb == null) {
+                        //aux.getLibros().getInicioL().setSiguiente(null);
                         listaNueva.agregarInicio(aux.getLibros().getInicioL());
-                    } else {
-                        lb.setCantSolicitudes(lb.getCantSolicitudes()+i.getCantSolicitudes());
+                    } else {//lb.getReserva().getActual() + lb.getEspera().getActual() + i.getReserva().getActual() + i.getEspera().getActual()
+                        lb.setCantSolicitudes(lb.getCantSolicitudes() + i.getCantSolicitudes());
                     }
-                }          
+                }                
             }
             aux = aux.getSiguiente();
         }
         listaNueva.OrdenarLibrosPorCantidadSolicitudes();
         return listaNueva;
     }
-
-    public NodoBiblioteca ObtenerBibliotecaPorElemento(int i){
+    
+    public NodoBiblioteca ObtenerBibliotecaPorElemento(int i) {
         int contador = 1;
         NodoBiblioteca aux = this.getInicioB();
-        while(aux != null){
-            if(contador == i){
+        while (aux != null) {
+            if (contador == i) {
                 return aux;
             }
             aux = aux.getSiguiente();

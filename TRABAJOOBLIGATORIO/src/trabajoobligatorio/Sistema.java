@@ -13,7 +13,9 @@ public class Sistema {
 //        o.registrarBiblioteca("Biblioteca Libros");
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
-//        juegodeprueba(o, p);
+//       juegodeprueba(o, p);
+       juegodeprueba1(o, p);
+       juegodeprueba2(o, p);
         
         o.crearSistemaReservas();
 //        System.out.println("************************************");
@@ -45,6 +47,8 @@ public class Sistema {
         o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
         o.realizarReserva(1, 1, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
         o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
+        
+        System.out.println("CANTIDAD RESERVAS Y ESPERAS DE RUTAS DEL URUGUAY " + o.bibliotecaBase.obtenerElemento("Biblioteca de Canelones").getLibros().obtenerElemento("Rutas del Uruguay", "Nuestro Pais").getCantSolicitudes());
         // 4 solicituds
 
         o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
@@ -126,17 +130,25 @@ public class Sistema {
 //        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
 //        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
 //        //
-<<<<<<< HEAD
 
-        o.listarLibros("Biblioteca de Canelones");
+            NodoBiblioteca auxBiblioteca = new NodoBiblioteca("auxBiblioteca");
+            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
+            o.bibliotecaBase.agregarInicio(auxBiblioteca);
+            if(!o.bibliotecaBase.LibrosMayorRanKing().esVacia()){
+                System.out.println("NO ESTA VACIA");
+            }
+            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
+            o.listarLibros("auxBiblioteca");
+
+
         System.out.println("*******************");
 
-=======
+
 //
 //        o.listarLibros("Biblioteca de Canelones");
 //        System.out.println("*******************");
 //
->>>>>>> e9648af5f58595cb357ed21c4f1a9ccbffefa6be
+
         o.mostrarReservasBiblioteca();
         //o.mostrarReservasBiblioteca();
 //        System.out.println("Hasta acá todo ok");
