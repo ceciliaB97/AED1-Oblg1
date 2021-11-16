@@ -13,9 +13,10 @@ public class Sistema {
 //        o.registrarBiblioteca("Biblioteca Libros");
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
-//       juegodeprueba(o, p);
-       juegodeprueba1(o, p);
-       juegodeprueba2(o, p);
+//     juegodeprueba(o, p);
+//       juegodeprueba1(o, p);
+//       juegodeprueba2(o, p);
+       juegodeprueba3(o, p);
         
         o.crearSistemaReservas();
 //        System.out.println("************************************");
@@ -368,7 +369,7 @@ public class Sistema {
         p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "Bibliotecas ordenadas por ranking" + o.listarBibliotecaRanking().valorString);
 
         p.ver(o.RegistrarCalificacion("Zelda", "Nintendo", 6, "Primera", "Muy bueno").resultado, Retorno.Resultado.ERROR, "Calificacion fuera de rango de puntuacion");
-        p.ver(o.RegistrarCalificacion("Zelda", "Nintendo", 4, "Primera", "Muy bueno").resultado, Retorno.Resultado.ERROR, "Libro inexistente");
+        p.ver(o.RegistrarCalificacion("Zelda", "Nintendo", 4, "Primera", "Muy bueno").resultado, Retorno.Resultado.OK, "Se registro la calificaion");
         p.ver(o.RegistrarCalificacion("Mistborne", "Brandon", 4, "Segunda", "Muy bueno").resultado, Retorno.Resultado.OK, "Se califico correctamente");
         p.ver(o.RegistrarCalificacion("Zelda", "Nintendo", -1, "Primera", "Muy bueno").resultado, Retorno.Resultado.ERROR, "Calificacion fuera de rango de puntuacion");
         p.ver(o.RegistrarCalificacion("No existo", "Nintendo", 4, "Primera", "Muy bueno").resultado, Retorno.Resultado.ERROR, "Libro no esta en la biblioteca");
@@ -437,6 +438,136 @@ public class Sistema {
 
         // PUNTO 2.2
         p.ver(o.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se destruye sistema de reservas");
+
+    }
+    
+    public static void juegodeprueba3(Obligatorio o, Prueba p) {
+        
+        p.ver(o.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se crea sistema de reservas");
+       
+        p.imprimirComentario("-----------------------------------------------------------------------");       
+        p.imprimirComentario("REISTRO DE BIBLIOTECAS");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+        p.imprimirComentario("Se agrega: Bib Nacional, Bib ORT, Bib xxx ");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+
+        
+        // casos ok
+        p.ver(o.registrarBiblioteca("Bib Nacional").resultado, Retorno.Resultado.OK,"Se agrego biblioteca nacional" );
+        p.ver(o.registrarBiblioteca("Bib ORT").resultado, Retorno.Resultado.OK," Se agrega biblioeca ORT " );
+        p.ver(o.registrarBiblioteca("Bib xxx").resultado, Retorno.Resultado.OK," Se agrega biblioeca XXX " );
+        
+// casos error        
+        p.ver(o.registrarBiblioteca("Bib Nacional").resultado, Retorno.Resultado.ERROR," No se agrega Bib Nacional por estar repetida " );
+
+        p.imprimirComentario("-----------------------------------------------------------------------");        
+        p.imprimirComentario("LISTADO  DE BIBLIOTECAS REGISTRADAS");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+
+        o.bibliotecaBase.mostrarREC();
+        
+        p.imprimirComentario("-----------------------------------------------------------------------");       
+        p.imprimirComentario("SE BORRA BIBLIOTECA XXX");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+
+        p.ver(o.eliminarBiblioteca("Bib xxx").resultado, Retorno.Resultado.OK, "Se elimina Bib xxx corrctamente");
+
+        p.imprimirComentario("-----------------------------------------------------------------------");       
+        p.imprimirComentario("REISTRO DE BIBLIOTECAS LUEGO DE BORRAR BIBLIOTECA XXX");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+        
+        o.bibliotecaBase.mostrarREC();
+        
+        p.imprimirComentario("-----------------------------------------------------------------------");
+        
+        p.imprimirComentario("REGISTRAMOS LIBROS ");        
+        p.imprimirComentario("Se registran los libros: Algoritmos, Base de datos, Diseño, Programacion");
+        p.imprimirComentario("-----------------------------------------------------------------------");
+        
+        p.ver(o.registrarBiblioteca("Bib xxx").resultado, Retorno.Resultado.OK," Se agrega biblioeca XXX " );
+
+        
+        p.ver(o.registrarLibro("Algoritmos", "Editorial xxx", "Bib ORT", 3).resultado, Retorno.Resultado.OK, " se agrego el libro algoritmos con 3 ejemplares");
+        p.ver(o.registrarLibro("Algoritmos", "Editorial xxx", "Bib ORT", 3).resultado, Retorno.Resultado.ERROR, "No se agrego el libro algoritmos en bib ORT porque ya existe ");
+        p.ver(o.registrarLibro("Base de datos","Editorial xxx", "Bib ORT", 5).resultado, Retorno.Resultado.OK, " Se agrego el libro base de datos con 5 ejemplares");
+        p.ver(o.registrarLibro("Programacion1", "Editorial xxx", "Bib Nacional", 2).resultado, Retorno.Resultado.OK, " se agrego el libro programacion1 con 2 ejemplares");
+        p.ver(o.registrarLibro("Programacion2", "Editorial xxx", "Bib Nacional", 2).resultado, Retorno.Resultado.OK, " se agrego el libro programacion2 con 2 ejemplares");
+        p.ver(o.registrarLibro("Programacion3", "Editorial xxx", "Bib Nacional", 2).resultado, Retorno.Resultado.OK, " se agrego el libro programacion3 con 2 ejemplares");
+
+        p.ver(o.registrarLibro("Programacion", "Editorial xxx", "Bib xxx", 2).resultado, Retorno.Resultado.OK, " se agrego el libro programacion con 2 ejemplares");
+
+        
+        p.ver(o.registrarLibro("Diseño", "Editorial xxx", "Bib ORT", 2).resultado, Retorno.Resultado.OK, " se agrego el libro Diseño con 2 ejemplares");      
+
+        p.imprimirComentario("-----------------------------------------------------------------------");        
+        p.imprimirComentario("Lista de libros por biblioteca");
+        //UDF.listarBibLib(o.getLBib());
+        p.imprimirComentario("-----------------------------------------------------------------------");
+
+        p.imprimirComentario("Se imprime lista de libros de Bib Nacional");
+        p.ver(o.listarLibrosBiblioteca("Bib Nacional").resultado, Retorno.Resultado.OK,"Libros de la bib Nacional" );
+        p.imprimirComentario("Se imprime lista de libros de Bib ORT");
+        p.ver(o.listarLibrosBiblioteca("Bib ORT").resultado, Retorno.Resultado.OK,"Libros de la bib ORT" );
+        
+        p.ver(o.eliminarLibro("Base de datos", "Editorial xxx", "Bib ORT").resultado, Retorno.Resultado.OK, "se elimina libro Base de datos bib ORT");
+        p.ver(o.listarLibrosBiblioteca("Bib ORT").resultado, Retorno.Resultado.OK, "Libros bib ort luego de borrar base de datos");
+        
+        // este metodo no esta en la interface
+        //o.listarBibLib(o.li);
+        
+        p.imprimirComentario("COMENZAMOS A HACE RESERVAS");
+
+        p.imprimirComentario("Antes de las reservas listamos reservas del libro algoritmos de bib ort");
+        //o.bibliotecaBase.obtenerElemento("Bib ORT").getLibros().obtenerElemento("Algoritmos").getLR().mostrar();
+        p.imprimirComentario("Antes de las reservas listamos cola de espera de libro algoritmos de bib ort");
+        //System.out.println("Cola de espera vacia = "+ o.bibliotecaBase.obtenerElemento("Bib ORT").getLLib().obtenerElemento("Algoritmos").getCE().esVacia());
+                 
+        p.ver(o.realizarReserva(1, 1, "Bib ORT", "Algoritmos", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Programacion1 (ej1) en biblioteca Nacional");
+        p.ver(o.realizarReserva(2, 2, "Bib ORT", "Algoritmos", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Programacion1 (ej2) en biblioteca Nacional");
+        p.ver(o.realizarReserva(3, 3, "Bib ORT", "Algoritmos", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Programacion1 (ej3) en biblioteca Nacional");
+        
+        p.ver(o.realizarReserva(4, 4, "Bib ORT", "Algoritmos", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Algoritmos (ej4) en biblioteca OrT");
+       
+        
+        p.ver(o.realizarReserva(1, 1, "Bib Nacional", "Programacion1", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Algoritmos (ej1) en biblioteca OrT");
+        p.ver(o.realizarReserva(1, 2, "Bib Nacional", "Programacion1", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Algoritmos (ej1) en biblioteca OrT");
+
+        p.ver(o.realizarReserva(2, 2, "Bib Nacional", "Programacion2", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Algoritmos (ej2) en biblioteca OrT");
+        p.ver(o.realizarReserva(3, 3, "Bib Nacional", "Programacion3", "Editorial xxx", "04-11-2021").resultado, Retorno.Resultado.OK, "Se agrego reserva al  libro de Algoritmos (ej3) en biblioteca OrT");
+ 
+        
+        
+        p.imprimirComentario("Despues de las reservas listamos reservas del libro algoritmos de bib ort");
+        //o.bibliotecaBase.obtenerElemento("Bib ORT").getLLib().obtenerElemento("Algoritmos").getLR().mostrar();
+
+        p.imprimirComentario("Despues de las reservas listamos cola de espera de libro algoritmos de bib ort");        
+        //System.out.println("Cola de espera vacia = "+ o.LBib.obtenerElemento("Bib ORT").getLLib().obtenerElemento("Algoritmos").getCE().esVacia());
+
+        p.ver(o.RegistrarCalificacion("Algoritmos", "Editorial xxx", 4, "Bib ORT", "buena atencion").resultado, Retorno.Resultado.OK, "calificacion 4 algoritmos bib ort");
+        p.ver(o.RegistrarCalificacion("Algoritmos", "Editorial xxx", 5, "Bib ORT", "muy buena atencion").resultado, Retorno.Resultado.OK, "calificacion 5 algoritmos bib ort");
+        p.ver(o.RegistrarCalificacion("Algoritmos", "Editorial xxx", 4, "Bib ORT", "atencion correcta").resultado, Retorno.Resultado.OK, "calificacion 4 algoritmos bib ort");
+        p.ver(o.RegistrarCalificacion("Diseño", "Editorial xxx", 5, "Bib ORT", "Libro recomendable").resultado, Retorno.Resultado.OK, "calificacion 5 diseño bib ort");
+        p.ver(o.RegistrarCalificacion("Base de datos", "Editorial xxx", 3, "Bib ORT", "buena atencion").resultado, Retorno.Resultado.OK, "calificacion 3 base de datos bib ort");
+        
+        p.ver(o.RegistrarCalificacion("Programacion2", "Editorial xxx", 3, "Bib Nacional", "Libro aceptable").resultado, Retorno.Resultado.OK, "calificacion 3 algoritmos bib Nacional");
+        p.ver(o.RegistrarCalificacion("Programacion3", "Editorial xxx", 2, "Bib Nacional", "No lo recomiendo").resultado, Retorno.Resultado.OK, "calificacion 2 algoritmos bib Nacional");
+        p.ver(o.RegistrarCalificacion("Programacion2", "Editorial xxx", 3, "Bib Nacional", "aceptable").resultado, Retorno.Resultado.OK, "calificacion 3 algoritmos bib Nacional");
+       
+        p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "Ranking");       
+        p.ver(o.listarComentarios("Bib ORT").resultado, Retorno.Resultado.OK, "comentarios ORT");
+        
+        p.ver(o.listarLibros("Bib ORT").resultado, Retorno.Resultado.OK, "Libros bib ort");
+        
+        p.ver(o.cancelarReserva(1, 1, "Bib ORT").resultado, Retorno.Resultado.OK, "se cancela reservca 1 cliente 1 bib ort");
+        p.ver(o.mostrarReservasBiblioteca().resultado, Retorno.Resultado.OK, "Reservas ORT");
+//        p.ver(o.eliminarLibro("Algoritmos", "Editorial xxx", "ORT").resultado, Retorno.Resultado.ERROR, "No se pudo eliminar libro , tiene reservas");
+//        
+//        p.ver(o.eliminarLibro("Base de datos", "Editorial xxx", "ORT").resultado, Retorno.Resultado.ERROR, "Se elimina libro base de datos bib OET");
+      
+//        UDF.listarBibLib(o.getLBib());
+//        UDF.listarReservasBib(o.getLBib());
+        p.ver(o.destruirSistemaReservas().resultado, Retorno.Resultado.OK, "Se destruye sistema de reservas");  
+        p.imprimirResultadosPrueba();
 
     }
 }
