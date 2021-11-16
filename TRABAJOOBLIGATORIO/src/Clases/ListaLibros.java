@@ -329,23 +329,61 @@ public class ListaLibros {
         return null;
     }
     // revisar este metodo
-    public void OrdenarLibrosPorCantidadSolicitudes() {
-        if (!this.esVacia()) {
-            for (NodoLibro i = this.getInicioL(); i != null; i = i.getSiguiente()) {
-                for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
-                    //cantidad de solicitudes
-                    if (i.getCantSolicitudes() < j.getCantSolicitudes()) {
-                        NodoLibro aux = j.getSiguiente();
-                        NodoLibro auxi = i;
-                        this.eliminarElemento(i);
-                        j.setSiguiente(auxi);
-                        i.setSiguiente(aux);
+//    public void OrdenarLibrosPorCantidadSolicitudes() {
+//        if (!this.esVacia()) {
+//            for (NodoLibro i = this.getInicioL(); i != null; i = i.getSiguiente()) {
+//                for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
+//                    //cantidad de solicitudes
+//                    if (i.getCantSolicitudes() < j.getCantSolicitudes()) {
+//                        NodoLibro aux = j.getSiguiente();
+//                        NodoLibro auxi = i;
+//                        this.eliminarElemento(i);
+//                        j.setSiguiente(auxi);
+//                        i.setSiguiente(aux);
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    
+    
+//  
+    
+    
+    public void bubbleSort() {
+    if (this.cantElementos() > 1) {
+        boolean cambio;
+        do {
+            NodoLibro actual = this.getInicioL();
+            NodoLibro anterior = null;
+            NodoLibro siguiente = this.getInicioL().getSiguiente();
+            cambio = false;
+            while ( siguiente != null ) {
+                  if (actual.getCantSolicitudes()<siguiente.getCantSolicitudes()) {
+                    cambio = true;
+                    if ( anterior != null ) {
+                        NodoLibro sig = siguiente.getSiguiente();
+                        anterior.setSiguiente(siguiente);
+                        siguiente.setSiguiente ( actual);
+                        actual.setSiguiente ( sig);
+                    } else {
+                        NodoLibro sig = siguiente.getSiguiente();
+                        this.setInicio(siguiente); 
+                        siguiente.setSiguiente(actual);
+                        actual.setSiguiente(sig);
                     }
+                    anterior = siguiente;
+                    siguiente = actual.getSiguiente();
+                } else { 
+                    anterior = actual;
+                    actual = siguiente;
+                    siguiente = siguiente.getSiguiente();
                 }
-            }
-        }
+            } 
+        } while( cambio );
     }
-  
+}
     public NodoLibro ObtenerLibroPorElemento(int i){
         int contador = 0;
         NodoLibro aux = this.getInicioL();

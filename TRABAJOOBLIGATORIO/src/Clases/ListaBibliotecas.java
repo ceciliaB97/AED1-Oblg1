@@ -328,6 +328,8 @@ public class ListaBibliotecas {
             }
 
         }
+        
+        listaNueva.bubbleSort();
 
         return listaNueva;
     }

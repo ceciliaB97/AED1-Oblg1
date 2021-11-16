@@ -14,13 +14,14 @@ public class Sistema {
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
 
-//        juegodeprueba(o, p);
+        juegodeprueba(o, p);
 
 //     juegodeprueba(o, p);
 //       juegodeprueba1(o, p);
 //       juegodeprueba2(o, p);
 //       juegodeprueba3(o, p);
-        
+        String bibliotecaCanelones ="Biblioteca de Canelones";
+        String bibliotecaNacional ="Biblioteca Nacional";
 
         o.crearSistemaReservas();
 //        System.out.println("************************************");
@@ -28,20 +29,20 @@ public class Sistema {
 //        o.eliminarBiblioteca("Biblioteca Libros");
         System.out.println("************************************");
         //
-        o.registrarBiblioteca("Biblioteca Nacional");
-        o.registrarBiblioteca("Biblioteca de Canelones");
+        o.registrarBiblioteca(bibliotecaNacional);
+        o.registrarBiblioteca(bibliotecaCanelones);
         o.registrarBiblioteca("Biblioteca de Montevideo");
         System.out.println("************************************");
         //
-        o.registrarLibro("Artigas y su historia", "Libros del litoral", "Biblioteca Nacional", 2);
-        o.registrarLibro("Cuentos de los Andes", "Las aventuras", "Biblioteca Nacional", 3);// pivote
-        o.registrarLibro("Aprende a amoldar cerámica", "Didacticos", "Biblioteca Nacional", 2);
-        o.registrarLibro("Cuentos de los Andes", "Las aventuras", "Biblioteca de Canelones", 3);// pivote
+        o.registrarLibro("Artigas y su historia", "Libros del litoral", bibliotecaNacional, 2);
+        o.registrarLibro("Cuentos de los Andes", "Las aventuras", bibliotecaNacional, 3);// pivote
+        o.registrarLibro("Aprende a amoldar cerámica", "Didacticos", bibliotecaNacional, 2);
+        o.registrarLibro("Cuentos de los Andes", "Las aventuras", bibliotecaCanelones, 3);// pivote
         //o.eliminarLibro(titulo, editorial, biblioteca);
-//        o.eliminarLibro("Aprende a amoldar cerámica", "Didacticos", "Biblioteca Nacional");
+//        o.eliminarLibro("Aprende a amoldar cerámica", "Didacticos", bibliotecaNacional);
         //
-        o.registrarLibro("Palabras interesantes", "Didacticos", "Biblioteca de Canelones", 2);
-        o.registrarLibro("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones", 1);
+        o.registrarLibro("Palabras interesantes", "Didacticos", bibliotecaCanelones, 2);
+        o.registrarLibro("Rutas del Uruguay", "Nuestro Pais", bibliotecaCanelones, 1);
         //
         o.registrarLibro("Destinos turísticos del Uruguay", "Biblioteca de Montevideo", "Prueba", 2);
         o.registrarLibro("Montevideo historito", "Didacticos", "Biblioteca de Montevideo", 1);
@@ -49,56 +50,56 @@ public class Sistema {
         o.listarLibros("Prueba");
         //o.realizarReserva(0, 0, biblioteca, título, editorial, fecha);
         System.out.println("************************************");
-        o.realizarReserva(1, 1, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
-        o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
-        o.realizarReserva(1, 1, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
-        o.realizarReserva(2, 2, "Biblioteca de Canelones", "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
+        o.realizarReserva(1, 1, bibliotecaCanelones, "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
+        o.realizarReserva(2, 2, bibliotecaCanelones, "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
+        o.realizarReserva(1, 1, bibliotecaCanelones, "Rutas del Uruguay", "Nuestro Pais", "13/11/2021");
+        o.realizarReserva(2, 2, bibliotecaCanelones, "Rutas del Uruguay", "Nuestro Pais", "14/11/2021");
         
-        System.out.println("CANTIDAD RESERVAS Y ESPERAS DE RUTAS DEL URUGUAY " + o.bibliotecaBase.obtenerElemento("Biblioteca de Canelones").getLibros().obtenerElemento("Rutas del Uruguay", "Nuestro Pais").getCantSolicitudes());
+        System.out.println("CANTIDAD RESERVAS Y ESPERAS DE RUTAS DEL URUGUAY " + o.bibliotecaBase.obtenerElemento(bibliotecaCanelones).getLibros().obtenerElemento("Rutas del Uruguay", "Nuestro Pais").getCantSolicitudes());
         // 4 solicituds
 
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
-        o.realizarReserva(3, 3, "Biblioteca de Canelones", "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
+        o.realizarReserva(3, 3, bibliotecaCanelones, "Palabras interesantes", "Didacticos", "15/11/2021");
 // 6 solicitudes
         o.realizarReserva(4, 4, "Biblioteca de Montevideo", "Montevideo historito", "Didacticos", "16/11/2021");
         o.realizarReserva(4, 4, "Biblioteca de Montevideo", "Montevideo historito", "Didacticos", "16/11/2021");
         //2 solicitudes
 
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca Nacional", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
-        o.realizarReserva(1, 5, "Biblioteca de Canelones", "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaNacional, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
+        o.realizarReserva(1, 5, bibliotecaCanelones, "Cuentos de los Andes", "Las aventuras", "17/11/2021");
 
         //6 solicitudes
         //o.cancelarReserva(0, 0, biblioteca);
         System.out.println("************************************");
-//        o.cancelarReserva(1, 5, "Biblioteca Nacional");
+//        o.cancelarReserva(1, 5, bibliotecaNacional);
         //o.RegistrarCalificacion(titulo, editorial, 0, biblioteca, comentario)
         System.out.println("************************************");
-        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 5, "Biblioteca Nacional", "Muy bueno");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 1, "Biblioteca de Canelones", "Muy malo");
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 5, bibliotecaNacional, "Muy bueno");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 1, bibliotecaCanelones, "Muy malo");
         o.RegistrarCalificacion("Montevideo historito", "Didacticos", 3, "Biblioteca de Montevideo", "Normal");
-        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 4, "Biblioteca Nacional", "Bueno");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, "Biblioteca de Canelones", "Malo");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 4, bibliotecaNacional, "Bueno");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, bibliotecaCanelones, "Malo");
         //
-        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 2, "Biblioteca Nacional", "rrw");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 5, "Biblioteca de Canelones", "tewte");
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 2, bibliotecaNacional, "rrw");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 5, bibliotecaCanelones, "tewte");
         o.RegistrarCalificacion("Montevideo historito", "Didacticos", 1, "Biblioteca de Montevideo", "rte");
-        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 3, "Biblioteca Nacional", "werew");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, "Biblioteca de Canelones", "werew");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 3, bibliotecaNacional, "werew");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, bibliotecaCanelones, "werew");
         //
-        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 3, "Biblioteca Nacional", "werew");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, "Biblioteca de Canelones", "werew");
+        o.RegistrarCalificacion("Artigas y su historia", "Libros del litoral", 3, bibliotecaNacional, "werew");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 2, bibliotecaCanelones, "werew");
         o.RegistrarCalificacion("Montevideo historito", "Didacticos", 5, "Biblioteca de Montevideo", "Nwer");
-        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 1, "Biblioteca Nacional", "Buwerewo");
-        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, "Biblioteca de Canelones", "Mwero");
+        o.RegistrarCalificacion("Cuentos de los Andes", "Las aventuras", 1, bibliotecaNacional, "Buwerewo");
+        o.RegistrarCalificacion("Palabras interesantes", "Didacticos", 4, bibliotecaCanelones, "Mwero");
 
         o.RegistrarCalificacion("Montevideo historito", "editorial", 3, "Biblioteca de Montevideo", "Normal");
         o.RegistrarCalificacion("Destinos turísticos del Uruguay", "editorial", 4, "Biblioteca de Montevideo", "Bueno");
@@ -111,36 +112,37 @@ public class Sistema {
 //        System.out.println("************************************");
 //        //
 //        System.out.println("************************************");
-//        o.listarLibros("Biblioteca Nacional");
-//        o.listarLibros("Biblioteca de Canelones");
+//        o.listarLibros(bibliotecaNacional);
+//        o.listarLibros(bibliotecaCanelones);
 //        o.listarLibros("Biblioteca de Montevideo");
 //        //
 //        System.out.println("************************************");
-//        o.listarLibrosBiblioteca("Biblioteca Nacional");
-//        o.listarLibrosBiblioteca("Biblioteca de Canelones");
+//        o.listarLibrosBiblioteca(bibliotecaNacional);
+//        o.listarLibrosBiblioteca(bibliotecaCanelones);
 //        o.listarLibrosBiblioteca("Biblioteca de Montevideo");
 //        //
 //        System.out.println("************************************");
-//        o.listarComentarios("Biblioteca Nacional");
-//        o.listarComentarios("Biblioteca de Canelones");
+//        o.listarComentarios(bibliotecaNacional);
+//        o.listarComentarios(bibliotecaCanelones);
 //        o.listarComentarios("Biblioteca de Montevideo");
 //        System.out.println("************************************");
 //        //o.listarEspera(titulo, editorial, biblioteca);
-//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
+//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", bibliotecaCanelones);
 //        //
 //        System.out.println("    Aca se imprime bibliotecas por ranking");
 //        o.listarBibliotecaRanking();
 //        System.out.println("************************************");
 //        //o.listarEspera(titulo, editorial, biblioteca)
-//        o.listarEspera("Biblioteca de Canelones", "Libros del litoral", "Biblioteca Nacional");
-//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
-//        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
+//        o.listarEspera(bibliotecaCanelones, "Libros del litoral", bibliotecaNacional);
+//        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", bibliotecaCanelones);
+//        o.listarEspera("Palabras interesantes", "Didacticos", bibliotecaCanelones);
 //        //
 
-        o.listarLibros("Biblioteca de Canelones");
+        o.listarLibros(bibliotecaCanelones);
+        o.listarComentarios(bibliotecaCanelones);
         System.out.println("*******************");
 
-//        o.listarLibros("Biblioteca de Canelones");
+//        o.listarLibros(bibliotecaCanelones);
 //        System.out.println("*******************");
 //
 // comente esto por qe da error
@@ -159,7 +161,7 @@ public class Sistema {
 
 
 //
-//        o.listarLibros("Biblioteca de Canelones");
+//        o.listarLibros(bibliotecaCanelones);
 //        System.out.println("*******************");
 //
 
@@ -176,7 +178,8 @@ public class Sistema {
     }
 
     public static void juegodeprueba(Obligatorio o, Prueba p) {
-
+    String bibliotecaCanelones ="Biblioteca de Canelones";
+        String bibliotecaNacional ="Biblioteca Nacional";
 //         PUNTO 2.1
         p.ver(o.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se crea sistema de reservas");
 //
@@ -185,13 +188,13 @@ public class Sistema {
         p.ver(o.registrarBiblioteca("Segunda").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Segunda");
         p.ver(o.registrarBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Tercera");
         p.ver(o.registrarBiblioteca("Primera").resultado, Retorno.Resultado.ERROR, "Ya esta la biblioteca: Primera"); //Prueba repetido
-        p.ver(o.registrarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Biblioteca Nacional"); //Prueba repetido
+        p.ver(o.registrarBiblioteca(bibliotecaNacional).resultado, Retorno.Resultado.OK, "Se agrego la biblioteca: Biblioteca Nacional"); //Prueba repetido
 
 //        PUNTO 2.12
         p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "" + o.listarBibliotecaRanking().valorString);
 //
 //         PUNTO 2.4
-        p.ver(o.eliminarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.OK, "Se elimino la biblioteca: Biblioteca Nacional"); //Eliminar la tercera
+        p.ver(o.eliminarBiblioteca(bibliotecaNacional).resultado, Retorno.Resultado.OK, "Se elimino la biblioteca: Biblioteca Nacional"); //Eliminar la tercera
         p.ver(o.eliminarBiblioteca("Tercera").resultado, Retorno.Resultado.OK, "Se elimino la biblioteca: Tercera"); //Eliminar la tercera
         p.ver(o.listarBibliotecaRanking().resultado, Retorno.Resultado.OK, "" + o.listarBibliotecaRanking().valorString);
 //         PUNTO 2.5
@@ -205,7 +208,7 @@ public class Sistema {
 //        //validamos libros por biblioteca
         p.ver(o.listarLibrosBiblioteca("Primera").resultado, Retorno.Resultado.OK, "Listar libros Biblioteca" + o.listarLibrosBiblioteca("Primera").valorString);
         p.ver(o.listarLibrosBiblioteca("Segunda").resultado, Retorno.Resultado.OK, "Listar libros Biblioteca" + o.listarLibrosBiblioteca("Segunda").valorString);
-        p.ver(o.listarLibrosBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.ERROR, "biblioteca inexistente ");
+        p.ver(o.listarLibrosBiblioteca(bibliotecaNacional).resultado, Retorno.Resultado.ERROR, "biblioteca inexistente ");
         p.ver(o.listarLibrosBiblioteca("Tercera").resultado, Retorno.Resultado.ERROR, "biblioteca inexistente ");
 
 //
@@ -296,12 +299,12 @@ public class Sistema {
 
     public static void juegodeprueba1(Obligatorio o, Prueba p) {
 
+        String bibliotecaNacional ="Biblioteca Nacional";
         p.ver(o.crearSistemaReservas().resultado, Retorno.Resultado.OK, "Se crea sistema de reservas");
-        p.ver(o.registrarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.OK, "se registra biblioteca nacional");
-        p.ver(o.registrarBiblioteca("Biblioteca Nacional").resultado, Retorno.Resultado.ERROR, " no se agrega Biblioteca Nacional por estar repetida ");
+        p.ver(o.registrarBiblioteca(bibliotecaNacional).resultado, Retorno.Resultado.OK, "se registra biblioteca nacional");
+        p.ver(o.registrarBiblioteca(bibliotecaNacional).resultado, Retorno.Resultado.ERROR, " no se agrega Biblioteca Nacional por estar repetida ");
         p.ver(o.registrarBiblioteca("ORT").resultado, Retorno.Resultado.OK, "  se agrega biblioeca ORT ");
         p.ver(o.registrarBiblioteca("biblioteca xxx").resultado, Retorno.Resultado.OK, "  se agrega biblioeca xxx ");
-
 //        // listao las bibloteca para ver si quedo bien
 //        System.out.println("listamos bibliotecas antes de eliminar bib xxx");
 //        UDF.listarbibliotecas(o.getLBib());
@@ -314,7 +317,7 @@ public class Sistema {
 //        p.ver(o.registrarLibro("Algoritmos", "Editorial xxx", "ORT", 3).resultado, Retorno.Resultado.OK, " se agrego el libro algoritmos con 3 ejemplares");
 //        p.ver(o.registrarLibro("Algoritmos", "Editorial xxx", "ORT", 5).resultado, Retorno.Resultado.ERROR, " Se intenta agregar un libro que ya existe");
 //        p.ver(o.registrarLibro("Base de datos", "Editorial xxx", "ORT", 5).resultado, Retorno.Resultado.OK, " se agrego el libro base de datos con 5 ejemplares");
-//        p.ver(o.registrarLibro("Programacion", "Editorial xxx", "Biblioteca Nacional", 5).resultado, Retorno.Resultado.OK, " se agrego el libro programacion con 5 ejemplares");
+//        p.ver(o.registrarLibro("Programacion", "Editorial xxx", bibliotecaNacional, 5).resultado, Retorno.Resultado.OK, " se agrego el libro programacion con 5 ejemplares");
 //
 //        System.out.println("Listado de biblioteca con sus libros antes de borrar base de datos");
 //        UDF.listarBibLib(o.getLBib());
