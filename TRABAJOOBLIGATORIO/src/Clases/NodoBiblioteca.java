@@ -52,14 +52,14 @@ public class NodoBiblioteca {
     public void setCalificacionPromedioBiblioteca(int Calificacion) {
         this.CalificacionPromedioBiblioteca = Calificacion;
     }
-    
-    public boolean tieneReservas(){
+
+    public boolean tieneReservas() {
         boolean encontre = false;
         ListaLibros lista = this.getLibros();
-        if(!lista.esVacia()){
+        if (!lista.esVacia()) {
             NodoLibro aux = lista.getInicioL();
-            while(aux.getSiguiente() != null && !encontre) {
-                if(!aux.getReserva().esVacia()) {
+            while (aux.getSiguiente() != null && !encontre) {
+                if (!aux.getReserva().esVacia()) {
                     encontre = true;
                 }
                 aux = aux.getSiguiente();
@@ -69,13 +69,41 @@ public class NodoBiblioteca {
     }
 
     public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca
-
         if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
             for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
                 i.EstablecerPromedioCalificacionesDeUnLibro();// promedio calificaciones de cada libro
             }
         }
     }
+
+   
+
+    public int cantSolicitudesLibroPorBiblioteca(NodoLibro libro) {
+        int cant = 0;
+        NodoLibro lb = this.getLibros().obtenerElemento(libro.getTitulo(), libro.getEditorial());
+
+        if (lb != null) {
+
+            cant = lb.getCantSolicitudes();
+        }
+        return cant;
+    }
+    
+     public void EstablecerPromedioCalificacionesDeUnaBiblioteca() {
+        int promedio = 0;
+        if (!this.getLibros().esVacia()) {
+            int sumatoria = 0;
+            int contador = 0;
+            NodoLibro aux = this.getLibros().getInicioL();
+            while (aux != null) {
+                sumatoria += aux.getCalifPromedio();
+                contador++;
+                aux = aux.getSiguiente();
+            }
+            promedio = sumatoria / contador;
+        }
+        this.setCalificacionPromedioBiblioteca(promedio);
+    }
+    
+    
 }
-
-

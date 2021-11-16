@@ -37,6 +37,7 @@ public class Obligatorio implements IObligatorio {
             NodoBiblioteca nueva = new NodoBiblioteca(Biblioteca);
             this.bibliotecaBase.agregarFinal(nueva);
             ret.resultado = Retorno.Resultado.OK;
+            ret.valorString = "Biblioteca agregada con éxito";
         } else {
             ret.valorString = "Biblioteca ya existe";
             ret.resultado = Retorno.Resultado.ERROR;
@@ -133,8 +134,10 @@ public class Obligatorio implements IObligatorio {
                     liBuscado.getCalificaciones().agregarInicio(calificacion, comentario);
                     //actualizar la calificacion promedio
                     liBuscado.setCalifPromedio();
+                    biBuscada.EstablecerPromedioCalificacionesDeUnaBiblioteca();
+                    this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
                     ret = new Retorno(Retorno.Resultado.OK);
-                    ret.valorString = "Se agregó la calificación al libro";
+                    ret.valorString = "Se agregó la calificación al libro";                    
                 } else {
                     ret = new Retorno(Retorno.Resultado.ERROR);
                     ret.valorString = "Calificacion fuera de rango";
@@ -202,17 +205,23 @@ public class Obligatorio implements IObligatorio {
             NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
             while (auxLibro != null && !encontrada) {
                 NodoReserva rBuscada = auxLibro.getReserva().obtenerElemento(cliente, numero);
+                ret.valorString = "No se encontró la reserva";
                 if (rBuscada != null) {
                     //EliminarReserva
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
                     encontrada = true;
+                    auxBiblioteca.EstablecerPromedioCalificacionesDeUnaBiblioteca();
+                    this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
-
+                    ret.valorString = "Reserva cancelada con éxito";
                 }
                 auxLibro = auxLibro.getSiguiente();
             }
+        }else{
+            ret.valorString = "La biblioteca no existe";
         }
+           
         return ret;
     }
 
@@ -223,6 +232,7 @@ public class Obligatorio implements IObligatorio {
         if (auxBiblioteca != null) {
             this.bibliotecaBase.mostrarRECLibro(auxBiblioteca);
             ret.resultado = Retorno.Resultado.OK;
+            ret.valorString = "Listado exitoso";
         } else {
             ret.valorString = "Biblioteca no existe";
             ret.resultado = Retorno.Resultado.ERROR;
@@ -256,10 +266,7 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
         NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
-        while (aux != null) {
-            //version selection
-            //this.bibliotecaBase.OrdenarLibrosCalificacionPromedioPorBiblioteca(aux);
-            //version bubble
+        while (aux != null) {            
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
             System.out.println("Biblioteca: " + aux.getNombre());
             if (aux.getLibros() != null) {
@@ -278,7 +285,7 @@ public class Obligatorio implements IObligatorio {
         NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxB != null) {
             NodoLibro lb = auxB.getLibros().getInicioL();
-            while (lb.getSiguiente() != null) {
+            while (lb != null) {
                 lb.getCalificaciones().mostrarREC();
                 lb = lb.getSiguiente();
             }
@@ -339,8 +346,7 @@ public class Obligatorio implements IObligatorio {
                     System.out.print(aux.getTitulo());
 
                     for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i != null; i = i.getSiguiente()) {
-                        int reservaEnBiblioteca = cantSolicitudesLibroPorBiblioteca(aux, i);
-
+                        int reservaEnBiblioteca = i.cantSolicitudesLibroPorBiblioteca(aux);
                         System.out.print("  R: " + reservaEnBiblioteca);
                     }
 
@@ -355,17 +361,5 @@ public class Obligatorio implements IObligatorio {
 
         return ret;
 
-    }
-
-    private int cantSolicitudesLibroPorBiblioteca(NodoLibro libro, NodoBiblioteca biblioteca) {
-        int cant = 0;
-        NodoLibro lb = biblioteca.getLibros().obtenerElemento(libro.getTitulo(), libro.getEditorial());
-
-        if (lb != null) {
-
-            cant = lb.getCantSolicitudes();
-        }
-        return cant;
-    }
-
+    }    
 }

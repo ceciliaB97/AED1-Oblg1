@@ -240,7 +240,7 @@ public class ListaBibliotecas {
                 return fin;
             } else {
                 NodoBiblioteca aux = this.getInicioB();
-                while (aux.getSiguiente() != null) {
+                while (aux != null) {
                     if (aux.getNombre().equals(n)) {
                         return aux;
                     }
@@ -293,18 +293,41 @@ public class ListaBibliotecas {
 
     public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
-            for (NodoLibro i = b.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
-                for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
-                    //calificacion promedio
-                    if (i.getCalifPromedio() < j.getCalifPromedio()) {
-                        NodoLibro aux = j.getSiguiente();
-                        NodoLibro auxi = i;
-                        b.getLibros().eliminarElemento(i);
-                        j.setSiguiente(auxi);
-                        i.setSiguiente(aux);
+            b.getLibros().bubbleSortCalificacion();
+        }
+    }
+
+    public void OrdenarPorPromedioBiblioteca() {        
+        if (this.cantElementos() > 1){             
+            boolean cambio;
+            do {
+                NodoBiblioteca actual = this.getInicioB();
+                NodoBiblioteca anterior = null;
+                NodoBiblioteca siguiente = this.getInicioB().getSiguiente();
+                cambio = false;
+                while (siguiente != null) {
+                    if (actual.getCalificacionPromedioBiblioteca() < siguiente.getCalificacionPromedioBiblioteca()) {
+                        cambio = true;
+                        if (anterior != null) {
+                            NodoBiblioteca sig = siguiente.getSiguiente();
+                            anterior.setSiguiente(siguiente);
+                            siguiente.setSiguiente(actual);
+                            actual.setSiguiente(sig);
+                        } else {
+                            NodoBiblioteca sig = siguiente.getSiguiente();
+                            this.setPrimero(siguiente);
+                            siguiente.setSiguiente(actual);
+                            actual.setSiguiente(sig);
+                        }
+                        anterior = siguiente;
+                        siguiente = actual.getSiguiente();
+                    } else {
+                        anterior = actual;
+                        actual = siguiente;
+                        siguiente = siguiente.getSiguiente();
                     }
                 }
-            }
+            } while (cambio);
         }
     }
 
@@ -328,9 +351,10 @@ public class ListaBibliotecas {
             }
 
         }
-        
+
         listaNueva.bubbleSort();
 
         return listaNueva;
     }
+
 }
