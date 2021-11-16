@@ -40,7 +40,11 @@ public class NodoLibro {
     }
 
     public int getCantSolicitudes() {
+<<<<<<< HEAD
        
+=======
+       //this.CantidadSolicitudes();
+>>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
         return cantSolicitudes;
     }
 
@@ -159,8 +163,27 @@ public class NodoLibro {
             }
 
             promedio = sumatoria / contador;
+<<<<<<< HEAD
         }
         return promedio;
     }
 
+=======
+        } 
+        return promedio;
+    }
+//    
+//    public void CantidadSolicitudes(){
+//        ListaReservas reservas = this.getReserva();
+//        ListaReservas esperas = this.getEspera();
+//        int cantSolicitudes2 = 0;
+//        if(!reservas.esVacia()){
+//            cantSolicitudes2 += reservas.getActual();
+//            if (!esperas.esVacia()) {
+//                cantSolicitudes2 += esperas.getActual();
+//            }
+//        }
+//      this.setCantSolicitudes(cantSolicitudes2);
+//    }
+>>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
 }

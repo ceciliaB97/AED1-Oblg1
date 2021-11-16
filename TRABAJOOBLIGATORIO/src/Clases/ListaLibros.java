@@ -334,7 +334,7 @@ public class ListaLibros {
             for (NodoLibro i = this.getInicioL(); i != null; i = i.getSiguiente()) {
                 for (NodoLibro j = i; j != null; j = j.getSiguiente()) {
                     //cantidad de solicitudes
-                    if (i.getCantSolicitudes()< j.getCantSolicitudes()) {
+                    if (i.getCantSolicitudes() < j.getCantSolicitudes()) {
                         NodoLibro aux = j.getSiguiente();
                         NodoLibro auxi = i;
                         this.eliminarElemento(i);
