@@ -547,7 +547,7 @@ public class Sistema {
         p.ver(o.RegistrarCalificacion("Algoritmos", "Editorial xxx", 5, "Bib ORT", "muy buena atencion").resultado, Retorno.Resultado.OK, "calificacion 5 algoritmos bib ort");
         p.ver(o.RegistrarCalificacion("Algoritmos", "Editorial xxx", 4, "Bib ORT", "atencion correcta").resultado, Retorno.Resultado.OK, "calificacion 4 algoritmos bib ort");
         p.ver(o.RegistrarCalificacion("Diseño", "Editorial xxx", 5, "Bib ORT", "Libro recomendable").resultado, Retorno.Resultado.OK, "calificacion 5 diseño bib ort");
-        p.ver(o.RegistrarCalificacion("Base de datos", "Editorial xxx", 3, "Bib ORT", "buena atencion").resultado, Retorno.Resultado.OK, "calificacion 3 base de datos bib ort");
+        p.ver(o.RegistrarCalificacion("Base de datos", "Editorial xxx", 3, "Bib ORT", "buena atencion").resultado, Retorno.Resultado.ERROR, "calificacion 3 base de datos bib ort");
         
         p.ver(o.RegistrarCalificacion("Programacion2", "Editorial xxx", 3, "Bib Nacional", "Libro aceptable").resultado, Retorno.Resultado.OK, "calificacion 3 algoritmos bib Nacional");
         p.ver(o.RegistrarCalificacion("Programacion3", "Editorial xxx", 2, "Bib Nacional", "No lo recomiendo").resultado, Retorno.Resultado.OK, "calificacion 2 algoritmos bib Nacional");
