@@ -317,21 +317,16 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno mostrarReservasBiblioteca() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        ListaLibros listalb = this.bibliotecaBase.LibrosMayorRanKing();
+        ListaLibros listalb = this.bibliotecaBase.LibrosMasSolicitados();
 
         int filas = 6;
 
-<<<<<<< HEAD
-=======
-        //for para cabezal
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
         for (int fil = 0; fil < filas; fil++) {// filas
-            NodoBiblioteca bibliotecaAux = this.bibliotecaBase.getInicioB();
             if (fil == 0) {// fila 0
 
                 System.out.print("reservas/bibliotecas");
 
-                for (NodoBiblioteca i = bibliotecaAux; i != null; i = i.getSiguiente()) {
+                for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i != null; i = i.getSiguiente()) {
                     System.out.print(" " + i.getNombre() + " ");
                 }
                 System.out.print("Total\n");
@@ -343,18 +338,9 @@ public class Obligatorio implements IObligatorio {
 
                     System.out.print(aux.getTitulo());
 
-<<<<<<< HEAD
                     for (NodoBiblioteca i = this.bibliotecaBase.getInicioB(); i != null; i = i.getSiguiente()) {
                         int reservaEnBiblioteca = cantSolicitudesLibroPorBiblioteca(aux, i);
 
-=======
-                    int reservaEnBiblioteca = 0;
-                    for (NodoBiblioteca i = bibliotecaAux; i != null; i = i.getSiguiente()) {
-                        NodoLibro auxLibro = i.getLibros().obtenerElemento(aux.getTitulo(), aux.getEditorial());
-                        if (auxLibro != null) {
-                            reservaEnBiblioteca = auxLibro.getCantSolicitudes();
-                        }
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
                         System.out.print("  R: " + reservaEnBiblioteca);
                     }
 
@@ -368,7 +354,6 @@ public class Obligatorio implements IObligatorio {
         }
 
         return ret;
-<<<<<<< HEAD
 
     }
 
@@ -384,10 +369,3 @@ public class Obligatorio implements IObligatorio {
     }
 
 }
-=======
-    }
-
-}
-
-//soy fernando probando
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30

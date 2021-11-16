@@ -13,15 +13,15 @@ public class Sistema {
 //        o.registrarBiblioteca("Biblioteca Libros");
 //        System.out.println(o.eliminarBiblioteca("Biblioteca Libros").resultado + " se elimino una biblioteca 1");
 //        System.out.println(o.listarLibros("Biblioteca Libros").resultado + " listar libros biblioteca no existente");
-<<<<<<< HEAD
+
 //        juegodeprueba(o, p);
-=======
+
 //     juegodeprueba(o, p);
 //       juegodeprueba1(o, p);
 //       juegodeprueba2(o, p);
-       juegodeprueba3(o, p);
+//       juegodeprueba3(o, p);
         
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
+
         o.crearSistemaReservas();
 //        System.out.println("************************************");
 //        o.registrarBiblioteca("Biblioteca Libros");
@@ -136,23 +136,23 @@ public class Sistema {
 //        o.listarEspera("Rutas del Uruguay", "Nuestro Pais", "Biblioteca de Canelones");
 //        o.listarEspera("Palabras interesantes", "Didacticos", "Biblioteca de Canelones");
 //        //
-<<<<<<< HEAD
+
         o.listarLibros("Biblioteca de Canelones");
         System.out.println("*******************");
 
 //        o.listarLibros("Biblioteca de Canelones");
 //        System.out.println("*******************");
 //
-=======
+// comente esto por qe da error
 
-            NodoBiblioteca auxBiblioteca = new NodoBiblioteca("auxBiblioteca");
-            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
-            o.bibliotecaBase.agregarInicio(auxBiblioteca);
-            if(!o.bibliotecaBase.LibrosMayorRanKing().esVacia()){
-                System.out.println("NO ESTA VACIA");
-            }
-            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
-            o.listarLibros("auxBiblioteca");
+//            NodoBiblioteca auxBiblioteca = new NodoBiblioteca("auxBiblioteca");
+//            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
+//            o.bibliotecaBase.agregarInicio(auxBiblioteca);
+//            if(!o.bibliotecaBase.LibrosMayorRanKing().esVacia()){
+//                System.out.println("NO ESTA VACIA");
+//            }
+//            auxBiblioteca.setLibros(o.bibliotecaBase.LibrosMayorRanKing());
+//            o.listarLibros("auxBiblioteca");
 
 
         System.out.println("*******************");
@@ -163,7 +163,7 @@ public class Sistema {
 //        System.out.println("*******************");
 //
 
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
+
         o.mostrarReservasBiblioteca();
         //o.mostrarReservasBiblioteca();
 //        System.out.println("Hasta acá todo ok");

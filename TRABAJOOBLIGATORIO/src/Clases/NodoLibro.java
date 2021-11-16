@@ -40,11 +40,8 @@ public class NodoLibro {
     }
 
     public int getCantSolicitudes() {
-<<<<<<< HEAD
-       
-=======
-       //this.CantidadSolicitudes();
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
+
+        //this.CantidadSolicitudes();
         return cantSolicitudes;
     }
 
@@ -163,15 +160,11 @@ public class NodoLibro {
             }
 
             promedio = sumatoria / contador;
-<<<<<<< HEAD
+
         }
         return promedio;
     }
 
-=======
-        } 
-        return promedio;
-    }
 //    
 //    public void CantidadSolicitudes(){
 //        ListaReservas reservas = this.getReserva();
@@ -185,5 +178,4 @@ public class NodoLibro {
 //        }
 //      this.setCantSolicitudes(cantSolicitudes2);
 //    }
->>>>>>> c2e0abb3bed58e840245ba492c5ac264da474d30
 }
