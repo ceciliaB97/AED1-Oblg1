@@ -18,12 +18,30 @@ public class NodoLibro {
     private String Titulo;
     private String Editorial;
     private int Ejemplares;
+
+    public int getSumatoriaPuntosLibro() {
+        return sumatoriaPuntosLibro;
+    }
+
+    public void setSumatoriaPuntosLibro(int sumatoriaPuntosLibro) {
+        this.sumatoriaPuntosLibro += sumatoriaPuntosLibro;
+    }
+
+    public int getCantCalificacionesLibro() {
+        return cantCalificacionesLibro;
+    }
+
+    public void setCantCalificacionesLibro() {
+        this.cantCalificacionesLibro++;
+    }
+    private int sumatoriaPuntosLibro;
+    private int cantCalificacionesLibro;
+    private double califPromedio;
+    private int cantSolicitudes;
     //listas de libro
     private ListaCalificaciones calificaciones;
     private ListaReservas reserva;
     private ListaReservas espera;
-    private double califPromedio;
-    private int cantSolicitudes;
 
     //constructor
     public NodoLibro(String Titulo, String Editorial, int Ejemplares) {
@@ -126,7 +144,10 @@ public class NodoLibro {
     }
 
     public void setCalifPromedio() {
-        this.califPromedio = EstablecerPromedioCalificacionesDeUnLibro();
+//        this.califPromedio = EstablecerPromedioCalificacionesDeUnLibro();
+
+        this.califPromedio = (double) this.getSumatoriaPuntosLibro() / this.getCantCalificacionesLibro();
+
     }
 
     public boolean EliminarReserva(NodoReserva reserva, NodoLibro libro) {
@@ -147,23 +168,23 @@ public class NodoLibro {
         return false;
     }
 
-    public double EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
-        double promedio = 0;
-        if (!this.getCalificaciones().esVacia()) {
-            int sumatoria = 0;
-            int contador = 0;
-            NodoCalificacion aux = this.getCalificaciones().getInicioC();
-            while (aux != null) {
-                sumatoria += aux.getCalificacion();
-                contador++;
-                aux = aux.getSiguiente();
-            }
-
-            promedio = (double)sumatoria / contador;
-
-        }
-        return promedio;
-    }
+//    public double EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
+//        double promedio = 0;
+//        if (!this.getCalificaciones().esVacia()) {
+//            int sumatoria = 0;
+//            int contador = 0;
+//            NodoCalificacion aux = this.getCalificaciones().getInicioC();
+//            while (aux != null) {
+//                sumatoria += aux.getCalificacion();
+//                contador++;
+//                aux = aux.getSiguiente();
+//            }
+//
+//            promedio = (double) sumatoria / contador;
+//
+//        }
+//        return promedio;
+//    }
 
 //    
 //    public void CantidadSolicitudes(){

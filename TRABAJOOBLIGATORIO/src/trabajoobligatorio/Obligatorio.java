@@ -132,6 +132,8 @@ public class Obligatorio implements IObligatorio {
                 if (calificacion >= 0 && calificacion <= 5) {
                     //agregar calificacion al final
                     liBuscado.getCalificaciones().agregarInicio(calificacion, comentario);
+                    liBuscado.setCantCalificacionesLibro();
+                    liBuscado.setSumatoriaPuntosLibro(calificacion);
                     //actualizar la calificacion promedio
                     liBuscado.setCalifPromedio();
                     biBuscada.setCantCalificaciones();
