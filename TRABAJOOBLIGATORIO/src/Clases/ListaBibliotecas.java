@@ -301,29 +301,29 @@ public class ListaBibliotecas {
         if (this.cantElementos() > 1){             
             boolean cambio;
             do {
-                NodoBiblioteca actual = this.getInicioB();
+                NodoBiblioteca actualB = this.getInicioB();
                 NodoBiblioteca anterior = null;
                 NodoBiblioteca siguiente = this.getInicioB().getSiguiente();
                 cambio = false;
                 while (siguiente != null) {
-                    if (actual.getCalificacionPromedioBiblioteca() < siguiente.getCalificacionPromedioBiblioteca()) {
+                    if (actualB.getCalificacionPromedioBiblioteca() < siguiente.getCalificacionPromedioBiblioteca()) {
                         cambio = true;
                         if (anterior != null) {
                             NodoBiblioteca sig = siguiente.getSiguiente();
                             anterior.setSiguiente(siguiente);
-                            siguiente.setSiguiente(actual);
-                            actual.setSiguiente(sig);
+                            siguiente.setSiguiente(actualB);
+                            actualB.setSiguiente(sig);
                         } else {
                             NodoBiblioteca sig = siguiente.getSiguiente();
                             this.setPrimero(siguiente);
-                            siguiente.setSiguiente(actual);
-                            actual.setSiguiente(sig);
+                            siguiente.setSiguiente(actualB);
+                            actualB.setSiguiente(sig);
                         }
                         anterior = siguiente;
-                        siguiente = actual.getSiguiente();
+                        siguiente = actualB.getSiguiente();
                     } else {
-                        anterior = actual;
-                        actual = siguiente;
+                        anterior = actualB;
+                        actualB = siguiente;
                         siguiente = siguiente.getSiguiente();
                     }
                 }
