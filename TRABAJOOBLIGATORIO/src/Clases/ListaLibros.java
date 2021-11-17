@@ -2,7 +2,7 @@ package Clases;
 
 import java.util.HashSet;
 
-public class ListaLibros {
+public class ListaLibros implements IListaLibros{
 
     private NodoLibro inicio;
     private NodoLibro fin;

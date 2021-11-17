@@ -1,6 +1,6 @@
 package Clases;
 
-public class ListaReservas{
+public class ListaReservas implements IListaReservas{
 
 //    private int cliente;
 //    private int numero;

@@ -1,6 +1,6 @@
 package Clases;
 
-public class ListaCalificaciones {
+public class ListaCalificaciones implements IListaCalificaciones{
 
     //propiedades de lista
     private NodoCalificacion inicio;

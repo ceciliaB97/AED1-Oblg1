@@ -1,6 +1,6 @@
 package Clases;
 
-public class ListaBibliotecas {
+public class ListaBibliotecas implements IListaBibliotecas {
 
 //    atributos de lista<biblioteca>
     private NodoBiblioteca inicio;
