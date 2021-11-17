@@ -22,7 +22,7 @@ public class NodoLibro {
     private ListaCalificaciones calificaciones;
     private ListaReservas reserva;
     private ListaReservas espera;
-    private int califPromedio;
+    private double califPromedio;
     private int cantSolicitudes;
 
     //constructor
@@ -121,7 +121,7 @@ public class NodoLibro {
         this.calificaciones = calificaciones;
     }
 
-    public int getCalifPromedio() {
+    public double getCalifPromedio() {
         return califPromedio;
     }
 
@@ -147,8 +147,8 @@ public class NodoLibro {
         return false;
     }
 
-    public int EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
-        int promedio = 0;
+    public double EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
+        double promedio = 0;
         if (!this.getCalificaciones().esVacia()) {
             int sumatoria = 0;
             int contador = 0;
@@ -159,7 +159,7 @@ public class NodoLibro {
                 aux = aux.getSiguiente();
             }
 
-            promedio = sumatoria / contador;
+            promedio = (double)sumatoria / contador;
 
         }
         return promedio;
