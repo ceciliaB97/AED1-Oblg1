@@ -131,26 +131,22 @@ public class ListaCalificaciones {
         }
     }
 
-    public void mostrarREC() {
+    public void mostrarREC() {        
         if (!this.esVacia()) {
-            mostrarREC2(this.getInicioC(), 1);
+           mostrarREC2(this.getInicioC(), 1);
         } else {
             System.out.println("La lista no tiene bibliotecas");
-        }
+        }        
     }
 
     public void mostrarREC2(NodoCalificacion n, int cont
     ) {
         if (n.getSiguiente() == null) {
-            System.out.println(cont + "- <" + n.getComentario() + ">");
-            //this.libros.mostrarREC(); - titulo editorial y calificacion
-
+            System.out.println(cont + "- <" + n.getComentario() + ">");            
         } else {
-            System.out.println(cont + "- <" + n.getComentario() + ">");
-            //this.libros.mostrarREC(); - titulo editorial y calificacion
+            System.out.println(cont + "- <" + n.getComentario() + ">");            
             mostrarREC2(n.getSiguiente(), ++cont);
-
-        }
+        }         
     }
 
     public NodoCalificacion obtenerElementoAnterior(NodoCalificacion n) {

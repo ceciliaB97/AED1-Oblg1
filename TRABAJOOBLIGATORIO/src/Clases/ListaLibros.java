@@ -410,5 +410,16 @@ public class ListaLibros {
         }
         return null;
     }
+    
+    public ListaCalificaciones ListaComentarios(){
+        ListaCalificaciones auxLista = new ListaCalificaciones(0);
+        NodoCalificacion aux = this.getInicioL().getCalificaciones().getInicioC();
+        for(NodoLibro i = this.getInicioL(); i != null; i = i.getSiguiente()){
+            for(NodoCalificacion j = aux; j != null; j = j.getSiguiente()){                
+                auxLista.agregarInicio(j.getCalificacion(), j.getComentario());
+            }
+        }
+        return auxLista;
+    }
 
 }

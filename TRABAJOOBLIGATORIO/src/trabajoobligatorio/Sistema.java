@@ -29,7 +29,6 @@ public class Sistema {
 
         //Funcionalidad 2.2
         //Se pone al final del sistema de pruebas 
-        
         //Funcionalidad 2.3
         //Resultados Ok
         System.out.println("Funcionalidad 2.3 - OK (Se crean 5 Bibliotecas)");
@@ -288,10 +287,10 @@ public class Sistema {
         System.out.println("Funcionalidad 2.13 - Error");
         ret = o.listarComentarios("No existo");
         p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
-        
+
         //Funcionalidad 2.14
         System.out.println("Funcionalidad 2.14 - Ok");
-        ret = o.listarEspera("El Quijote", "Cervantes","Biblioteca Nacional");
+        ret = o.listarEspera("El Quijote", "Cervantes", "Biblioteca Nacional");
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
         ret = o.listarEspera("El ombú", "Alfaguara", "Biblioteca de Montevideo");
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
@@ -299,13 +298,22 @@ public class Sistema {
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
         //Error
         System.out.println("Funcionalidad 2.14 - Error (libro no existe)");
-        ret = o.listarEspera("No existe", "No existe","Biblioteca Nacional");
+        ret = o.listarEspera("No existe", "No existe", "Biblioteca Nacional");
         p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
         System.out.println("Funcionalidad 2.14 - Error (biblioteca no existe)");
-        ret = o.listarEspera("No existe", "No existe","No existe");
+        ret = o.listarEspera("No existe", "No existe", "No existe");
         p.ver(ret.resultado, Retorno.Resultado.ERROR, ret.valorString);
-        
-        
+
+        //Funcionalidad 2.14
+        System.out.println("Funcionalidad 2.14 - Ok");
+        ret = o.mostrarReservasBiblioteca();
+        p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
+
+        //Funcionalidad 2.2
+        System.out.println("Funcionalidad 2.2 - Ok");
+        ret = o.destruirSistemaReservas();
+        p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
+
         p.imprimirResultadosPrueba();
     }
 

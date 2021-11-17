@@ -339,12 +339,12 @@ public class ListaBibliotecas {
             if (!aux.getLibros().esVacia()) {
                 for (NodoLibro i = aux.getLibros().getInicioL(); i != null; i = i.getSiguiente()) {
                     if (!listaNueva.buscarElemento(i)) {// si no esta en la lista nueva lo agrego
-
                         NodoLibro auxL = new NodoLibro(i.getTitulo(), i.getEditorial(), i.getEjemplares());
                         auxL.setCantSolicitudes(i.getCantSolicitudes());
                         listaNueva.agregarInicio(auxL);
                     } else {
-                        listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial()).setCantSolicitudes(listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial()).getCantSolicitudes() + 1);
+                        NodoLibro auxElemento =  listaNueva.obtenerElemento(i.getTitulo(), i.getEditorial());
+                        auxElemento.setCantSolicitudes(i.getCantSolicitudes() + auxElemento.getCantSolicitudes());
                     }
                 }
                 aux = aux.getSiguiente();

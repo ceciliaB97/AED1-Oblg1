@@ -83,7 +83,6 @@ public class NodoBiblioteca {
         NodoLibro lb = this.getLibros().obtenerElemento(libro.getTitulo(), libro.getEditorial());
 
         if (lb != null) {
-
             cant = lb.getCantSolicitudes();
         }
         return cant;
