@@ -7,7 +7,7 @@ public class Sistema {
     public static void main(String[] args) {
         Prueba p = new Prueba();
         Obligatorio o = new Obligatorio();
-        //Juegos de prueba 
+        //Juegos de Prueba
         juegodepruebaObligatorio(o, p); //Jugos de pruebas creado por nosotros 
 //        juegodeprueba(o, p);
 //        juegodeprueba1(o, p);
