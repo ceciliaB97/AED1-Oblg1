@@ -134,8 +134,10 @@ public class Obligatorio implements IObligatorio {
                     liBuscado.getCalificaciones().agregarInicio(calificacion, comentario);
                     //actualizar la calificacion promedio
                     liBuscado.setCalifPromedio();
-                    biBuscada.EstablecerPromedioCalificacionesDeUnaBiblioteca();
-                    this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
+                    biBuscada.setCantCalificaciones();
+                    biBuscada.setTotalPuntos(calificacion);
+                    biBuscada.setCalificacionPromedioBiblioteca();
+
                     ret = new Retorno(Retorno.Resultado.OK);
                     ret.valorString = "Se agregó la calificación al libro";
                 } else {
@@ -211,8 +213,8 @@ public class Obligatorio implements IObligatorio {
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
                     encontrada = true;
-                    auxBiblioteca.EstablecerPromedioCalificacionesDeUnaBiblioteca();
-                    this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
+
+//               
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
                     ret.valorString = "Reserva cancelada con éxito";
                 }
@@ -245,7 +247,7 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
-            auxBiblioteca.PromedioGeneralLibros();
+
             //metodo selection
             //this.bibliotecaBase.OrdenarLibrosCalificacionPromedioPorBiblioteca(auxBiblioteca);
             //metodo bubble
@@ -265,6 +267,7 @@ public class Obligatorio implements IObligatorio {
     public Retorno listarBibliotecaRanking() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
         System.out.println("Bibliotecas ordenadas por ranking");
+        this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
         NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
         while (aux != null) {
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
@@ -283,10 +286,10 @@ public class Obligatorio implements IObligatorio {
     public Retorno listarComentarios(String biblioteca) {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxB = this.bibliotecaBase.obtenerElemento(biblioteca);
-        int cont = 1;
+
         if (auxB != null) {
             ListaCalificaciones listaComentario = auxB.getLibros().ListaComentarios();
-            NodoCalificacion auxCalif = listaComentario.getInicioC();
+
             listaComentario.mostrarREC();
             ret.resultado = Retorno.Resultado.OK;
         } else {

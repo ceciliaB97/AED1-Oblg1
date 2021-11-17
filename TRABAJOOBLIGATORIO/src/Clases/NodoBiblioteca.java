@@ -1,17 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 
 public class NodoBiblioteca {
 
     //ESTO ES UNA LISTA
     private String nombre;
-    private int CalificacionPromedioBiblioteca;
+    private double CalificacionPromedioBiblioteca;
+    private int totalPuntos;
+    private int cantCalificaciones;
     private ListaLibros libros;
     NodoBiblioteca siguiente;
+
+    public int getTotalPuntos() {
+        return this.totalPuntos;
+    }
+
+    public void setTotalPuntos(int totalPuntos) {
+        this.totalPuntos += totalPuntos;
+    }
+
+    public int getCantCalificaciones() {
+        return this.cantCalificaciones;
+    }
+
+    public void setCantCalificaciones() {
+        this.cantCalificaciones ++;
+    }
 
     public String getNombre() {
         return nombre;
@@ -37,20 +50,23 @@ public class NodoBiblioteca {
         this.libros = libros;
     }
 
+    public double getCalificacionPromedioBiblioteca() {
+
+        return this.CalificacionPromedioBiblioteca;
+    }
+
+    public void setCalificacionPromedioBiblioteca() {
+
+     CalificacionPromedioBiblioteca = (double)this.getTotalPuntos()/ this.getCantCalificaciones();
+
+    }
+
     //constructor
     public NodoBiblioteca(String Nombre) {
         this.nombre = Nombre;
         this.libros = new ListaLibros(0);
         this.siguiente = null;
         this.CalificacionPromedioBiblioteca = 0;
-    }
-
-    public int getCalificacionPromedioBiblioteca() {
-        return CalificacionPromedioBiblioteca;
-    }
-
-    public void setCalificacionPromedioBiblioteca(int Calificacion) {
-        this.CalificacionPromedioBiblioteca = Calificacion;
     }
 
     public boolean tieneReservas() {
@@ -68,41 +84,39 @@ public class NodoBiblioteca {
         return encontre;
     }
 
-    public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca
-        if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
-            for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
-                i.EstablecerPromedioCalificacionesDeUnLibro();// promedio calificaciones de cada libro
-            }
-        }
-    }
-
-   
-
+// se borra
+//    public void PromedioGeneralLibros() {// promedio general de libros de la biblioteca
+//        if (!this.getLibros().esVacia()) {//La condicion falla inexplicablemente 
+//            for (NodoLibro i = this.getLibros().getInicioL(); i.getSiguiente() != null; i = i.getSiguiente()) {
+//                i.EstablecerPromedioCalificacionesDeUnLibro();// promedio calificaciones de cada libro
+//            }
+//        }
+//    }
     public int cantSolicitudesLibroPorBiblioteca(NodoLibro libro) {
         int cant = 0;
         NodoLibro lb = this.getLibros().obtenerElemento(libro.getTitulo(), libro.getEditorial());
 
         if (lb != null) {
+
             cant = lb.getCantSolicitudes();
         }
         return cant;
     }
-    
-     public void EstablecerPromedioCalificacionesDeUnaBiblioteca() {
-        int promedio = 0;
-        if (!this.getLibros().esVacia()) {
-            int sumatoria = 0;
-            int contador = 0;
-            NodoLibro aux = this.getLibros().getInicioL();
-            while (aux != null) {
-                sumatoria += aux.getCalifPromedio();
-                contador++;
-                aux = aux.getSiguiente();
-            }
-            promedio = sumatoria / contador;
-        }
-        this.setCalificacionPromedioBiblioteca(promedio);
-    }
-    
-    
+// se borra
+//     public void EstablecerPromedioCalificacionesDeUnaBiblioteca() {
+//        int promedio = 0;
+//        if (!this.getLibros().esVacia()) {
+//            int sumatoria = 0;
+//            int contador = 0;
+//            NodoLibro aux = this.getLibros().getInicioL();
+//            while (aux != null) {
+//                sumatoria += aux.getCalifPromedio();
+//                contador++;
+//                aux = aux.getSiguiente();
+//            }
+//            promedio = sumatoria / contador;
+//        }
+//        this.setCalificacionPromedioBiblioteca(promedio);
+//    }
+
 }

@@ -398,18 +398,7 @@ public class ListaLibros {
         }
     }
 
-    public NodoLibro ObtenerLibroPorElemento(int i) {
-        int contador = 0;
-        NodoLibro aux = this.getInicioL();
-        while (aux != null) {
-            if (contador == i) {
-                return aux;
-            }
-            aux = aux.getSiguiente();
-            contador++;
-        }
-        return null;
-    }
+
     
     public ListaCalificaciones ListaComentarios(){
         ListaCalificaciones auxLista = new ListaCalificaciones(0);

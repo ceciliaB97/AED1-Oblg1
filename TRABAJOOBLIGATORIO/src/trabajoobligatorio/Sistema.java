@@ -58,7 +58,7 @@ public class Sistema {
         //Funcionalidad 2.5
         System.out.println("Funcionalidad 2.5 - Ok");
         //Biblioteca nacional 3 libros
-        ret = o.registrarLibro("El Quijote", "Cervantes", "Biblioteca Nacional", 5);
+        ret = o.registrarLibro("El Quijote", "Cervantes", "Biblioteca Nacional", 3);
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
         ret = o.registrarLibro("Cuentos de la Selva", "Quiroga", "Biblioteca Nacional", 4);
         p.ver(ret.resultado, Retorno.Resultado.OK, ret.valorString);
