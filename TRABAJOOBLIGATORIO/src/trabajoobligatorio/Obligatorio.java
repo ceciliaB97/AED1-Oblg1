@@ -207,15 +207,18 @@ public class Obligatorio implements IObligatorio {
             boolean encontrada = false;
 //            si la biblioteca existe, se corrobora
             NodoLibro auxLibro = auxBiblioteca.getLibros().getInicioL();
+
             while (auxLibro != null && !encontrada) {
                 NodoReserva rBuscada = auxLibro.getReserva().obtenerElemento(cliente, numero);
-                ret.valorString = "No se encontró la reserva";
-                if (rBuscada != null) {
+                NodoReserva rBuscadaEspera = auxLibro.getEspera().obtenerElemento(cliente, numero);
+
+                if (rBuscada != null || rBuscadaEspera != null) {
                     //EliminarReserva
+                    auxLibro.EliminarReserva(rBuscadaEspera, auxLibro);
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
                     encontrada = true;
-
+                    ret.valorString = "No se encontró la reserva";
 //               
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
                     ret.valorString = "Reserva cancelada con éxito";

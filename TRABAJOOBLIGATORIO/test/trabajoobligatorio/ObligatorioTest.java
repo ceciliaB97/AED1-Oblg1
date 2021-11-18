@@ -188,15 +188,15 @@ public class ObligatorioTest {
         assertEquals(expResult, result);
 
         System.out.println("registrarBiblioteca");
-        String Biblioteca = "Biblioteca";
-        Retorno.Resultado result1 = instance.registrarBiblioteca(Biblioteca).resultado;
+    String biblioteca = "Biblioteca";
+        Retorno.Resultado result1 = instance.registrarBiblioteca(biblioteca).resultado;
         assertEquals(expResult, result1);
 
         System.out.println("registrarLibro");
         String titulo = "Libro";
         String editorial = "Editorial";
-        String biblioteca = "Biblioteca";
-        int ejemplares = 0;
+        
+        int ejemplares = 1;
         Retorno.Resultado result3 = instance.registrarLibro(titulo, editorial, biblioteca, ejemplares).resultado;
         assertEquals(expResult, result3);
         
@@ -212,6 +212,8 @@ public class ObligatorioTest {
         String fecha = "01/01/2021";
         Retorno.Resultado result6 = instance.realizarReserva(cliente, numero, biblioteca, titulo, editorial, fecha).resultado;
         assertEquals(expResult, result6);
+        Retorno.Resultado resultX = instance.realizarReserva(cliente, 2, biblioteca, titulo, editorial, fecha).resultado;
+        assertEquals(expResult, resultX);
 
         System.out.println("listarLibros");
         Retorno.Resultado result8 = instance.listarLibros(biblioteca).resultado;
@@ -238,7 +240,7 @@ public class ObligatorioTest {
         assertEquals(expResult, result13);
 
         System.out.println("cancelarReserva");
-        Retorno.Resultado result7 = instance.cancelarReserva(cliente, numero, biblioteca).resultado;
+        Retorno.Resultado result7 = instance.cancelarReserva(cliente, 2, biblioteca).resultado;
         assertEquals(expResult, result7);
 
         System.out.println("eliminarLibro");
@@ -246,7 +248,7 @@ public class ObligatorioTest {
         assertEquals(expResult, result4);
 
         System.out.println("eliminarBiblioteca");
-        Retorno.Resultado result2 = instance.eliminarBiblioteca(Biblioteca).resultado;
+        Retorno.Resultado result2 = instance.eliminarBiblioteca(biblioteca).resultado;
         assertEquals(expResult, result2);
 
         System.out.println("destruirSistemaReservas");
