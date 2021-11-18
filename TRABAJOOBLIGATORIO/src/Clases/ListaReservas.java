@@ -205,7 +205,7 @@ public class ListaReservas implements IListaReservas{
         if(!this.esVacia()){
            mostrarREC2(this.getPrimero(), 1); 
         }else{
-            System.out.println("No hay reservas en la lista");
+            System.out.println("No existen reservas pendientes");
         }  
     }
 

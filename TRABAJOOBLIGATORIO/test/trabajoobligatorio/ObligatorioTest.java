@@ -141,7 +141,7 @@ public class ObligatorioTest {
     }
 //
 
-    @Test// falta mostrar mensaje biblioteca sin libros
+    @Test
     public void testListarLibros() {
         System.out.println("listarLibros");
         instance.crearSistemaReservas();
@@ -171,8 +171,8 @@ public class ObligatorioTest {
     public void testListarBibliotecaRanking() {
         System.out.println("listarBibliotecaRanking");
         instance.crearSistemaReservas();
-        instance.registrarBiblioteca(biblioteca);
-
+//        instance.registrarBiblioteca(biblioteca);
+//        instance.registrarLibro(tituloValido, editorial, biblioteca, ejemplares);
         test = instance.listarBibliotecaRanking().resultado;
         assertEquals(Ok, test);
         ;
@@ -185,7 +185,7 @@ public class ObligatorioTest {
         System.out.println("listarComentarios");
         instance.crearSistemaReservas();
         instance.registrarBiblioteca(biblioteca);
-
+        instance.registrarLibro(tituloValido, editorial, biblioteca, ejemplares);
         test = instance.listarComentarios(biblioteca).resultado;
         assertEquals(Ok, test);
         test = instance.listarComentarios(this.bibliotecaNoExiste).resultado;
@@ -195,11 +195,12 @@ public class ObligatorioTest {
 //
 
     @Test
-    // revisar prueba fallida
+//     revisar prueba fallida
     public void testListarEspera() {
         System.out.println("listarEspera");
         instance.crearSistemaReservas();
         instance.registrarBiblioteca(biblioteca);
+        instance.registrarLibro(tituloValido, editorial, biblioteca, ejemplares);
         test = instance.listarEspera(tituloValido, editorial, biblioteca).resultado;
         assertEquals(Ok, test);
         test = instance.listarEspera(tituloNoValido, editorial, biblioteca).resultado;
@@ -208,17 +209,18 @@ public class ObligatorioTest {
     }
 //
 //
-//    @Test
-    // me mantiene en un bucle prueben en sus maquinas
-//    public void testMostrarReservasBiblioteca() {
-//        System.out.println("mostrarReservasBiblioteca");
-//
-//        instance.crearSistemaReservas();
-//        instance.registrarBiblioteca(biblioteca);
-//        test = instance.mostrarReservasBiblioteca().resultado;
-//        assertEquals(Ok, test);
-//
-//    }
+    @Test
+//     me mantiene en un bucle prueben en sus maquinas
+    public void testMostrarReservasBiblioteca() {
+        System.out.println("mostrarReservasBiblioteca");
+
+        instance.crearSistemaReservas();
+        instance.registrarBiblioteca(biblioteca);
+         instance.registrarLibro(tituloValido, editorial, biblioteca, ejemplares);
+        test = instance.mostrarReservasBiblioteca().resultado;
+        assertEquals(Ok, test);
+
+    }
 
     @Test
     public void testEliminarLibro() {

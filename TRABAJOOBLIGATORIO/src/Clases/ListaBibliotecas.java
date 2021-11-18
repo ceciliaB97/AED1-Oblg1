@@ -154,6 +154,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     public void mostrarREC2(NodoBiblioteca n, int cont
     ) {
+        
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getNombre() + ">");
             //this.libros.mostrarREC(); - titulo editorial y calificacion
@@ -164,11 +165,17 @@ public class ListaBibliotecas implements IListaBibliotecas {
             mostrarREC2(n.getSiguiente(), ++cont);
 
         }
+       
     }
 
     public void mostrarRECLibro(NodoBiblioteca b) {
+        
         System.out.println("Libros de la biblioteca: " + b.getNombre());
+        if(!b.getLibros().esVacia()){
         b.getLibros().mostrarREC();
+         }else{
+            System.out.println(" No tiene Libros");
+        }
     }
 
     public NodoBiblioteca obtenerElementoAnterior(String n) {

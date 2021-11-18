@@ -22,7 +22,7 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno destruirSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        bibliotecaBase=null;
+        bibliotecaBase = null;
         ret.valorString = "Se ha destruido el sistema de reservas";
         return ret;
     }
@@ -216,14 +216,14 @@ public class Obligatorio implements IObligatorio {
                     //EliminarReserva                    
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
-                    encontrada = true;                                  
+                    encontrada = true;
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
                     ret.valorString = "Reserva cancelada con éxito";
-                }else if(rBuscadaEspera != null){
+                } else if (rBuscadaEspera != null) {
                     //EliminarEspera
                     auxLibro.EliminarReserva(rBuscadaEspera, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
-                    encontrada = true;                                 
+                    encontrada = true;
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
                     ret.valorString = "Reserva cancelada con éxito";
                 }
@@ -241,6 +241,7 @@ public class Obligatorio implements IObligatorio {
         Retorno ret = new Retorno(Retorno.Resultado.ERROR);
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
+
             this.bibliotecaBase.mostrarRECLibro(auxBiblioteca);
             ret.resultado = Retorno.Resultado.OK;
             ret.valorString = "Listado exitoso";
@@ -257,8 +258,6 @@ public class Obligatorio implements IObligatorio {
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
 
-                     
-           
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(auxBiblioteca);
             System.out.println("Listar libros de la biblioteca: " + biblioteca);
             auxBiblioteca.getLibros().mostrarRECExtenso();
@@ -277,15 +276,19 @@ public class Obligatorio implements IObligatorio {
         System.out.println("Bibliotecas ordenadas por ranking");
         this.bibliotecaBase.OrdenarPorPromedioBiblioteca();
         NodoBiblioteca aux = this.bibliotecaBase.getInicioB();
-        while (aux != null) {
-            this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
-            System.out.println("Biblioteca: " + aux.getNombre());
-            if (aux.getLibros() != null) {
-                aux.getLibros().mostrarRECExtenso();
-            } else {
-                System.out.println("La biblioteca no tiene libros");
+        if (aux != null) {
+            while (aux != null) {
+                this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(aux);
+                System.out.println("Biblioteca: " + aux.getNombre());
+                if (aux.getLibros() != null) {
+                    aux.getLibros().mostrarRECExtenso();
+                } else {
+                    ret.valorString = "La biblioteca no tiene libros";
+                }
+                aux = aux.getSiguiente();
             }
-            aux = aux.getSiguiente();
+        } else {
+            ret.valorString = "No hay registros de libros en el sistema";
         }
         return ret;
     }

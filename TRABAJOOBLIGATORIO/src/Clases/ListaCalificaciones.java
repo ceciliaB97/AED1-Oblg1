@@ -135,7 +135,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         if (!this.esVacia()) {
            mostrarREC2(this.getInicioC(), 1);
         } else {
-            System.out.println("La lista no tiene bibliotecas");
+            System.out.println("La lista esta vacia");
         }        
     }
 
