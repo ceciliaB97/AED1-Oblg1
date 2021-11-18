@@ -8,12 +8,13 @@ public class Sistema {
         Prueba p = new Prueba();
         Obligatorio o = new Obligatorio();
         //Juegos de Prueba
+
         juegodepruebaObligatorio(o, p); //Jugos de pruebas creado por nosotros 
-//        juegodeprueba(o, p);
+////        juegodeprueba(o, p);
 //        juegodeprueba1(o, p);
 //        juegodeprueba2(o, p);
 //        juegodeprueba3(o, p);
-
+     
 //     
     }
 

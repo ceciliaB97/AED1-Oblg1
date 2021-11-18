@@ -22,7 +22,7 @@ public class Obligatorio implements IObligatorio {
     @Override
     public Retorno destruirSistemaReservas() {
         Retorno ret = new Retorno(Retorno.Resultado.OK);
-        bibliotecaBase.vaciar();
+        bibliotecaBase=null;
         ret.valorString = "Se ha destruido el sistema de reservas";
         return ret;
     }
@@ -257,9 +257,8 @@ public class Obligatorio implements IObligatorio {
         NodoBiblioteca auxBiblioteca = this.bibliotecaBase.obtenerElemento(biblioteca);
         if (auxBiblioteca != null) {
 
-            //metodo selection
-            //this.bibliotecaBase.OrdenarLibrosCalificacionPromedioPorBiblioteca(auxBiblioteca);
-            //metodo bubble
+                     
+           
             this.bibliotecaBase.OrdenarLibrosPorCalifPromedioUnaBiblioteca(auxBiblioteca);
             System.out.println("Listar libros de la biblioteca: " + biblioteca);
             auxBiblioteca.getLibros().mostrarRECExtenso();
@@ -327,7 +326,6 @@ public class Obligatorio implements IObligatorio {
             }
         } else {
             ret.valorString = "Biblioteca no existe";
-            ret.resultado = Retorno.Resultado.ERROR;
         }
         return ret;
     }
