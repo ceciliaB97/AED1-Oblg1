@@ -306,7 +306,7 @@ public class ListaLibros implements IListaLibros{
     }
 
     //auxiliar
-        @Override
+    @Override
     public boolean eliminarElementoDesdeNodo(NodoLibro n, NodoLibro nodoDesde) {
         if (n.getTitulo().equals(getFinL().getTitulo())) {
             borrarFin();
