@@ -179,7 +179,7 @@ public class ObligatorioTest {
 //        assertEquals(expResult, result);        
 //    }
     @Test
-    public void TestObligatorio() {
+    public void TestObligatorioOk() {
 
         System.out.println("crearSistemaReservas");
         Obligatorio instance = new Obligatorio();
@@ -254,6 +254,114 @@ public class ObligatorioTest {
         System.out.println("destruirSistemaReservas");
         Retorno.Resultado result14 = instance.destruirSistemaReservas().resultado;
         assertEquals(expResult, result14);
+
+    }
+    
+    @Test
+    public void TestObligatorioError() {
+
+        //Variables
+        Obligatorio instance = new Obligatorio();
+        Retorno.Resultado expResult = Retorno.Resultado.OK;
+        Retorno.Resultado expResultError = Retorno.Resultado.ERROR;
+        String biblioteca = "Biblioteca";
+        String bibliotecaE = "Noexisto";
+        String titulo = "Libro";
+        String tituloE = "Noexisto";
+        String editorial = "Editorial";        
+        int ejemplares = 1;
+        int cliente = 1;
+        int numero = 1;
+        String fecha = "01/01/2021";
+        int calificacion = 3;
+        int calificacionE = 33;
+        
+        System.out.println("crearSistemaReservas");        
+        Retorno.Resultado result = instance.crearSistemaReservas().resultado;
+        assertEquals(expResult, result);
+        
+        
+        System.out.println("registrarBiblioteca");    
+        Retorno.Resultado result1 = instance.registrarBiblioteca(biblioteca).resultado;
+        assertEquals(expResult, result1);
+        //Error
+        Retorno.Resultado result11 = instance.registrarBiblioteca(biblioteca).resultado;
+        assertEquals(expResultError, result11);
+
+        System.out.println("registrarLibro");     
+        Retorno.Resultado result3 = instance.registrarLibro(titulo, editorial, biblioteca, ejemplares).resultado;
+        assertEquals(expResult, result3);
+        //Error ya esta el libro
+        Retorno.Resultado result33 = instance.registrarLibro(titulo, editorial, biblioteca, ejemplares).resultado;
+        assertEquals(expResultError, result33);
+        //Error no existe biblioteca
+        Retorno.Resultado result333 = instance.registrarLibro(titulo, editorial, bibliotecaE, ejemplares).resultado;
+        assertEquals(expResultError, result333);
+        
+        System.out.println("RegistrarCalificacion");        
+        String comentario = "Comentario";
+        Retorno.Resultado result5 = instance.RegistrarCalificacion(titulo, editorial, calificacion, biblioteca, comentario).resultado;
+        assertEquals(expResult, result5);
+        //Error no existe libro
+        Retorno.Resultado result55 = instance.RegistrarCalificacion(tituloE, editorial, calificacion, biblioteca, comentario).resultado;
+        assertEquals(expResultError, result55);
+        //Error calificación fuera de rango 
+        Retorno.Resultado result555 = instance.RegistrarCalificacion(titulo, editorial, calificacionE, biblioteca, comentario).resultado;
+        assertEquals(expResultError, result555);
+
+        System.out.println("realizarReserva");        
+        Retorno.Resultado result6 = instance.realizarReserva(cliente, numero, biblioteca, titulo, editorial, fecha).resultado;
+        assertEquals(expResult, result6);
+        Retorno.Resultado resultX = instance.realizarReserva(cliente, 2, biblioteca, titulo, editorial, fecha).resultado;
+        assertEquals(expResult, resultX);
+        //Error libro inexistente
+        Retorno.Resultado result66 = instance.realizarReserva(cliente, 2, biblioteca, tituloE, editorial, fecha).resultado;
+        assertEquals(expResultError, result66);
+
+        System.out.println("listarLibros");
+        Retorno.Resultado result8 = instance.listarLibros(biblioteca).resultado;
+        assertEquals(expResult, result8);
+        //Biblioteca no existe
+        Retorno.Resultado result88 = instance.listarLibros(bibliotecaE).resultado;
+        assertEquals(expResultError, result88);      
+
+        System.out.println("listarComentarios");
+        Retorno.Resultado result111 = instance.listarComentarios(biblioteca).resultado;
+        assertEquals(expResult, result111);
+        //Biblioteca no existe
+        Retorno.Resultado result1111 = instance.listarComentarios(bibliotecaE).resultado;
+        assertEquals(expResultError, result1111);
+
+        System.out.println("listarEspera");
+        Retorno.Resultado result12 = instance.listarEspera(titulo, editorial, biblioteca).resultado;
+        assertEquals(expResult, result12);
+        //Libro no existe
+        Retorno.Resultado result122 = instance.listarEspera(tituloE, editorial, biblioteca).resultado;
+        assertEquals(expResultError, result122);       
+
+        System.out.println("cancelarReserva");
+        Retorno.Resultado result7 = instance.cancelarReserva(cliente, 2, biblioteca).resultado;
+        assertEquals(expResult, result7);
+        //No existe biblioteca
+        Retorno.Resultado result77 = instance.cancelarReserva(cliente, 2, bibliotecaE).resultado;
+        assertEquals(expResultError, result77);
+        //No existe numero
+        Retorno.Resultado result777 = instance.cancelarReserva(cliente, 5, bibliotecaE).resultado;
+        assertEquals(expResultError, result777);
+
+        System.out.println("eliminarLibro");
+        Retorno.Resultado result4 = instance.eliminarLibro(titulo, editorial, biblioteca).resultado;
+        assertEquals(expResult, result4);
+        //Error no existe libro
+        Retorno.Resultado result44 = instance.eliminarLibro(tituloE, editorial, biblioteca).resultado;
+        assertEquals(expResultError, result44);
+
+        System.out.println("eliminarBiblioteca");
+        Retorno.Resultado result2 = instance.eliminarBiblioteca(biblioteca).resultado;
+        assertEquals(expResult, result2);
+        //Biblioteca no existe
+        Retorno.Resultado result22 = instance.eliminarBiblioteca(bibliotecaE).resultado;
+        assertEquals(expResultError, result22);        
 
     }
 
