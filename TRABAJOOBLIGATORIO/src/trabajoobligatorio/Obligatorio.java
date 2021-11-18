@@ -211,15 +211,19 @@ public class Obligatorio implements IObligatorio {
             while (auxLibro != null && !encontrada) {
                 NodoReserva rBuscada = auxLibro.getReserva().obtenerElemento(cliente, numero);
                 NodoReserva rBuscadaEspera = auxLibro.getEspera().obtenerElemento(cliente, numero);
-
-                if (rBuscada != null || rBuscadaEspera != null) {
-                    //EliminarReserva
-                    auxLibro.EliminarReserva(rBuscadaEspera, auxLibro);
+                ret.valorString = "No se encontró la reserva";// 
+                if (rBuscada != null) {
+                    //EliminarReserva                    
                     auxLibro.EliminarReserva(rBuscada, auxLibro);
                     ret.resultado = Retorno.Resultado.OK;
-                    encontrada = true;
-                    ret.valorString = "No se encontró la reserva";
-//               
+                    encontrada = true;                                  
+                    auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
+                    ret.valorString = "Reserva cancelada con éxito";
+                }else if(rBuscadaEspera != null){
+                    //EliminarEspera
+                    auxLibro.EliminarReserva(rBuscadaEspera, auxLibro);
+                    ret.resultado = Retorno.Resultado.OK;
+                    encontrada = true;                                 
                     auxLibro.setCantSolicitudes(auxLibro.getCantSolicitudes() - 1);
                     ret.valorString = "Reserva cancelada con éxito";
                 }
