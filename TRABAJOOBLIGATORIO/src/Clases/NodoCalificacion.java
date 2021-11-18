@@ -5,10 +5,7 @@
  */
 package Clases;
 
-/**
- *
- * @author cecil
- */
+
 public class NodoCalificacion {
     //ESTO ES UNA COLA   
     //propiedades de calificacion

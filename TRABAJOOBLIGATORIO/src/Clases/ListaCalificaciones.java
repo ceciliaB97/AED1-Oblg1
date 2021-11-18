@@ -53,10 +53,11 @@ public class ListaCalificaciones implements IListaCalificaciones{
     }
 
     //Metodos 
+    @Override
     public boolean esVacia() {
         return this.inicio == null;
     }
-
+    @Override
     public boolean agregarInicio(int calificacion, String comentario) {
         if (puedoInsertar()) {
             this.actual++;
@@ -71,7 +72,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return false;
     }
-
+    @Override
     public boolean agregarFinal(int calificacion, String comentario) {
         if (puedoInsertar()) {
             NodoCalificacion n = new NodoCalificacion(calificacion, comentario);
@@ -95,7 +96,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return false;
     }
-
+    @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -104,7 +105,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return false;
     }
-
+    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -121,7 +122,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return true;
     }
-
+    @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -130,7 +131,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
             borrarInicio();
         }
     }
-
+    @Override
     public void mostrarREC() {        
         if (!this.esVacia()) {
            mostrarREC2(this.getInicioC(), 1);
@@ -138,7 +139,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
             System.out.println("La lista esta vacia");
         }        
     }
-
+    @Override
     public void mostrarREC2(NodoCalificacion n, int cont
     ) {
         if (n.getSiguiente() == null) {
@@ -148,7 +149,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
             mostrarREC2(n.getSiguiente(), ++cont);
         }         
     }
-
+    @Override
     public NodoCalificacion obtenerElementoAnterior(NodoCalificacion n) {
         if (!this.esVacia()) {
             if (this.inicio.getId() == n.getId()) {
@@ -165,7 +166,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return null;
     }
-
+    @Override
     public boolean eliminarElemento(NodoCalificacion n) {
         //si no es null
         if (!esVacia()) {
@@ -191,7 +192,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return false;
     }
-
+    @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -203,7 +204,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return cont;
     }
-
+    @Override
     public NodoCalificacion obtenerElemento(NodoCalificacion n) {
         if (!this.esVacia()) {
             if (this.inicio.getId() == n.getId()) {
@@ -224,13 +225,14 @@ public class ListaCalificaciones implements IListaCalificaciones{
         return null;
     }
 
+    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-
+    @Override
     public boolean buscarElemento(NodoCalificacion n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -255,7 +257,7 @@ public class ListaCalificaciones implements IListaCalificaciones{
         }
         return ret;
     }
-
+    @Override
     public int contarNodos(ListaCalificaciones n) {
         return n.cantElementos();
     }

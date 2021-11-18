@@ -5,10 +5,7 @@
  */
 package Clases;
 
-/**
- *
- * @author cecil
- */
+
 public class NodoReserva {
 
     //ESTO ES UNA PILA

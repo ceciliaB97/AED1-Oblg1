@@ -58,13 +58,14 @@ public class ListaBibliotecas implements IListaBibliotecas {
     public void setLimite(int limite) {
         this.limite = limite;
     }
-
+    @Override
     public boolean esVacia() {
         return this.inicio == null;
     }
 
     //PRE: 
     //POS: Agrega un nuevo Nodo al principio de la lista
+        @Override
     public boolean agregarInicio(NodoBiblioteca nuevo) {
         if (puedoInsertar()) {
             this.actual++;
@@ -81,6 +82,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE:
     //POS: Agrega un nuevo Nodo al final de la lista
+        @Override
     public boolean agregarFinal(NodoBiblioteca n) {
         if (puedoInsertar()) {
             this.actual++;
@@ -103,6 +105,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE:
     //POS: Borra el primer nodo
+        @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -114,6 +117,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE:
     //POS: Borra el último nodo
+        @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -133,6 +137,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE:
     //POS: elimina todos los nodos de una lista dada
+        @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -144,6 +149,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE:
     //POS: Recorre y muestra los datos de lista
+        @Override
     public void mostrarREC() {
         if (!this.esVacia()) {
             mostrarREC2(this.getInicioB(), 1);
@@ -151,7 +157,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
             System.out.println("No hay elementos");
         }
     }
-
+    @Override
     public void mostrarREC2(NodoBiblioteca n, int cont
     ) {
         
@@ -167,7 +173,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
         }
        
     }
-
+    @Override
     public void mostrarRECLibro(NodoBiblioteca b) {
         
         System.out.println("Libros de la biblioteca: " + b.getNombre());
@@ -177,7 +183,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
             System.out.println(" No tiene Libros");
         }
     }
-
+    @Override
     public NodoBiblioteca obtenerElementoAnterior(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
@@ -197,6 +203,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE: lista ordenada
     //POS: Borra la primer ocurrencia de un elemento dado
+        @Override
     public boolean eliminarElemento(String n) {
         //si no es null
         if (!esVacia()) {
@@ -225,6 +232,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
 
     //PRE: 
     //POS: Retorna la cantidad de nodos que tiene la lista
+        @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -238,6 +246,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
     }
 
     //PRE: //POS:
+        @Override
     public NodoBiblioteca obtenerElemento(String n) {
         if (!this.esVacia()) {
             if (this.inicio.getNombre().equals(n)) {
@@ -262,13 +271,14 @@ public class ListaBibliotecas implements IListaBibliotecas {
      * Si actual < a limite, inserto //PRE: -- //POS: True si actualmente no
      * paso el limite de la lista. @return T/F
      */
+    @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-
+    @Override
     public boolean buscarElemento(String n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -293,17 +303,17 @@ public class ListaBibliotecas implements IListaBibliotecas {
         }
         return ret;
     }
-
+    @Override
     public int contarNodos(ListaBibliotecas n) {
         return n.cantElementos();
     }
-
+    @Override
     public void OrdenarLibrosPorCalifPromedioUnaBiblioteca(NodoBiblioteca b) {
         if (!b.getLibros().esVacia()) {
             b.getLibros().bubbleSortCalificacion();
         }
     }
-
+    @Override
     public void OrdenarPorPromedioBiblioteca() {        
         if (this.cantElementos() > 1){             
             boolean cambio;
@@ -337,7 +347,7 @@ public class ListaBibliotecas implements IListaBibliotecas {
             } while (cambio);
         }
     }
-
+    @Override
     public ListaLibros LibrosMasSolicitados() {
 
         ListaLibros listaNueva = new ListaLibros(0);

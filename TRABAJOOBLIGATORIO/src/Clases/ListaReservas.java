@@ -42,7 +42,7 @@ public class ListaReservas implements IListaReservas{
     public void setUltimo(NodoReserva ultimo) {
         this.ultimo = ultimo;
     }
-
+    
     public ListaReservas(int limiteAceptado) {
         this.primero = null;
         this.ultimo = null;
@@ -51,7 +51,7 @@ public class ListaReservas implements IListaReservas{
     }
 
     //Metodos para sobrecarga 
-    
+ @Override   
     public boolean esLLena(){
          return this.actual == limite;
     }
@@ -59,14 +59,14 @@ public class ListaReservas implements IListaReservas{
     public boolean esVacia() {
         return this.primero == null;
     }
-
+@Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-
+@Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -78,7 +78,7 @@ public class ListaReservas implements IListaReservas{
         }
         return cont;
     }
-
+@Override
     public boolean agregarFinal(NodoReserva n) {
         if (puedoInsertar()) {
             this.actual++;
@@ -98,7 +98,7 @@ public class ListaReservas implements IListaReservas{
         }
         return false;
     }
-
+@Override
     public boolean agregarInicio(NodoReserva n) {
         if (puedoInsertar()) {
             this.actual++;
@@ -112,7 +112,7 @@ public class ListaReservas implements IListaReservas{
         }
         return false;
     }
-
+@Override
     public NodoReserva obtenerElemento(int cliente, int numero) {
         if (!this.esVacia()) {
             if (this.primero.getNumero() == numero && this.primero.getCliente() == numero) {
@@ -132,7 +132,7 @@ public class ListaReservas implements IListaReservas{
         }
         return null;
     }
-
+@Override
     public NodoReserva obtenerElementoAnterior(int cliente, int numero) {
         if (!this.esVacia()) {
             if (this.primero.getNumero() == numero && this.primero.getCliente() == cliente) {
@@ -149,7 +149,7 @@ public class ListaReservas implements IListaReservas{
         }
         return null;
     }
-    
+ @Override   
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -166,7 +166,7 @@ public class ListaReservas implements IListaReservas{
         }
         return true;
     }
-
+@Override
     public boolean eliminarElemento(int cliente, int numero) {
         //si no es null
         if (!esVacia()) {
@@ -192,7 +192,7 @@ public class ListaReservas implements IListaReservas{
         }
         return false;
     }
-
+@Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.primero = this.primero.getSiguiente();
@@ -200,7 +200,7 @@ public class ListaReservas implements IListaReservas{
         }
         return true;
     }
-
+@Override
     public void mostrarREC() {
         if(!this.esVacia()){
            mostrarREC2(this.getPrimero(), 1); 
@@ -208,7 +208,7 @@ public class ListaReservas implements IListaReservas{
             System.out.println("No existen reservas pendientes");
         }  
     }
-
+@Override
     public void mostrarREC2(NodoReserva n, int cont) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getCliente() + ">");
@@ -219,14 +219,14 @@ public class ListaReservas implements IListaReservas{
 
         }
     }
-
+@Override
     public void vaciar() {
         this.actual = 0;
-        //en java alcanza con apuntar inicio y fin a null
-        //inicio=fin=null;
-        while (primero != null) {
-            borrarInicio();
-        }
+      
+        this.primero = null;
+        this.ultimo = null;
+
+
     }    
    
 }

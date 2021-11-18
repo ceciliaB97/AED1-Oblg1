@@ -137,7 +137,7 @@ public class NodoLibro {
     }
 
     public void setCalifPromedio() {
-//        this.califPromedio = EstablecerPromedioCalificacionesDeUnLibro();
+//
 
         this.califPromedio = (double) this.getSumatoriaPuntosLibro() / this.getCantCalificacionesLibro();
 
@@ -161,35 +161,4 @@ public class NodoLibro {
         return false;
     }
 
-//    public double EstablecerPromedioCalificacionesDeUnLibro() {// obtenemos el promedio de calificaciones de un libro
-//        double promedio = 0;
-//        if (!this.getCalificaciones().esVacia()) {
-//            int sumatoria = 0;
-//            int contador = 0;
-//            NodoCalificacion aux = this.getCalificaciones().getInicioC();
-//            while (aux != null) {
-//                sumatoria += aux.getCalificacion();
-//                contador++;
-//                aux = aux.getSiguiente();
-//            }
-//
-//            promedio = (double) sumatoria / contador;
-//
-//        }
-//        return promedio;
-//    }
-
-//    
-//    public void CantidadSolicitudes(){
-//        ListaReservas reservas = this.getReserva();
-//        ListaReservas esperas = this.getEspera();
-//        int cantSolicitudes2 = 0;
-//        if(!reservas.esVacia()){
-//            cantSolicitudes2 += reservas.getActual();
-//            if (!esperas.esVacia()) {
-//                cantSolicitudes2 += esperas.getActual();
-//            }
-//        }
-//      this.setCantSolicitudes(cantSolicitudes2);
-//    }
 }

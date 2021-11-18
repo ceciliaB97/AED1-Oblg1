@@ -16,6 +16,8 @@ public interface IListaBibliotecas {
     public boolean borrarFin();
     //PRE:
     //POS: elimina todos los nodos de una lista dada
+    
+     public boolean esVacia();
     public void vaciar();
     //PRE:
     //POS: Recorre y muestra los datos de lista

@@ -48,13 +48,14 @@ public class ListaLibros implements IListaLibros{
     public void setFin(NodoLibro fin) {
         this.fin = fin;
     }
-
+    @Override
     public boolean esVacia() {
         return this.inicio == null;
     }
 
     //PRE: 
     //POS: Agrega un nuevo Nodo al principio de la lista
+        @Override
     public boolean agregarInicio(NodoLibro nuevo) {
         if (puedoInsertar()) {
             this.actual++;
@@ -72,6 +73,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE:
     //POS: Agrega un nuevo Nodo al final de la lista
+        @Override
     public boolean agregarFinal(NodoLibro n) {
         if (puedoInsertar()) {
             this.actual++;
@@ -93,6 +95,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE:
     //POS: Borra el primer nodo
+        @Override
     public boolean borrarInicio() {
         if (!this.esVacia()) {
             this.actual--;
@@ -104,6 +107,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE:
     //POS: Borra el último nodo
+    @Override
     public boolean borrarFin() {
         this.actual--;
         if (!this.esVacia()) {
@@ -123,6 +127,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE:
     //POS: elimina todos los nodos de una lista dada
+        @Override
     public void vaciar() {
         this.actual = 0;
         //en java alcanza con apuntar inicio y fin a null
@@ -134,6 +139,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE:
     //POS: Recorre y muestra los datos de lista
+        @Override
     public void mostrarREC() {
         if (!this.esVacia()) {
             mostrarREC2(this.getInicioL(), 1);
@@ -142,7 +148,7 @@ public class ListaLibros implements IListaLibros{
         }
 
     }
-
+    @Override
     public void mostrarREC2(NodoLibro n, int cont) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getTitulo() + ">");
@@ -155,7 +161,7 @@ public class ListaLibros implements IListaLibros{
 
         }
     }
-
+    @Override
     public void mostrarRECExtenso() {
         if (!this.esVacia()) {
             mostrarRECExtenso2(this.getInicioL(), 1);
@@ -164,7 +170,7 @@ public class ListaLibros implements IListaLibros{
         }
 
     }
-
+    @Override
     public void mostrarRECExtenso2(NodoLibro n, int cont) {
         if (n.getSiguiente() == null) {
             System.out.println(cont + "- <" + n.getTitulo() + " " + n.getEditorial() + " " + n.getCalifPromedio() + ">");
@@ -174,7 +180,7 @@ public class ListaLibros implements IListaLibros{
 
         }
     }
-
+    @Override
     public NodoLibro obtenerElementoAnterior(NodoLibro n) {
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(n.getTitulo())) {
@@ -194,6 +200,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE: lista ordenada
     //POS: Borra la primer ocurrencia de un elemento dado
+        @Override
     public boolean eliminarElemento(NodoLibro n) {
         //si no es null
         if (!esVacia()) {
@@ -222,6 +229,7 @@ public class ListaLibros implements IListaLibros{
 
     //PRE: 
     //POS: Retorna la cantidad de nodos que tiene la lista
+        @Override
     public int cantElementos() {
         int cont = 0;
         if (!this.esVacia()) {
@@ -235,6 +243,7 @@ public class ListaLibros implements IListaLibros{
     }
 
     //PRE: //POS:
+        @Override
     public NodoLibro obtenerElemento(String titulo, String editorial) {
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(titulo) && this.inicio.getEditorial().equals(editorial)) {
@@ -259,13 +268,14 @@ public class ListaLibros implements IListaLibros{
      * Si actual < a limite, inserto //PRE: -- //POS: True si actualmente no
      * paso el limite de la lista. @return T/F
      */
+        @Override
     public boolean puedoInsertar() {
         if (this.limite == 0) {
             return true;
         }
         return this.limite > this.actual;
     }
-
+    @Override
     public boolean buscarElemento(NodoLibro n) {
         boolean ret = false;
         if (!this.esVacia()) {
@@ -296,6 +306,7 @@ public class ListaLibros implements IListaLibros{
     }
 
     //auxiliar
+        @Override
     public boolean eliminarElementoDesdeNodo(NodoLibro n, NodoLibro nodoDesde) {
         if (n.getTitulo().equals(getFinL().getTitulo())) {
             borrarFin();
@@ -311,7 +322,7 @@ public class ListaLibros implements IListaLibros{
         }
         return false;
     }
-
+    @Override
     public NodoLibro obtenerElementoAnteriorNodoDesde(NodoLibro n, NodoLibro desde) {
         if (!this.esVacia()) {
             if (this.inicio.getTitulo().equals(n.getTitulo())) {
@@ -328,7 +339,7 @@ public class ListaLibros implements IListaLibros{
         }
         return null;
     }
- 
+     @Override
     public void bubbleSort() {
         if (this.cantElementos() > 1) {
             boolean cambio;
@@ -363,7 +374,7 @@ public class ListaLibros implements IListaLibros{
         }
     }
     
-
+    @Override
     public void bubbleSortCalificacion(){
         if (this.cantElementos() > 1){             
             boolean cambio;
@@ -399,7 +410,7 @@ public class ListaLibros implements IListaLibros{
     }
 
 
-    
+        @Override
     public ListaCalificaciones ListaComentarios(){
         ListaCalificaciones auxLista = new ListaCalificaciones(0);
         NodoCalificacion aux = this.getInicioL().getCalificaciones().getInicioC();
